@@ -1,0 +1,202 @@
+.projects-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.projects-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.projects-subtitle {
+  font-size: 0.84rem;
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+}
+
+.projects-new-btn {
+  padding: 0.65rem 1.25rem;
+  background: var(--gradient-accent);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.84rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 200, 220, 0.3);
+}
+
+.projects-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(0, 200, 220, 0.12);
+}
+
+.projects-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.projects-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.15s ease;
+}
+
+.projects-tab:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.projects-tab--active {
+  background: rgba(0, 200, 220, 0.15);
+  color: var(--color-accent);
+  border: 1px solid rgba(0, 200, 220, 0.3);
+}
+
+.projects-tab-count {
+  font-size: 0.6875rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.1rem 0.35rem;
+  border-radius: 10px;
+}
+
+.projects-search-box input {
+  width: 240px;
+  padding: 0.45rem 0.75rem;
+  background: rgba(10, 18, 28, 0.8);
+  border: 1px solid rgba(0, 200, 220, 0.2);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  color: var(--color-text-primary);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  background: rgba(10, 18, 28, 0.75);
+  border: 1px solid rgba(0, 200, 220, 0.15);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.project-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.project-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.project-type-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.project-type-tag--eda { background: rgba(139, 92, 246, 0.2); color: #c084fc; }
+.project-type-tag--ml { background: rgba(0, 200, 220, 0.2); color: var(--color-accent); }
+.project-type-tag--dl { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+.project-status-tag {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.project-status-tag--in-progress { background: rgba(0, 200, 220, 0.1); color: var(--color-accent); }
+.project-status-tag--completed { background: rgba(52, 211, 153, 0.1); color: #34d399; }
+.project-status-tag--draft { background: rgba(148, 163, 184, 0.1); color: #94a3b8; }
+
+.project-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+.project-card__desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.project-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.meta-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.meta-label {
+  color: var(--color-text-tertiary);
+}
+
+.meta-value {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.meta-value--highlight {
+  color: var(--color-accent);
+}
+
+.project-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  margin-top: auto;
+}
+
+.last-modified {
+  color: var(--color-text-tertiary);
+}
+
+.open-link {
+  color: var(--color-accent);
+  font-weight: 500;
+}

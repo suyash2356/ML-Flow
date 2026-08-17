@@ -1,0 +1,108 @@
+.training-history {
+  width: 100%;
+  margin-top: 1rem;
+  background: rgba(10, 16, 24, 0.7);
+  border: 1px solid rgba(0, 200, 220, 0.12);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+
+.training-history__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.training-history__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.training-history__subtitle {
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+}
+
+.training-history__table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.training-history__table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.8125rem;
+}
+
+.training-history__table th {
+  padding: 0.6rem 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  border-bottom: 1px solid rgba(0, 200, 220, 0.1);
+}
+
+.training-history__table td {
+  padding: 0.75rem 0.8rem;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.training-history__cell-id {
+  font-weight: 600;
+}
+
+.training-history__cell-time {
+  color: var(--color-text-secondary);
+}
+
+.training-history__metric-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.training-history__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.training-history__bars .bar {
+  width: 4px;
+  border-radius: 1px;
+  background: #00c8dc;
+  box-shadow: 0 0 6px rgba(0, 200, 220, 0.6);
+}
+
+.bar--fill-1 { height: 6px; }
+.bar--fill-2 { height: 9px; }
+.bar--fill-3 { height: 11px; }
+.bar--fill-4 { height: 14px; }
+
+.bar--outline {
+  height: 14px;
+  background: transparent !important;
+  border: 1px solid rgba(0, 200, 220, 0.6);
+  box-shadow: none !important;
+}
+
+.training-history__status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.training-history__status-icon {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--color-accent);
+  border-top-color: transparent;
+  border-radius: 50%;
+}

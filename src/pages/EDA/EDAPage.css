@@ -1,0 +1,199 @@
+.eda-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.eda-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background: radial-gradient(circle at 0% 50%, rgba(0, 200, 220, 0.15) 0%, rgba(10, 20, 30, 0.85) 100%);
+  border: 1px solid rgba(0, 200, 220, 0.25);
+  border-radius: 14px;
+}
+
+.eda-hero__badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.eda-hero__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0.35rem 0;
+}
+
+.eda-hero__desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  max-width: 650px;
+}
+
+.eda-hero__cta-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--gradient-accent);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 200, 220, 0.3);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.eda-hero__cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 200, 220, 0.5);
+}
+
+.eda-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.eda-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.eda-section__title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.eda-section__subtitle {
+  font-size: 0.78125rem;
+  color: var(--color-text-tertiary);
+}
+
+.eda-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.eda-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  background: rgba(10, 18, 28, 0.75);
+  border: 1px solid rgba(0, 200, 220, 0.15);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.eda-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  background: rgba(14, 26, 40, 0.9);
+}
+
+.eda-card__badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.eda-card__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+.eda-card__summary {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.eda-card__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.eda-topic-tag {
+  font-size: 0.6875rem;
+  color: var(--color-text-tertiary);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.eda-card__action-btn {
+  margin-top: auto;
+  font-size: 0.8125rem;
+  color: var(--color-accent);
+  font-weight: 500;
+  text-align: left;
+}
+
+.eda-templates-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .eda-templates-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.eda-template-box {
+  padding: 1.25rem;
+  background: rgba(12, 22, 34, 0.7);
+  border: 1px stroke rgba(0, 200, 220, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.eda-template-box:hover {
+  border-color: var(--color-accent);
+  background: rgba(16, 30, 46, 0.9);
+}
+
+.eda-template-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.eda-template-box h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.eda-template-box p {
+  font-size: 0.78125rem;
+  color: var(--color-text-tertiary);
+  margin: 0.35rem 0 1rem 0;
+}
+
+.template-launch-btn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(0, 200, 220, 0.3);
+  border-radius: 6px;
+}

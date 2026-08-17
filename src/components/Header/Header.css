@@ -1,0 +1,102 @@
+.app-header {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  background: rgba(6, 11, 18, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 200, 220, 0.1);
+  z-index: 90;
+  width: 100%;
+}
+
+.app-header__breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 450;
+  color: var(--color-text-tertiary);
+}
+
+.app-header__crumb {
+  transition: color var(--transition-fast);
+}
+
+.app-header__crumb--active {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.app-header__separator {
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.app-header__controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-header__search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.app-header__search-icon {
+  position: absolute;
+  left: 10px;
+  width: 14px;
+  height: 14px;
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+
+.app-header__search-input {
+  width: 240px;
+  height: 30px;
+  padding-left: 30px;
+  padding-right: 12px;
+  background: rgba(15, 22, 32, 0.8);
+  border: 1px solid rgba(0, 200, 220, 0.15);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+}
+
+.app-header__search-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.app-header__search-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 10px rgba(0, 200, 220, 0.2);
+}
+
+.app-header__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #3b2820;
+  color: #f0a080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(240, 160, 128, 0.3);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.app-header__avatar:hover,
+.app-header__avatar:focus-visible {
+  border-color: #f0a080;
+  box-shadow: 0 0 10px rgba(240, 160, 128, 0.25);
+  outline: none;
+  transform: scale(1.05);
+}

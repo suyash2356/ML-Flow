@@ -1,0 +1,1 @@
+export { TrainingHistoryTable } from './TrainingHistoryTable';
