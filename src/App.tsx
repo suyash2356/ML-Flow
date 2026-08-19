@@ -110,7 +110,7 @@ function App() {
           />
         );
       case 'workspace':
-        return <WorkspacePage project={currentProject} />;
+        return <WorkspacePage project={currentProject} onNavigate={handleNavSelect} />;
       case 'profile':
         return <ProfilePage onNavigate={handleNavSelect} />;
       case 'settings':
@@ -128,10 +128,11 @@ function App() {
   };
 
   if (activeNavId === 'workspace') {
-    return <WorkspacePage project={currentProject} />;
+    return <WorkspacePage project={currentProject} onNavigate={handleNavSelect} />;
   }
 
   return <AppLayout activeNavId={activeNavId} onNavSelect={handleNavSelect}>{renderPage()}</AppLayout>;
+
 }
 
 export default App;

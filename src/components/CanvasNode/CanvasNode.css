@@ -1,1 +1,255 @@
-.canvas-node{position:absolute;width:178px;min-height:72px;display:flex;align-items:center;gap:9px;padding:10px 14px;border:1px solid #2b4054;border-radius:9px;background:#111c29;color:#e5edf5;box-shadow:0 10px 25px #0006;text-align:left;touch-action:none;transition:border-color .16s,box-shadow .16s,transform .16s}.canvas-node:hover{border-color:#5b778e;transform:translateY(-1px)}.canvas-node--selected{border-color:#56d4c0;box-shadow:0 0 0 1px #56d4c0,0 0 25px #36c7b630}.canvas-node--dragging{z-index:5;opacity:.93}.canvas-node--running{border-color:#e7ae53;animation:nodePulse 1.2s ease-in-out infinite}.canvas-node--success{border-color:#4fc786;box-shadow:0 0 20px #3abf7530}.canvas-node--error{border-color:#e1666c;box-shadow:0 0 20px #e1666c30}.canvas-node__icon{width:28px;height:28px;display:grid;place-items:center;flex:0 0 auto;border-radius:7px;background:#1a3347;color:#6fc0ff;font-size:15px}.canvas-node--model .canvas-node__icon{background:#173c35;color:#61e5c7}.canvas-node--eval .canvas-node__icon{background:#352b45;color:#cba8ff}.canvas-node__copy{display:grid;gap:2px;min-width:0}.canvas-node__copy strong,.canvas-node__copy small{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.canvas-node__copy strong{font-size:11px}.canvas-node__copy small{font-size:9px;color:#7790a4}.canvas-node__port{position:absolute;top:30px;width:10px;height:10px;border:2px solid #718ca3;border-radius:50%;background:#0a121d;z-index:2}.canvas-node__port--in{left:-6px}.canvas-node__port--out{right:-6px;cursor:crosshair}.canvas-node__port--out:hover{border-color:#58dbc4;background:#143d39}.canvas-node__state{position:absolute;right:7px;top:5px;font-size:9px;color:#718ca3}.canvas-node--success .canvas-node__state{color:#65dd97}.canvas-node--error .canvas-node__state{color:#f17d82}.canvas-node--running .canvas-node__state{color:#efba63}@keyframes nodePulse{50%{box-shadow:0 0 0 1px #e7ae53,0 0 26px #e6a53855}}
+.canvas-node-wrapper {
+  position: absolute;
+  z-index: 2;
+  touch-action: none;
+  pointer-events: auto;
+}
+
+
+.canvas-node-wrapper--selected {
+  z-index: 10;
+}
+
+.canvas-node__actions {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 5px;
+  background: #0f1925ee;
+  backdrop-filter: blur(8px);
+  border: 1px solid #2d455b;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  animation: actionsFadeIn 0.15s ease-out;
+}
+
+@keyframes actionsFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 4px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.canvas-node__action-btn {
+  height: 22px;
+  padding: 0 7px;
+  border: 1px solid #2a3e52;
+  border-radius: 4px;
+  background: #162536;
+  color: #9cb5c9;
+  font-size: 9.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.15s ease;
+}
+
+.canvas-node__action-btn:hover {
+  background: #20354b;
+  color: #ffffff;
+  border-color: #436380;
+}
+
+.canvas-node__action-btn--connect {
+  background: #163630;
+  border-color: #245e53;
+  color: #4de0c5;
+}
+
+.canvas-node__action-btn--connect:hover {
+  background: #1f4e45;
+  color: #72f7dd;
+  border-color: #388f7f;
+  box-shadow: 0 0 10px rgba(77, 224, 197, 0.25);
+}
+
+.canvas-node__action-btn--disconnect:hover {
+  background: #2b2536;
+  color: #d8b6ff;
+  border-color: #5d467a;
+}
+
+.canvas-node__action-btn--delete:hover {
+  background: #381a20;
+  color: #ff9499;
+  border-color: #7a303b;
+}
+
+.canvas-node {
+  position: relative;
+  width: 178px;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border: 1px solid #2b4054;
+  border-radius: 9px;
+  background: #111c29;
+  color: #e5edf5;
+  box-shadow: 0 10px 25px #0006;
+  text-align: left;
+  touch-action: none;
+  transition: border-color 0.16s, box-shadow 0.16s, transform 0.16s;
+  cursor: pointer;
+}
+
+.canvas-node:hover {
+  border-color: #5b778e;
+  transform: translateY(-1px);
+}
+
+.canvas-node--selected {
+  border-color: #56d4c0;
+  box-shadow: 0 0 0 1px #56d4c0, 0 0 25px #36c7b630;
+}
+
+.canvas-node--targeting {
+  border-color: #56d4c0;
+  animation: targetPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes targetPulse {
+  50% {
+    box-shadow: 0 0 0 2px #56d4c0, 0 0 25px rgba(86, 212, 192, 0.4);
+  }
+}
+
+.canvas-node--dragging {
+  z-index: 5;
+  opacity: 0.93;
+}
+
+.canvas-node--running {
+  border-color: #e7ae53;
+  animation: nodePulse 1.2s ease-in-out infinite;
+}
+
+.canvas-node--success {
+  border-color: #4fc786;
+  box-shadow: 0 0 20px #3abf7530;
+}
+
+.canvas-node--error {
+  border-color: #e1666c;
+  box-shadow: 0 0 20px #e1666c30;
+}
+
+.canvas-node__icon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 7px;
+  background: #1a3347;
+  color: #6fc0ff;
+  font-size: 15px;
+}
+
+.canvas-node--model .canvas-node__icon {
+  background: #173c35;
+  color: #61e5c7;
+}
+
+.canvas-node--eval .canvas-node__icon {
+  background: #352b45;
+  color: #cba8ff;
+}
+
+.canvas-node__copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.canvas-node__copy strong,
+.canvas-node__copy small {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.canvas-node__copy strong {
+  font-size: 11px;
+}
+
+.canvas-node__copy small {
+  font-size: 9px;
+  color: #7790a4;
+}
+
+.canvas-node__port {
+  position: absolute;
+  top: 28px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #718ca3;
+  border-radius: 50%;
+  background: #0a121d;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 700;
+  color: #718ca3;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+
+.canvas-node__port--in {
+  left: -8px;
+  cursor: pointer;
+}
+
+.canvas-node__port--out {
+  right: -8px;
+  cursor: crosshair;
+  color: #4de0c5;
+}
+
+.canvas-node__port--out:hover {
+  border-color: #58dbc4;
+  background: #143d39;
+  transform: scale(1.25);
+  box-shadow: 0 0 10px rgba(88, 219, 196, 0.5);
+}
+
+.canvas-node__state {
+  position: absolute;
+  right: 7px;
+  top: 5px;
+  font-size: 9px;
+  color: #718ca3;
+}
+
+.canvas-node--success .canvas-node__state {
+  color: #65dd97;
+}
+
+.canvas-node--error .canvas-node__state {
+  color: #f17d82;
+}
+
+.canvas-node--running .canvas-node__state {
+  color: #efba63;
+}
+
+@keyframes nodePulse {
+  50% {
+    box-shadow: 0 0 0 1px #e7ae53, 0 0 26px #e6a53855;
+  }
+}
+
