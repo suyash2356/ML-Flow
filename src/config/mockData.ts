@@ -289,3 +289,52 @@ export const MOCK_USER_PROFILE: UserProfile = {
     },
   ],
 };
+
+export const MOCK_ACTIVITIES: import('../types').Activity[] = [
+  {
+    id: 'act-1',
+    title: 'Model training completed',
+    timestamp: '2 mins ago',
+    type: 'model_trained',
+    projectId: 'proj-1',
+    projectName: 'Customer Churn Prediction v3.1'
+  },
+  {
+    id: 'act-2',
+    title: 'Dataset uploaded',
+    timestamp: '1 hour ago',
+    type: 'dataset_uploaded'
+  },
+  {
+    id: 'act-3',
+    title: 'EDA analysis updated',
+    timestamp: '3 hours ago',
+    type: 'eda_completed',
+    projectId: 'proj-2',
+    projectName: 'E-commerce EDA & Segmentation'
+  },
+  {
+    id: 'act-4',
+    title: 'Project created',
+    timestamp: 'Yesterday',
+    type: 'project_created',
+    projectId: 'proj-4',
+    projectName: 'House Prices Regression'
+  }
+];
+
+export const MOCK_EDA_RESULTS: import('../types').EDAResult[] = [
+  {
+    datasetId: 'ds-1',
+    rowCount: 10000,
+    colCount: 14,
+    duplicateCount: 42,
+    columns: [
+      { name: 'customerID', type: 'categorical', missingCount: 0, missingPercentage: 0, uniqueValues: 10000 },
+      { name: 'tenure', type: 'numeric', missingCount: 15, missingPercentage: 0.15, mean: 32.4, min: 0, max: 72, stdDev: 24.5 },
+      { name: 'MonthlyCharges', type: 'numeric', missingCount: 0, missingPercentage: 0, mean: 64.8, min: 18.25, max: 118.75, stdDev: 30.1 },
+      { name: 'TotalCharges', type: 'numeric', missingCount: 11, missingPercentage: 0.11, mean: 2283.3, min: 18.8, max: 8684.8, stdDev: 2266.8 },
+      { name: 'Churn', type: 'categorical', missingCount: 0, missingPercentage: 0, uniqueValues: 2, mostFrequent: 'No' },
+    ]
+  }
+];

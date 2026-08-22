@@ -1,0 +1,57 @@
+.project-detail {
+  padding: var(--space-6);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.project-detail__tabs {
+  display: flex;
+  gap: var(--space-4);
+  border-bottom: 1px solid var(--color-surface-border);
+  margin-bottom: var(--space-6);
+}
+
+.project-detail__tab {
+  padding: var(--space-3) 0;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.project-detail__tab:hover {
+  color: var(--color-text-primary);
+}
+
+.project-detail__tab--active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.project-detail__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.project-detail__section h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+  color: var(--color-text-primary);
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #000;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  transition: background var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+}

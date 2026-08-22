@@ -1,0 +1,80 @@
+.state-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8);
+  border: 1px dashed var(--color-surface-border);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--color-surface);
+  margin: var(--space-4) 0;
+}
+
+.state-component__icon {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.state-component__icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.state-component__title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.state-component__description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  max-width: 400px;
+  margin-bottom: var(--space-4);
+}
+
+.state-component__action {
+  margin-top: var(--space-2);
+}
+
+/* Error State Variations */
+.error-state {
+  border-color: rgba(248, 113, 113, 0.3);
+  background-color: rgba(248, 113, 113, 0.05);
+}
+
+.error-state__icon {
+  color: var(--color-error);
+}
+
+/* Loading State Animations */
+.loading-state__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-surface-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--space-4);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-state__pulse {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-bottom: var(--space-4);
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0.5; }
+}

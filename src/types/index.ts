@@ -4,10 +4,13 @@ export type NavigationPage =
   | 'ml'
   | 'dl'
   | 'projects'
+  | 'project_detail'
   | 'datasets'
   | 'workspace'
   | 'profile'
   | 'settings';
+
+export * from './knowledge';
 
 export interface NavItem {
   id: NavigationPage;
@@ -100,4 +103,34 @@ export interface UserProfile {
   topAccuracy: string;
   skills: { name: string; level: number }[];
   achievements: { title: string; desc: string; date: string; icon: string }[];
+}
+
+export interface Activity {
+  id: string;
+  title: string;
+  timestamp: string;
+  type: 'project_created' | 'dataset_uploaded' | 'model_trained' | 'eda_completed';
+  projectId?: string;
+  projectName?: string;
+}
+
+export interface ColumnProfile {
+  name: string;
+  type: 'numeric' | 'categorical' | 'datetime';
+  missingCount: number;
+  missingPercentage: number;
+  uniqueValues?: number;
+  mean?: number;
+  min?: number;
+  max?: number;
+  stdDev?: number;
+  mostFrequent?: string;
+}
+
+export interface EDAResult {
+  datasetId: string;
+  rowCount: number;
+  colCount: number;
+  duplicateCount: number;
+  columns: ColumnProfile[];
 }

@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import type { Project } from '../../types';
+import { PageHeader } from '../../components/PageHeader';
+import { Modal } from '../../components/Modal';
 import './ProjectsPage.css';
 
 interface ProjectsPageProps {
   projects: Project[];
-  onOpenWorkspace: (project: Project) => void;
-  onCreateProject: () => void;
+  onOpenProjectDetail: (project: Project) => void;
+  onAddProject?: (project: Project) => void;
 }
 
-export function ProjectsPage({ projects, onOpenWorkspace, onCreateProject }: ProjectsPageProps) {
+export function ProjectsPage({ projects, onOpenProjectDetail, onAddProject }: ProjectsPageProps) {
   const [activeTab, setActiveTab] = useState<'All' | 'EDA' | 'ML' | 'DL'>('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newProject, setNewProject] = useState<{name: string; description: string; type: 'EDA' | 'ML' | 'DL'}>({ name: '', description: '', type: 'ML' });
 
   const filteredProjects = projects.filter((p) => {
     const matchesTab = activeTab === 'All' || p.type === activeTab;
@@ -21,20 +25,36 @@ export function ProjectsPage({ projects, onOpenWorkspace, onCreateProject }: Pro
     return matchesTab && matchesSearch;
   });
 
+  const handleCreateProject = () => {
+    if (!newProject.name) return;
+    
+    const proj: Project = {
+      id: `proj-${Date.now()}`,
+      name: newProject.name,
+      type: newProject.type,
+      description: newProject.description,
+      datasetName: 'No dataset selected',
+      lastModified: 'Just now',
+      status: 'Draft',
+      nodesCount: 0,
+    };
+    
+    onAddProject?.(proj);
+    setIsModalOpen(false);
+    setNewProject({ name: '', description: '', type: 'ML' });
+  };
+
   return (
     <div className="projects-page">
-      {/* Top Header & Actions */}
-      <div className="projects-header">
-        <div>
-          <h1 className="projects-title">Workspaces & Projects</h1>
-          <p className="projects-subtitle">
-            Manage your visual machine learning pipelines across EDA, Classical ML, and Deep Learning models.
-          </p>
-        </div>
-        <button className="projects-new-btn" onClick={onCreateProject}>
-          + New Project
-        </button>
-      </div>
+      <PageHeader 
+        title="Workspaces & Projects"
+        description="Manage your visual machine learning pipelines across EDA, Classical ML, and Deep Learning models."
+        actions={
+          <button className="btn-primary" onClick={() => setIsModalOpen(true)}>
+            + New Project
+          </button>
+        }
+      />
 
       {/* Controls Bar: Tabs & Search */}
       <div className="projects-controls">
@@ -66,7 +86,7 @@ export function ProjectsPage({ projects, onOpenWorkspace, onCreateProject }: Pro
       {/* Projects Grid */}
       <div className="projects-grid">
         {filteredProjects.map((project) => (
-          <div key={project.id} className="project-card" onClick={() => onOpenWorkspace(project)}>
+          <div key={project.id} className="project-card" onClick={() => onOpenProjectDetail(project)}>
             <div className="project-card__top">
               <span className={`project-type-tag project-type-tag--${project.type.toLowerCase()}`}>
                 {project.type}
@@ -98,11 +118,60 @@ export function ProjectsPage({ projects, onOpenWorkspace, onCreateProject }: Pro
 
             <div className="project-card__footer">
               <span className="last-modified">Edited {project.lastModified}</span>
-              <span className="open-link">Open Workspace →</span>
+              <span className="open-link">Open Project →</span>
             </div>
           </div>
         ))}
       </div>
+
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        title="Create New Project"
+        footer={
+          <>
+            <button className="btn-secondary" onClick={() => setIsModalOpen(false)}>Cancel</button>
+            <button className="btn-primary" onClick={handleCreateProject} disabled={!newProject.name}>Create Project</button>
+          </>
+        }
+      >
+        <div className="form-group">
+          <label htmlFor="projectName">Project Name <span style={{color: 'var(--color-error)'}}>*</span></label>
+          <input 
+            id="projectName"
+            type="text" 
+            className="form-input" 
+            placeholder="e.g. Customer Churn Prediction" 
+            value={newProject.name}
+            onChange={e => setNewProject({...newProject, name: e.target.value})}
+            autoFocus
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="projectDesc">Description</label>
+          <textarea 
+            id="projectDesc"
+            className="form-input" 
+            placeholder="Briefly describe the goal of this project..." 
+            value={newProject.description}
+            onChange={e => setNewProject({...newProject, description: e.target.value})}
+            rows={3}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="projectType">Project Type</label>
+          <select 
+            id="projectType"
+            className="form-input" 
+            value={newProject.type}
+            onChange={e => setNewProject({...newProject, type: e.target.value as 'EDA' | 'ML' | 'DL'})}
+          >
+            <option value="EDA">Exploratory Data Analysis (EDA)</option>
+            <option value="ML">Classical Machine Learning (ML)</option>
+            <option value="DL">Deep Learning (DL)</option>
+          </select>
+        </div>
+      </Modal>
     </div>
   );
 }

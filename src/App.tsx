@@ -9,12 +9,13 @@ import { DatasetsPage } from './pages/Datasets/DatasetsPage';
 import { WorkspacePage } from './pages/Workspace/WorkspacePage';
 import { ProfilePage } from './pages/Profile/ProfilePage';
 import { SettingsPage } from './pages/Settings/SettingsPage';
+import { ProjectDetail } from './pages/Projects/ProjectDetail';
 import { MOCK_PROJECTS, MOCK_DATASETS } from './config/mockData';
 import type { NavigationPage, Project, DatasetItem } from './types';
 
 function App() {
   const [activeNavId, setActiveNavId] = useState<NavigationPage>('dashboard');
-  const [projects] = useState<Project[]>(MOCK_PROJECTS);
+  const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS);
   const [datasets] = useState<DatasetItem[]>(MOCK_DATASETS);
   const [currentProject, setCurrentProject] = useState<Project | undefined>(MOCK_PROJECTS[0]);
 
@@ -27,6 +28,11 @@ function App() {
       setCurrentProject(proj);
     }
     setActiveNavId('workspace');
+  };
+
+  const handleOpenProjectDetail = (proj: Project) => {
+    setCurrentProject(proj);
+    setActiveNavId('project_detail');
   };
 
   const handleStartTemplateProject = (type: 'EDA' | 'ML' | 'DL') => {
@@ -98,8 +104,11 @@ function App() {
         return (
           <ProjectsPage
             projects={projects}
-            onOpenWorkspace={handleOpenWorkspace}
-            onCreateProject={() => handleStartTemplateProject('ML')}
+            onOpenProjectDetail={handleOpenProjectDetail}
+            onAddProject={(proj) => {
+              setProjects([proj, ...projects]);
+              handleOpenProjectDetail(proj);
+            }}
           />
         );
       case 'datasets':
@@ -111,6 +120,24 @@ function App() {
         );
       case 'workspace':
         return <WorkspacePage project={currentProject} onNavigate={handleNavSelect} />;
+      case 'project_detail':
+        return currentProject ? (
+          <ProjectDetail 
+            project={currentProject} 
+            onNavigate={handleNavSelect} 
+            onOpenWorkspace={handleOpenWorkspace} 
+            onBack={() => handleNavSelect('projects')}
+          />
+        ) : (
+          <ProjectsPage
+            projects={projects}
+            onOpenProjectDetail={handleOpenProjectDetail}
+            onAddProject={(proj) => {
+              setProjects([proj, ...projects]);
+              handleOpenProjectDetail(proj);
+            }}
+          />
+        );
       case 'profile':
         return <ProfilePage onNavigate={handleNavSelect} />;
       case 'settings':

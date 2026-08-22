@@ -14,6 +14,7 @@ export function Header({ activeNavId, userInitials, onProfileOpen }: HeaderProps
     ml: 'Machine Learning Studio',
     dl: 'Deep Learning Lab',
     projects: 'Projects & Workspaces',
+    project_detail: 'Project Details',
     datasets: 'Datasets & Data Hub',
     workspace: 'Pipeline Builder Workspace',
     profile: 'Developer Portfolio',
