@@ -1,0 +1,120 @@
+.user-profile-card {
+  background: #111c29;
+  border: 1px solid #2b4054;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.2s ease;
+}
+
+.user-profile-card:hover {
+  border-color: #3b5773;
+}
+
+.user-profile-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-profile-card__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #28ae9b 0%, #156257 100%);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  border: 2px solid #56d4c0;
+  box-shadow: 0 0 12px rgba(86, 212, 192, 0.25);
+  flex-shrink: 0;
+}
+
+.user-profile-card__identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.user-profile-card__name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e5edf5;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-profile-card__handle {
+  font-size: 11px;
+  color: #56d4c0;
+  font-weight: 600;
+}
+
+.user-profile-card__role {
+  font-size: 10.5px;
+  color: #8da4b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-profile-card__location {
+  font-size: 11px;
+  color: #9cb4c9;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.user-profile-card__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.user-profile-card__skill-tag {
+  font-size: 9.5px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #172a3c;
+  color: #72f7dd;
+  border: 1px solid #224256;
+}
+
+.user-profile-card__stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #213345;
+}
+
+.user-profile-card__stat {
+  background: #09131f;
+  border: 1px solid #213446;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.user-profile-card__stat-value {
+  font-size: 13px;
+  font-weight: 750;
+  color: #e5edf5;
+}
+
+.user-profile-card__stat-label {
+  font-size: 9.5px;
+  color: #728a9f;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}

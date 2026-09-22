@@ -1,4 +1,25 @@
-import type { NavigationPage, Project, DatasetItem } from '../../types';
+import { useState } from 'react';
+import type { NavigationPage, Project, DatasetItem, FeedFilter, PostItem } from '../../types';
+import { UserProfileCard } from '../../components/Dashboard/UserProfileCard';
+import { ContinueWorkingCard } from '../../components/Dashboard/ContinueWorkingCard';
+import { WeeklyGoalWidget } from '../../components/Dashboard/WeeklyGoalWidget';
+import { PostComposer } from '../../components/Dashboard/PostComposer';
+import { FeedFilterTabs } from '../../components/Dashboard/FeedFilterTabs';
+import { PostCard } from '../../components/Dashboard/PostCard';
+import { WorldMapWidget } from '../../components/Dashboard/WorldMapWidget';
+import { WeeklyChallengeCard } from '../../components/Dashboard/WeeklyChallengeCard';
+import { MentorMatchCard } from '../../components/Dashboard/MentorMatchCard';
+import { TrendingMLCard } from '../../components/Dashboard/TrendingMLCard';
+import { SuggestedFollowList } from '../../components/Dashboard/SuggestedFollowList';
+import {
+  MOCK_POSTS,
+  MOCK_COUNTRY_MAP_PINS,
+  MOCK_WEEKLY_CHALLENGE,
+  MOCK_MENTOR_MATCHES,
+  MOCK_TRENDING_ITEMS,
+  MOCK_SUGGESTED_USERS,
+} from '../../config/dashboardCommunityData';
+import { MOCK_USER_PROFILE } from '../../config/mockData';
 import './DashboardPage.css';
 
 interface DashboardPageProps {
@@ -10,172 +31,89 @@ interface DashboardPageProps {
 
 export function DashboardPage({
   projects,
-  datasets,
-  onNavigate,
+  datasets: _datasets,
+  onNavigate: _onNavigate,
   onOpenWorkspace,
 }: DashboardPageProps) {
+  const [posts, setPosts] = useState<PostItem[]>(MOCK_POSTS);
+  const [activeFilter, setActiveFilter] = useState<FeedFilter>('for_you');
+
   const activeProject = projects.find((p) => p.status === 'In Progress') || projects[0];
-  const favoriteProjects = projects.filter((p) => p.isFavorite);
-  const recentDatasets = datasets.slice(0, 3);
+
+  const handleAddPost = (newPost: PostItem) => {
+    setPosts([newPost, ...posts]);
+  };
+
+  const handleForkProject = (attached: NonNullable<PostItem['attachedProject']>) => {
+    const forkedProject: Project = {
+      id: `proj-fork-${Date.now()}`,
+      name: `${attached.name} (Forked)`,
+      type: attached.taskType === 'EDA' ? 'EDA' : attached.taskType === 'Computer Vision' ? 'DL' : 'ML',
+      description: `Forked community pipeline from ML Flow. Initial benchmark: ${attached.metricAchieved}`,
+      datasetName: attached.datasetName,
+      lastModified: 'Just now',
+      status: 'In Progress',
+      nodesCount: attached.nodesCount,
+      accuracy: attached.metricAchieved,
+    };
+    onOpenWorkspace(forkedProject);
+  };
+
+  const handleJoinChallenge = (challenge: typeof MOCK_WEEKLY_CHALLENGE) => {
+    const challengeProject: Project = {
+      id: `proj-challenge-${Date.now()}`,
+      name: challenge.title,
+      type: 'ML',
+      description: challenge.description,
+      datasetName: challenge.datasetName,
+      lastModified: 'Just now',
+      status: 'In Progress',
+      nodesCount: 6,
+    };
+    onOpenWorkspace(challengeProject);
+  };
+
+  const filteredPosts = posts.filter((post) => {
+    if (activeFilter === 'my_country') return post.authorCountry === 'India';
+    if (activeFilter === 'trending') return post.likesCount > 40;
+    if (activeFilter === 'following') return post.authorName !== 'Alex Kumar';
+    return true; // for_you and global show all posts
+  });
 
   return (
-    <div className="dashboard-page">
-      {/* Top Banner: Continue Working */}
-      {activeProject && (
-        <div className="dashboard__banner">
-          <div className="dashboard__banner-content">
-            <span className="dashboard__banner-badge">✦ Active Workspace</span>
-            <h2 className="dashboard__banner-title">{activeProject.name}</h2>
-            <p className="dashboard__banner-desc">{activeProject.description}</p>
-            <div className="dashboard__banner-meta">
-              <span>Dataset: <strong>{activeProject.datasetName}</strong></span>
-              <span>•</span>
-              <span>Type: <strong>{activeProject.type}</strong></span>
-              <span>•</span>
-              <span>Last edited: <strong>{activeProject.lastModified}</strong></span>
-            </div>
-          </div>
-          <button
-            className="dashboard__banner-btn"
-            onClick={() => onOpenWorkspace(activeProject)}
-          >
-            Continue Working →
-          </button>
-        </div>
-      )}
+    <div className="dashboard-3col">
+      {/* 1. LEFT COLUMN: Sticky, Profile, Continue Working, Goal */}
+      <aside className="dashboard-3col__left">
+        <UserProfileCard user={MOCK_USER_PROFILE} streakDays={4} karmaScore={1420} />
+        <ContinueWorkingCard project={activeProject} onOpenWorkspace={onOpenWorkspace} />
+        <WeeklyGoalWidget />
+      </aside>
 
-      {/* New Project Shortcuts */}
-      <section className="dashboard__section">
-        <div className="dashboard__section-header">
-          <h3 className="dashboard__section-title">New Project Shortcuts</h3>
-        </div>
-        <div className="dashboard__shortcuts-grid">
-          <button
-            className="dashboard__shortcut-card dashboard__shortcut-card--eda"
-            onClick={() => onNavigate('eda')}
-          >
-            <div className="dashboard__shortcut-icon">📊</div>
-            <div className="dashboard__shortcut-text">
-              <h4>New EDA Project</h4>
-              <p>Profiling, correlation matrices, outlier analysis</p>
-            </div>
-            <span className="dashboard__shortcut-arrow">+</span>
-          </button>
+      {/* 2. CENTER COLUMN: Social Feed, Composer, Filter Tabs, Post Cards */}
+      <main className="dashboard-3col__center">
+        <PostComposer userProjects={projects} onAddPost={handleAddPost} />
+        <FeedFilterTabs activeFilter={activeFilter} onSelectFilter={setActiveFilter} />
 
-          <button
-            className="dashboard__shortcut-card dashboard__shortcut-card--ml"
-            onClick={() => onNavigate('ml')}
-          >
-            <div className="dashboard__shortcut-icon">🧠</div>
-            <div className="dashboard__shortcut-text">
-              <h4>New ML Project</h4>
-              <p>Random Forest, XGBoost, Cross-Validation</p>
-            </div>
-            <span className="dashboard__shortcut-arrow">+</span>
-          </button>
-
-          <button
-            className="dashboard__shortcut-card dashboard__shortcut-card--dl"
-            onClick={() => onNavigate('dl')}
-          >
-            <div className="dashboard__shortcut-icon">🔮</div>
-            <div className="dashboard__shortcut-text">
-              <h4>New DL Project</h4>
-              <p>Perceptron, CNNs, Deep Neural Networks</p>
-            </div>
-            <span className="dashboard__shortcut-arrow">+</span>
-          </button>
-        </div>
-      </section>
-
-      {/* Two Column Grid: Recent Projects & Favourites */}
-      <div className="dashboard__two-col">
-        {/* Recent Projects */}
-        <section className="dashboard__section">
-          <div className="dashboard__section-header">
-            <h3 className="dashboard__section-title">Recent Projects</h3>
-            <button className="dashboard__link-btn" onClick={() => onNavigate('projects')}>
-              View All ({projects.length}) →
-            </button>
-          </div>
-          <div className="dashboard__projects-list">
-            {projects.slice(0, 3).map((proj) => (
-              <div
-                key={proj.id}
-                className="dashboard__project-row"
-                onClick={() => onOpenWorkspace(proj)}
-              >
-                <div className="dashboard__project-type-badge">{proj.type}</div>
-                <div className="dashboard__project-details">
-                  <h4>{proj.name}</h4>
-                  <p>{proj.datasetName} • {proj.nodesCount} nodes</p>
-                </div>
-                <div className="dashboard__project-status">
-                  <span className={`status-pill status-pill--${proj.status.toLowerCase().replace(' ', '-')}`}>
-                    {proj.status}
-                  </span>
-                  <span className="dashboard__project-time">{proj.lastModified}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Favourite Projects */}
-        <section className="dashboard__section">
-          <div className="dashboard__section-header">
-            <h3 className="dashboard__section-title">Favorite & Starred Projects</h3>
-          </div>
-          <div className="dashboard__projects-list">
-            {favoriteProjects.map((proj) => (
-              <div
-                key={proj.id}
-                className="dashboard__project-row"
-                onClick={() => onOpenWorkspace(proj)}
-              >
-                <span className="dashboard__star-icon">★</span>
-                <div className="dashboard__project-details">
-                  <h4>{proj.name}</h4>
-                  <p>{proj.description}</p>
-                </div>
-                {proj.accuracy && (
-                  <div className="dashboard__project-acc">
-                    <span>Acc: <strong>{proj.accuracy}</strong></span>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-
-      {/* Recent Datasets Section */}
-      <section className="dashboard__section">
-        <div className="dashboard__section-header">
-          <h3 className="dashboard__section-title">Recent Datasets</h3>
-          <button className="dashboard__link-btn" onClick={() => onNavigate('datasets')}>
-            Manage Datasets →
-          </button>
-        </div>
-        <div className="dashboard__datasets-grid">
-          {recentDatasets.map((ds) => (
-            <div key={ds.id} className="dashboard__dataset-card">
-              <div className="dashboard__dataset-header">
-                <span className="dashboard__dataset-icon">📁</span>
-                <span className="dashboard__dataset-format">{ds.format}</span>
-              </div>
-              <h4 className="dashboard__dataset-name">{ds.name}</h4>
-              <div className="dashboard__dataset-meta">
-                <span>{ds.rows.toLocaleString()} rows</span>
-                <span>•</span>
-                <span>{ds.columns} cols</span>
-                <span>•</span>
-                <span>{ds.size}</span>
-              </div>
-            </div>
+        <div className="dashboard-3col__feed-list">
+          {filteredPosts.map((post) => (
+            <PostCard
+              key={post.id}
+              post={post}
+              onForkProject={handleForkProject}
+              onOpenWorkspace={onOpenWorkspace}
+            />
           ))}
         </div>
-      </section>
+      </main>
+
+      {/* 3. RIGHT COLUMN: World Map, Challenge, Mentors, Trending */}
+      <aside className="dashboard-3col__right">
+        <WorldMapWidget pins={MOCK_COUNTRY_MAP_PINS} />
+        <WeeklyChallengeCard challenge={MOCK_WEEKLY_CHALLENGE} onJoinChallenge={handleJoinChallenge} />
+        <MentorMatchCard mentors={MOCK_MENTOR_MATCHES} />
+        <TrendingMLCard trendingItems={MOCK_TRENDING_ITEMS} />
+        <SuggestedFollowList users={MOCK_SUGGESTED_USERS} />
+      </aside>
     </div>
   );
 }

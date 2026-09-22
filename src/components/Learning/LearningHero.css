@@ -1,0 +1,214 @@
+.learning-hero {
+  background: linear-gradient(135deg, #112030 0%, #0d1622 100%);
+  border: 1px solid #28445e;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.learning-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #56d4c0 0%, #28ae9b 100%);
+}
+
+.learning-hero--eda::before {
+  background: linear-gradient(90deg, #6fc0ff 0%, #3a8cdb 100%);
+}
+
+.learning-hero--dl::before {
+  background: linear-gradient(90deg, #cba8ff 0%, #9b69e6 100%);
+}
+
+.learning-hero__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 650px;
+}
+
+.learning-hero__badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.learning-hero__category-badge {
+  font-size: 10.5px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #56d4c0;
+  background: #143531;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid #235c54;
+}
+
+.learning-hero__level-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #182838;
+  color: #8da4b8;
+  border: 1px solid #2d455d;
+}
+
+.learning-hero__level-badge--practitioner {
+  color: #f7c872;
+  border-color: #5c4524;
+  background: #392b17;
+}
+
+.learning-hero__level-badge--expert {
+  color: #cba8ff;
+  border-color: #4b3670;
+  background: #251b38;
+}
+
+.learning-hero__title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #eef8fa;
+  margin: 2px 0 0;
+  letter-spacing: -0.3px;
+}
+
+.learning-hero__subtitle {
+  font-size: 13px;
+  color: #8fa7bc;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.learning-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.learning-hero__btn {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.learning-hero__btn--primary {
+  background: #28ae9b;
+  color: #041411;
+  border: none;
+}
+
+.learning-hero__btn--primary:hover {
+  background: #34c4b0;
+  box-shadow: 0 0 14px rgba(40, 174, 155, 0.4);
+}
+
+.learning-hero__btn--secondary {
+  background: #142536;
+  color: #bfd0dd;
+  border: 1px solid #2b455e;
+}
+
+.learning-hero__btn--secondary:hover {
+  background: #1d364e;
+  color: #ffffff;
+  border-color: #56d4c0;
+}
+
+.learning-hero__progress-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #09131f;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #1f364d;
+  flex-shrink: 0;
+}
+
+.learning-hero__ring-container {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.learning-hero__ring {
+  transform: rotate(-90deg);
+}
+
+.learning-hero__ring-bg {
+  fill: none;
+  stroke: #16293b;
+}
+
+.learning-hero__ring-fill {
+  fill: none;
+  stroke: #56d4c0;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.learning-hero__ring-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.learning-hero__ring-text strong {
+  font-size: 16px;
+  color: #e5edf5;
+}
+
+.learning-hero__ring-text small {
+  font-size: 9px;
+  color: #7994ab;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.learning-hero__progress-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.learning-hero__status-label {
+  font-size: 10.5px;
+  color: #7994ab;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.learning-hero__cert-status {
+  font-size: 12px;
+  font-weight: 700;
+  color: #56d4c0;
+}
+
+@media (max-width: 860px) {
+  .learning-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

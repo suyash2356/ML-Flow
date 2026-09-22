@@ -11,6 +11,8 @@ export type NavigationPage =
   | 'settings';
 
 export * from './knowledge';
+export * from './community';
+
 
 export interface NavItem {
   id: NavigationPage;

@@ -1,0 +1,389 @@
+.project-wizard {
+  background: #111c29;
+  border: 1px solid #2b4054;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.project-wizard__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-wizard__title {
+  font-size: 17px;
+  font-weight: 750;
+  color: #e5edf5;
+  margin: 0;
+}
+
+.project-wizard__subtitle {
+  font-size: 11px;
+  color: #56d4c0;
+}
+
+.project-wizard__toggle-bar {
+  display: flex;
+  background: #09131f;
+  border: 1px solid #23374a;
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.project-wizard__toggle-btn {
+  height: 28px;
+  padding: 0 12px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  color: #7994ab;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.project-wizard__toggle-btn--active {
+  background: #172d3e;
+  color: #56d4c0;
+}
+
+/* Stepper */
+.project-wizard__stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #1c2e40;
+}
+
+.project-wizard__step-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #09131f;
+  border: 1px solid #1c2e40;
+  cursor: pointer;
+  white-space: nowrap;
+  opacity: 0.7;
+  transition: all 0.15s ease;
+}
+
+.project-wizard__step-item--active {
+  opacity: 1;
+  border-color: #56d4c0;
+  background: #132738;
+}
+
+.project-wizard__step-item--passed {
+  opacity: 0.9;
+  border-color: #27695c;
+}
+
+.project-wizard__step-badge {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #182c3e;
+  color: #56d4c0;
+  font-size: 9.5px;
+  font-weight: 750;
+  display: grid;
+  place-items: center;
+}
+
+.project-wizard__step-label {
+  font-size: 11px;
+  color: #e5edf5;
+}
+
+/* Step Content Pane */
+.project-wizard__content {
+  background: #09131f;
+  border: 1px solid #1c2e40;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.project-wizard__step-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.project-wizard__step-pane h4 {
+  margin: 0;
+  font-size: 15px;
+  color: #e5edf5;
+}
+
+.project-wizard__pane-desc {
+  font-size: 12px;
+  color: #8da4b8;
+  margin: 0;
+}
+
+.project-wizard__dataset-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-wizard__dataset-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #0e1a26;
+  border: 1px solid #21374b;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.project-wizard__dataset-card--selected {
+  border-color: #56d4c0;
+  background: #142838;
+}
+
+.project-wizard__dataset-card input {
+  accent-color: #56d4c0;
+}
+
+.project-wizard__dataset-card strong {
+  display: block;
+  font-size: 12.5px;
+  color: #e5edf5;
+}
+
+.project-wizard__dataset-card small {
+  font-size: 10px;
+  color: #7994ab;
+}
+
+.project-wizard__task-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.project-wizard__task-btn {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 6px;
+  background: #0e1a26;
+  border: 1px solid #21374b;
+  color: #8da4b8;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.project-wizard__task-btn--selected {
+  border-color: #56d4c0;
+  color: #72f7dd;
+  background: #152d3d;
+}
+
+.project-wizard__config-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.project-wizard__config-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-wizard__config-item label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #8da4b8;
+}
+
+.project-wizard__config-item select {
+  height: 34px;
+  background: #122130;
+  border: 1px solid #26435c;
+  border-radius: 6px;
+  color: #e5edf5;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+.project-wizard__tooltip {
+  font-size: 10px;
+  color: #56d4c0;
+}
+
+.project-wizard__step-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.project-wizard__next-btn {
+  height: 34px;
+  padding: 0 16px;
+  border-radius: 6px;
+  background: #28ae9b;
+  color: #041411;
+  font-size: 11.5px;
+  font-weight: 750;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.project-wizard__next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.project-wizard__back-btn {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 6px;
+  background: #162638;
+  border: 1px solid #2b455e;
+  color: #9cb5c9;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+
+.project-wizard__train-btn {
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 6px;
+  background: #1d9f91;
+  color: #031412;
+  font-weight: 750;
+  font-size: 12.5px;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.project-wizard__training-status {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: #0d1927;
+  border-radius: 8px;
+  border: 1px solid #233b52;
+}
+
+.project-wizard__loader-bar {
+  height: 8px;
+  background: #16283a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.project-wizard__loader-fill {
+  height: 100%;
+  background: #56d4c0;
+  transition: width 0.3s ease;
+}
+
+.project-wizard__success-banner {
+  padding: 12px;
+  background: #132e29;
+  border: 1px solid #246356;
+  border-radius: 8px;
+  color: #72f7dd;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.project-wizard__plain-english-box {
+  background: #0e1c2a;
+  border: 1px solid #233e56;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-wizard__english-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-wizard__english-header strong {
+  font-size: 13.5px;
+  color: #e5edf5;
+}
+
+.project-wizard__score-pill {
+  font-size: 10.5px;
+  font-weight: 750;
+  color: #56d4c0;
+  background: #143531;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.project-wizard__plain-english-box p {
+  font-size: 12.5px;
+  color: #c5d8e8;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.project-wizard__metric-badges {
+  display: flex;
+  gap: 14px;
+  font-size: 11.5px;
+  color: #8fa7bc;
+}
+
+.project-wizard__metric-badges strong {
+  color: #e5edf5;
+}
+
+.project-wizard__export-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: #0d1a27;
+  border-radius: 8px;
+  border: 1px solid #25425c;
+  font-size: 12px;
+  color: #9cb5c9;
+}
+
+.project-wizard__launch-btn {
+  margin-top: 10px;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 6px;
+  background: #28ae9b;
+  color: #041411;
+  font-weight: 750;
+  font-size: 12.5px;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+}

@@ -1,0 +1,182 @@
+.learning-path-rail {
+  background: #111c29;
+  border: 1px solid #2b4054;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  top: 16px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.learning-path-rail__header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #213547;
+}
+
+.learning-path-rail__title {
+  font-size: 13.5px;
+  font-weight: 750;
+  color: #e5edf5;
+  margin: 0;
+}
+
+.learning-path-rail__subtitle {
+  font-size: 10px;
+  color: #56d4c0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.learning-path-rail__stages {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.learning-path-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.learning-path-stage__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.learning-path-stage__number {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #172d3e;
+  color: #56d4c0;
+  font-size: 10px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 1px solid #2b4c69;
+}
+
+.learning-path-stage__titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.learning-path-stage__titles strong {
+  font-size: 11.5px;
+  color: #e5edf5;
+  line-height: 1.2;
+}
+
+.learning-path-stage__titles small {
+  font-size: 9.5px;
+  color: #7d96ac;
+}
+
+.learning-path-stage__nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 10px;
+  border-left: 1.5px solid #1c2e42;
+  margin-left: 10px;
+}
+
+.learning-path-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: #09131f;
+  border: 1px solid #1c2e40;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.learning-path-node:hover:not(:disabled) {
+  border-color: #56d4c0;
+  background: #111f2e;
+}
+
+.learning-path-node--active {
+  border-color: #56d4c0;
+  background: #132738;
+  box-shadow: 0 0 10px rgba(86, 212, 192, 0.2);
+}
+
+.learning-path-node--completed .learning-path-node__status-icon {
+  background: #153c35;
+  color: #56d4c0;
+  border-color: #27695c;
+}
+
+.learning-path-node--locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.learning-path-node__status-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #162636;
+  color: #7994ab;
+  font-size: 9.5px;
+  font-weight: 750;
+  display: grid;
+  place-items: center;
+  border: 1px solid #283d52;
+  flex-shrink: 0;
+}
+
+.learning-path-node__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.learning-path-node__title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #e5edf5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.learning-path-node__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  color: #7994ab;
+}
+
+.learning-path-node__diff {
+  font-weight: 700;
+}
+
+.learning-path-node__diff--beginner {
+  color: #6fc0ff;
+}
+
+.learning-path-node__diff--practitioner {
+  color: #f7c872;
+}
+
+.learning-path-node__diff--expert {
+  color: #cba8ff;
+}

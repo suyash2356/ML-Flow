@@ -1,0 +1,210 @@
+.world-map-widget {
+  background: #111c29;
+  border: 1px solid #2b4054;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.world-map-widget__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.world-map-widget__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e5edf5;
+  margin: 0;
+}
+
+.world-map-widget__subtitle {
+  font-size: 10.5px;
+  color: #56d4c0;
+}
+
+.world-map-widget__map-container {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  background: #070e17;
+  border: 1px solid #1c2d3e;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.world-map-widget__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.world-map-widget__continent {
+  fill: #142436;
+  stroke: #253e57;
+  stroke-width: 1.5;
+  transition: fill 0.2s ease;
+}
+
+.world-map-widget__pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.world-map-widget__pin-flag {
+  font-size: 14px;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+  transition: transform 0.15s ease;
+}
+
+.world-map-widget__pin:hover .world-map-widget__pin-flag,
+.world-map-widget__pin--active .world-map-widget__pin-flag {
+  transform: scale(1.35);
+}
+
+.world-map-widget__pin-pulse {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(86, 212, 192, 0.4);
+  animation: mapPulse 2s infinite ease-in-out;
+  z-index: 1;
+}
+
+@keyframes mapPulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+}
+
+.world-map-widget__tooltip {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  background: #0c1826ee;
+  backdrop-filter: blur(10px);
+  border: 1px solid #56d4c0;
+  border-radius: 8px;
+  padding: 10px;
+  width: 220px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(86, 212, 192, 0.2);
+  z-index: 20;
+  pointer-events: none;
+  animation: tooltipFade 0.15s ease-out;
+}
+
+@keyframes tooltipFade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -90%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+
+.world-map-widget__tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid #1f364c;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+
+.world-map-widget__tooltip-header strong {
+  color: #e5edf5;
+}
+
+.world-map-widget__tooltip-count {
+  margin-left: auto;
+  font-size: 9.5px;
+  color: #56d4c0;
+  font-weight: 700;
+}
+
+.world-map-widget__tooltip-members {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.world-map-widget__tooltip-member {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.world-map-widget__tooltip-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1a3850;
+  color: #56d4c0;
+  font-size: 9px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.world-map-widget__tooltip-member strong {
+  font-size: 10.5px;
+  color: #e5edf5;
+  display: block;
+}
+
+.world-map-widget__tooltip-member small {
+  font-size: 9px;
+  color: #7d96ac;
+}
+
+.world-map-widget__countries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.world-map-widget__country-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  background: #09131f;
+  border: 1px solid #1c2d3e;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #9cb5c9;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.world-map-widget__country-row:hover {
+  border-color: #3d5e7d;
+  color: #ffffff;
+}
+
+.world-map-widget__country-row strong {
+  color: #56d4c0;
+}

@@ -1,0 +1,37 @@
+.feed-filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 0;
+  border-bottom: 1px solid #213446;
+}
+
+.feed-filter-tab {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #8da4b8;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.feed-filter-tab:hover {
+  color: #e5edf5;
+  background: #111e2b;
+}
+
+.feed-filter-tab--active {
+  color: #56d4c0;
+  background: #15293a;
+  border-color: #27455d;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}

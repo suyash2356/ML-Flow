@@ -1,0 +1,467 @@
+import type { EncyclopediaCardData, LearningStage } from '../types';
+
+export const DL_STAGES: LearningStage[] = [
+  {
+    id: 'foundations',
+    title: 'Stage 1: Perceptrons & Neural Foundations',
+    subtitle: 'Forward pass, activation functions, backpropagation & gradient descent',
+    modules: [
+      { id: 'dl-m1', title: 'Perceptron & Multi-Layer Perceptrons (MLP)', estimatedMinutes: 20, difficulty: 'Beginner', completed: true, locked: false, category: 'DL', stageId: 'foundations', encyclopediaId: 'dl-mlp' },
+      { id: 'dl-m2', title: 'Activation Functions (ReLU, Sigmoid, GELU)', estimatedMinutes: 15, difficulty: 'Beginner', completed: true, locked: false, category: 'DL', stageId: 'foundations', encyclopediaId: 'dl-activations' },
+      { id: 'dl-m3', title: 'Backpropagation & Gradient Descent', estimatedMinutes: 25, difficulty: 'Beginner', completed: false, locked: false, category: 'DL', stageId: 'foundations', encyclopediaId: 'dl-backpropagation' },
+    ],
+  },
+  {
+    id: 'core',
+    title: 'Stage 2: Vision & Sequence Architectures',
+    subtitle: 'Convolutional networks (CNNs/ResNet) and Recurrent networks (LSTM/GRU)',
+    modules: [
+      { id: 'dl-m4', title: 'Convolutional Neural Networks (CNN/ResNet/VGG)', estimatedMinutes: 30, difficulty: 'Practitioner', completed: false, locked: false, category: 'DL', stageId: 'core', encyclopediaId: 'dl-cnn' },
+      { id: 'dl-m5', title: 'RNN, LSTM & GRU Networks', estimatedMinutes: 28, difficulty: 'Practitioner', completed: false, locked: false, category: 'DL', stageId: 'core', encyclopediaId: 'dl-rnn-lstm' },
+      { id: 'dl-m6', title: 'Transformers & Self-Attention Intuition', estimatedMinutes: 35, difficulty: 'Practitioner', completed: false, locked: false, category: 'DL', stageId: 'core', encyclopediaId: 'dl-transformers' },
+    ],
+  },
+  {
+    id: 'eval_tuning',
+    title: 'Stage 3: Deep Optimization & Regularization',
+    subtitle: 'Prevent exploding gradients, stabilize training, and tune adaptive optimizers',
+    modules: [
+      { id: 'dl-m7', title: 'Optimizers (Adam, AdamW, SGD) & LR Schedules', estimatedMinutes: 22, difficulty: 'Practitioner', completed: false, locked: false, category: 'DL', stageId: 'eval_tuning', encyclopediaId: 'dl-optimizers' },
+      { id: 'dl-m8', title: 'Regularization (Dropout, BatchNorm, Weight Decay)', estimatedMinutes: 20, difficulty: 'Practitioner', completed: false, locked: false, category: 'DL', stageId: 'eval_tuning', encyclopediaId: 'dl-regularization' },
+      { id: 'dl-m9', title: 'Transfer Learning & Fine-Tuning', estimatedMinutes: 25, difficulty: 'Expert', completed: false, locked: false, category: 'DL', stageId: 'eval_tuning', encyclopediaId: 'dl-transfer-learning' },
+    ],
+  },
+  {
+    id: 'advanced',
+    title: 'Stage 4: Generative Models & Advanced Architectures',
+    subtitle: 'Autoencoders, GANs, and generative latent spaces',
+    modules: [
+      { id: 'dl-m10', title: 'Autoencoders & Latent Compression', estimatedMinutes: 25, difficulty: 'Expert', completed: false, locked: true, category: 'DL', stageId: 'advanced', encyclopediaId: 'dl-autoencoders' },
+      { id: 'dl-m11', title: 'Generative Adversarial Networks (GANs)', estimatedMinutes: 30, difficulty: 'Expert', completed: false, locked: true, category: 'DL', stageId: 'advanced', encyclopediaId: 'dl-gans' },
+    ],
+  },
+];
+
+export const DL_ENCYCLOPEDIA_CARDS: EncyclopediaCardData[] = [
+  {
+    id: 'dl-mlp',
+    title: 'Perceptron & Multi-Layer Perceptrons (MLP)',
+    category: 'DL',
+    difficulty: 'Beginner',
+    stageId: 'foundations',
+    shortSummary: 'Building blocks of neural networks: Linear weight dot products, bias terms, and stacked hidden layers.',
+    icon: '🧠',
+    tags: ['MLP', 'Perceptron', 'NeuralNetwork', 'HiddenLayers'],
+    content: {
+      whatItIs: 'Multi-Layer Perceptrons (MLPs) are feedforward artificial neural networks consisting of an input layer, one or more hidden layers, and an output layer.',
+      whyItExists: 'Single-layer perceptrons can only learn linearly separable functions (failing at XOR). MLPs with non-linear activations act as universal function approximators.',
+      howItWorks: {
+        steps: [
+          'Forward Pass: Compute linear combination z_l = W_l * a_{l-1} + b_l.',
+          'Apply non-linear activation function a_l = f(z_l).',
+          'Output Layer: Compute final predictions and calculate scalar loss vs true labels.',
+        ],
+        mathFormula: 'a^{(l)} = \\sigma\\left(W^{(l)} a^{(l-1)} + b^{(l)}\\right)',
+        visualDiagramText: '[ Inputs X ] ➔ [ Hidden Layer W1, b1 ] ➔ [ Hidden Layer W2, b2 ] ➔ [ Output Y ]',
+      },
+      whenToUse: {
+        useCases: ['Tabular deep learning, non-linear classification, baseline embeddings.'],
+        avoidWhen: ['Spatial image pixels (prefer CNNs) or sequential text (prefer Transformers).'],
+        alternatives: ['XGBoost (for tabular data)', 'CNNs (for vision)'],
+      },
+      pitfalls: ['Overparameterizing hidden layer width on tiny tabular datasets.'],
+      playground: {
+        title: 'Hidden Layer Neuron Simulator',
+        description: 'Adjust hidden layer width and depth to see decision boundary curvature.',
+        params: [
+          { name: 'hiddenUnits', label: 'Neurons per Layer', min: 4, max: 128, step: 4, defaultValue: 32, description: 'Number of hidden nodes.' },
+        ],
+        chartType: 'boundary',
+      },
+      realProjectCTA: { label: 'Build MLP Model Canvas', templateType: 'DL' },
+    },
+  },
+  {
+    id: 'dl-activations',
+    title: 'Activation Functions (ReLU, Sigmoid, GELU)',
+    category: 'DL',
+    difficulty: 'Beginner',
+    stageId: 'foundations',
+    shortSummary: 'Non-linear thresholding functions (ReLU, Sigmoid, Tanh, GELU, Softmax) enabling deep feature learning.',
+    icon: '⚡',
+    tags: ['ReLU', 'Sigmoid', 'GELU', 'Softmax'],
+    content: {
+      whatItIs: 'Activation functions introduce non-linearity into neural networks, enabling them to learn complex non-linear mappings beyond simple linear regression.',
+      whyItExists: 'Without non-linear activations, stacking 100 neural layers is mathematically identical to a single linear matrix multiplication W_1 * W_2 * ... * W_100.',
+      howItWorks: {
+        steps: [
+          'ReLU: max(0, x) — Computationally fast, prevents vanishing gradient for positive values.',
+          'LeakyReLU / GELU: Allows small non-zero gradient for negative values.',
+          'Softmax: Converts output logit vector into normalized probability distribution summing to 1.0.',
+        ],
+        mathFormula: '\\text{ReLU}(x) = \\max(0, x), \\quad \\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_j e^{z_j}}',
+        visualDiagramText: '[ Linear Logit z ] ➔ [ Activation f(z) ] ➔ [ Non-Linear Signal ]',
+      },
+      whenToUse: {
+        useCases: ['ReLU/GELU in hidden layers, Softmax/Sigmoid in output layers.'],
+        avoidWhen: ['Using Sigmoid/Tanh in deep hidden layers (causes vanishing gradients).'],
+        alternatives: ['Swish', 'ELU'],
+      },
+      pitfalls: ['Dying ReLU problem where neurons permanently deactivate when inputs are negative.'],
+      playground: {
+        title: 'Activation Curve Inspector',
+        description: 'Toggle activation functions to inspect output values & gradients.',
+        params: [
+          { name: 'inputValue', label: 'Input Signal (x)', min: -5, max: 5, step: 0.5, defaultValue: 1.0, description: 'Input value to activation.' },
+        ],
+        chartType: 'distribution',
+      },
+      realProjectCTA: { label: 'Configure Activation Nodes', templateType: 'DL' },
+    },
+  },
+  {
+    id: 'dl-backpropagation',
+    title: 'Backpropagation & Gradient Descent',
+    category: 'DL',
+    difficulty: 'Beginner',
+    stageId: 'foundations',
+    shortSummary: 'Reverse calculus chain rule distributing loss gradients to update network weights.',
+    icon: '🔄',
+    tags: ['Backprop', 'ChainRule', 'GradientDescent', 'LossGradient'],
+    content: {
+      whatItIs: 'Backpropagation computes the partial derivative of the loss function with respect to every weight in the neural network using the Calculus Chain Rule.',
+      whyItExists: 'It enables efficient weight optimization across millions of parameters in a single backward pass.',
+      howItWorks: {
+        steps: [
+          'Forward pass computes prediction and loss L.',
+          'Backward pass calculates error terms starting at output layer.',
+          'Multiply local gradients backward via Chain Rule: ∂L/∂W_l = (∂L/∂a_l) * (∂a_l/∂z_l) * (∂z_l/∂W_l).',
+          'Update weights: W_new = W_old - learning_rate * ∂L/∂W.',
+        ],
+        mathFormula: '\\frac{\\partial L}{\\partial W^{(l)}} = \\delta^{(l)} \\cdot (a^{(l-1)})^T',
+        visualDiagramText: '[ Loss L ] ➔ Chain Rule Backward ➔ [ Gradient ∂L/∂W ] ➔ [ Weight Update ]',
+      },
+      whenToUse: {
+        useCases: ['Core engine of all deep neural network training.'],
+        avoidWhen: ['N/A (fundamental requirement for gradient-based networks).'],
+        alternatives: ['Genetic Algorithms', 'Evolutionary Strategies (for non-differentiable losses)'],
+      },
+      pitfalls: ['Exploding or vanishing gradients when networks are very deep without skip connections.'],
+      playground: {
+        title: 'Learning Rate Step Simulator',
+        description: 'Adjust learning rate to observe weight convergence vs divergence.',
+        params: [
+          { name: 'lr', label: 'Learning Rate (α)', min: 0.001, max: 0.5, step: 0.01, defaultValue: 0.05, description: 'Step size taken along negative gradient.' },
+        ],
+        chartType: 'regression',
+      },
+      realProjectCTA: { label: 'Inspect Backpropagation Loss', templateType: 'DL' },
+    },
+  },
+  {
+    id: 'dl-cnn',
+    title: 'Convolutional Neural Networks (CNN/ResNet/VGG)',
+    category: 'DL',
+    difficulty: 'Practitioner',
+    stageId: 'core',
+    shortSummary: 'Spatial feature extraction using 2D Conv kernels, Stride, Pooling, and Residual Skip Connections.',
+    icon: '🖼️',
+    tags: ['CNN', 'Conv2D', 'ResNet', 'VGG', 'ComputerVision'],
+    content: {
+      whatItIs: 'CNNs slide 2D filter kernels across image spatial dimensions to extract hierarchical visual features (edges -> textures -> shapes -> semantic objects).',
+      whyItExists: 'Fully connected MLPs fail on images due to parameter explosion. CNNs enforce spatial locality and translation invariance.',
+      howItWorks: {
+        steps: [
+          'Conv2D Layer: Slide KxK filter matrices to generate feature maps.',
+          'Pooling Layer (MaxPooling): Downsample spatial dimensions while keeping max activations.',
+          'ResNet Residual Blocks: Add input shortcut skip connection y = F(x) + x to prevent gradient degradation in 100+ layer networks.',
+        ],
+        mathFormula: '(I * K)(i, j) = \\sum_m \\sum_n I(i-m, j-n) K(m, n), \\quad y = \\mathcal{F}(x, \\{W_i\\}) + x',
+        visualDiagramText: '[ Image 28x28x1 ] ➔ Conv2D(32, 3x3) ➔ MaxPool(2x2) ➔ [ ResNet Skip Block ] ➔ [ Class ]',
+      },
+      whenToUse: {
+        useCases: ['Image classification, object detection, medical imaging, face recognition.'],
+        avoidWhen: ['Tabular text datasets without spatial grid topology.'],
+        alternatives: ['Vision Transformers (ViT)'],
+      },
+      pitfalls: ['Using large kernel strides that skip fine-grained detail.'],
+      playground: {
+        title: 'CNN Kernel Filter & Stride Inspector',
+        description: 'Adjust kernel size & stride to inspect output tensor shape.',
+        params: [
+          { name: 'kernelSize', label: 'Kernel Size (K)', min: 1, max: 7, step: 2, defaultValue: 3, description: 'Spatial dimensions of convolution filter.' },
+        ],
+        chartType: 'neural',
+      },
+      realProjectCTA: { label: 'Build ResNet CNN Canvas', templateType: 'DL' },
+    },
+  },
+  {
+    id: 'dl-rnn-lstm',
+    title: 'RNN, LSTM & GRU Networks',
+    category: 'DL',
+    difficulty: 'Practitioner',
+    stageId: 'core',
+    shortSummary: 'Sequential processing with recurrent hidden states, memory cell gates, and gradient preservation.',
+    icon: '🔁',
+    tags: ['LSTM', 'GRU', 'RNN', 'Sequence', 'TimeSeries'],
+    content: {
+      whatItIs: 'Recurrent Neural Networks process sequential time-series or text data by passing a persistent hidden memory state from step t-1 to step t.',
+      whyItExists: 'Standard Feedforward networks have no memory of past inputs. LSTMs solve vanishing gradients using Forget, Input, and Output memory gates.',
+      howItWorks: {
+        steps: [
+          'Forget Gate: Decides what information to discard from cell state.',
+          'Input Gate: Decides which new information to store in cell state.',
+          'Output Gate: Determines next hidden state h_t passed to next sequence step.',
+        ],
+        mathFormula: 'f_t = \\sigma(W_f [h_{t-1}, x_t] + b_f), \\quad C_t = f_t * C_{t-1} + i_t * \\tilde{C}_t',
+        visualDiagramText: '[ Input x_t & Memory h_{t-1} ] ➔ [ Forget | Input | Output Gates ] ➔ [ Memory h_t ]',
+      },
+      whenToUse: {
+        useCases: ['Time-series forecasting, speech recognition, sensor telemetry.'],
+        avoidWhen: ['Long text contexts where parallel Transformers (GPT/BERT) are much faster.'],
+        alternatives: ['Transformers', 'Temporal Convolutional Networks (TCN)'],
+      },
+      pitfalls: ['Attempting to train plain Vanilla RNNs on long sequences (>50 steps) without LSTM gates.'],
+      playground: {
+        title: 'LSTM Memory Gate Inspector',
+        description: 'Adjust forget gate bias to see long-term memory retention.',
+        params: [
+          { name: 'forgetBias', label: 'Forget Gate Bias', min: -2, max: 3, step: 0.5, defaultValue: 1.0, description: 'Higher bias preserves longer history.' },
+        ],
+        chartType: 'neural',
+      },
+      realProjectCTA: { label: 'Build LSTM Sequence Model', templateType: 'DL' },
+    },
+  },
+  {
+    id: 'dl-transformers',
+    title: 'Transformers & Self-Attention Intuition',
+    category: 'DL',
+    difficulty: 'Practitioner',
+    stageId: 'core',
+    shortSummary: 'Parallel sequence modeling using Query-Key-Value Scaled Dot-Product Self-Attention mechanisms.',
+    icon: '⚡',
+    tags: ['Transformer', 'Attention', 'QKV', 'LLM'],
+    content: {
+      whatItIs: 'Transformers replace recurrence with Self-Attention, allowing tokens in a sequence to dynamically weigh relationships with all other tokens simultaneously.',
+      whyItExists: 'RNNs process sequentially step-by-step and cannot scale on GPUs. Transformers process entire sequences in parallel.',
+      howItWorks: {
+        steps: [
+          'Project input tokens into Query (Q), Key (K), and Value (V) vector spaces.',
+          'Compute Attention Matrix: Softmax( (Q * K^T) / sqrt(d_k) ).',
+          'Multiply Attention Weights by Value matrix V to produce context-aware representations.',
+        ],
+        mathFormula: '\\text{Attention}(Q, K, V) = \\text{Softmax}\\left(\\frac{Q K^T}{\\sqrt{d_k}}\\right) V',
+        visualDiagramText: '[ Tokens Q, K, V ] ➔ [ Scaled Dot-Product Attention ] ➔ [ Contextual Embeddings ]',
+      },
+      whenToUse: {
+        useCases: ['Large Language Models (LLMs), text translation, code generation, Vision Transformers.'],
+        avoidWhen: ['Tiny tabular datasets with <500 rows.'],
+        alternatives: ['Mamba / State Space Models'],
+      },
+      pitfalls: ['Quadratic O(N^2) memory complexity with respect to sequence length N.'],
+      playground: {
+        title: 'Self-Attention Weight Matrix Visualizer',
+        description: 'Adjust query-key alignment to observe dynamic attention weights.',
+        params: [
+          { name: 'attentionHeads', label: 'Attention Heads', min: 1, max: 12, step: 1, defaultValue: 4, description: 'Parallel attention head count.' },
+        ],
+        chartType: 'neural',
+      },
+      realProjectCTA: { label: 'Explore Transformer Pipeline', templateType: 'DL' },
+    },
+  },
+  {
+    id: 'dl-optimizers',
+    title: 'Optimizers (Adam, AdamW, SGD) & LR Schedules',
+    category: 'DL',
+    difficulty: 'Practitioner',
+    stageId: 'eval_tuning',
+    shortSummary: 'Adaptive learning rate optimizers with momentum, weight decay, and Cosine Annealing schedules.',
+    icon: '🏎️',
+    tags: ['Adam', 'AdamW', 'SGD', 'LearningRate'],
+    content: {
+      whatItIs: 'Optimizers update neural network weights based on computed loss gradients. Adaptive algorithms adjust learning rates dynamically per parameter.',
+      whyItExists: 'Standard SGD gets stuck in saddle points. Adam combines Momentum (first moment) and RMSProp (second moment) for fast stable convergence.',
+      howItWorks: {
+        steps: [
+          'SGD + Momentum: Accelerates along persistent gradient directions.',
+          'Adam: Maintains exponentially decaying average of past gradients (m_t) and squared gradients (v_t).',
+          'AdamW: Corrects weight decay implementation by decoupling it from gradient steps.',
+          'Cosine Annealing Schedule: Smoothly decays learning rate to near zero during training.',
+        ],
+        mathFormula: 'm_t = \\beta_1 m_{t-1} + (1-\\beta_1) g_t, \\quad v_t = \\beta_2 v_{t-1} + (1-\\beta_2) g_t^2',
+        visualDiagramText: '[ Raw Gradients ] ➔ [ Adam Momentum & Variance ] ➔ [ Smooth Weight Update ]',
+      },
+      whenToUse: {
+        useCases: ['AdamW is the default gold standard for modern Deep Learning & LLMs.'],
+        avoidWhen: ['Plain SGD without momentum for deep architectures.'],
+        alternatives: ['RMSProp', 'L-BFGS (for small convex problems)'],
+      },
+      pitfalls: ['Using default Adam weight decay instead of AdamW (causes suboptimal generalization).'],
+      playground: {
+        title: 'Optimizer Convergence Simulator',
+        description: 'Compare training loss descent curves for SGD vs Adam vs AdamW.',
+        params: [
+          { name: 'initialLR', label: 'Initial Learning Rate', min: 0.0001, max: 0.01, step: 0.0005, defaultValue: 0.001, description: 'Starting learning rate.' },
+        ],
+        chartType: 'regression',
+      },
+      realProjectCTA: { label: 'Configure Optimizer Settings', templateType: 'DL' },
+    },
+  },
+  {
+    id: 'dl-regularization',
+    title: 'Regularization (Dropout, BatchNorm, Weight Decay)',
+    category: 'DL',
+    difficulty: 'Practitioner',
+    stageId: 'eval_tuning',
+    shortSummary: 'Stabilize deep neural training using Dropout probability, Batch Normalization, and L2 Weight Decay.',
+    icon: '🛡️',
+    tags: ['Dropout', 'BatchNorm', 'Regularization', 'WeightDecay'],
+    content: {
+      whatItIs: 'Techniques that prevent neural networks from overfitting by zeroing random activations (Dropout) or normalizing batch layer inputs (BatchNorm).',
+      whyItExists: 'Deep networks have millions of parameters and can easily memorize training noise. Regularization ensures generalization to unseen samples.',
+      howItWorks: {
+        steps: [
+          'Dropout (p=0.5): Randomly zeros out hidden neurons during forward pass with probability p.',
+          'Batch Normalization: Normalizes layer inputs across mini-batch (mean=0, variance=1), reducing internal covariate shift.',
+          'Weight Decay: Penalizes large weight magnitudes in optimizer updates.',
+        ],
+        mathFormula: '\\hat{x}^{(k)} = \\frac{x^{(k)} - \\mu_B}{\\sqrt{\\sigma_B^2 + \\epsilon}}, \\quad y^{(k)} = \\gamma^{(k)} \\hat{x}^{(k)} + \\beta^{(k)}',
+        visualDiagramText: '[ Layer Inputs ] ➔ [ BatchNorm (μ=0, σ=1) ] ➔ [ Dropout (50%) ] ➔ [ Next Layer ]',
+      },
+      whenToUse: {
+        useCases: ['Every deep CNN, MLP, and Transformer training setup.'],
+        avoidWhen: ['Applying Dropout before Batch Normalization without care (disharmony effect).'],
+        alternatives: ['LayerNorm', 'GroupNorm'],
+      },
+      pitfalls: ['Forgetting to call model.eval() during inference (leaves Dropout active!).'],
+      playground: {
+        title: 'Dropout Probability Tuner',
+        description: 'Adjust dropout rate p to observe train vs validation error gap.',
+        params: [
+          { name: 'dropoutRate', label: 'Dropout Rate (p)', min: 0.0, max: 0.8, step: 0.1, defaultValue: 0.3, description: 'Probability of zeroing activations.' },
+        ],
+        chartType: 'distribution',
+      },
+      realProjectCTA: { label: 'Add Dropout & BatchNorm Nodes', templateType: 'DL' },
+    },
+  },
+  {
+    id: 'dl-transfer-learning',
+    title: 'Transfer Learning & Fine-Tuning',
+    category: 'DL',
+    difficulty: 'Expert',
+    stageId: 'eval_tuning',
+    shortSummary: 'Repurpose pre-trained backbones (ResNet, BERT) by freezing feature extractors and fine-tuning head layers.',
+    icon: '🔁',
+    tags: ['TransferLearning', 'FineTuning', 'PretrainedWeights', 'LoRA'],
+    content: {
+      whatItIs: 'Transfer Learning leverages knowledge gained from pre-trained models (e.g., ImageNet or Wikipedia) and applies it to a new domain task with limited data.',
+      whyItExists: 'Training deep models from scratch requires millions of images/documents and weeks of GPU compute. Transfer learning works in minutes with small datasets.',
+      howItWorks: {
+        steps: [
+          'Load pre-trained backbone model (e.g. ResNet50 or EfficientNet).',
+          'Freeze feature extraction backbone weights so they do not update.',
+          'Replace final classification head with custom dense layer matching target classes.',
+          'Train top head, then unfreeze top layers for low learning-rate fine-tuning.',
+        ],
+        visualDiagramText: '[ Pre-trained ImageNet Backbone (Frozen) ] ➔ [ Custom Classifier Head (Trainable) ]',
+      },
+      whenToUse: {
+        useCases: ['Small custom image classification datasets, domain NLP fine-tuning.'],
+        avoidWhen: ['Target domain data is vastly different from pre-trained domain.'],
+        alternatives: ['PEFT / LoRA (Low-Rank Adaptation)'],
+      },
+      pitfalls: ['Using a high learning rate when unfreezing backbone layers, destroying pre-trained weights.'],
+      playground: {
+        title: 'Frozen Backbone Ratio Inspector',
+        description: 'Adjust frozen layer percentage and observe fine-tuning speed.',
+        params: [
+          { name: 'frozenRatio', label: 'Frozen Backbone %', min: 0, max: 100, step: 10, defaultValue: 80, unit: '%', description: 'Percentage of model layers locked.' },
+        ],
+        chartType: 'neural',
+      },
+      realProjectCTA: { label: 'Start Transfer Learning Project', templateType: 'DL' },
+    },
+  },
+  {
+    id: 'dl-autoencoders',
+    title: 'Autoencoders & Latent Compression',
+    category: 'DL',
+    difficulty: 'Expert',
+    stageId: 'advanced',
+    shortSummary: 'Unsupervised Encoder-Decoder bottleneck architectures for dimensional reduction & anomaly detection.',
+    icon: '⏳',
+    tags: ['Autoencoder', 'Bottleneck', 'LatentSpace', 'Reconstruction'],
+    content: {
+      whatItIs: 'An Autoencoder is a neural network trained to copy its input to its output through a narrow bottleneck (latent space representation).',
+      whyItExists: 'Forces the network to compress data into essential salient features, useful for denoising and non-linear dimensionality reduction.',
+      howItWorks: {
+        steps: [
+          'Encoder: Compresses input X into low-dimensional latent code z = f(X).',
+          'Bottleneck: Low-dimensional vector (e.g., 32 dimensions).',
+          'Decoder: Reconstructs original input X_hat = g(z).',
+          'Loss: Minimize Reconstruction MSE Loss ||X - X_hat||^2.',
+        ],
+        mathFormula: 'z = e(x), \\quad \\hat{x} = d(z), \\quad \\text{Loss} = \\|x - \\hat{x}\\|^2',
+        visualDiagramText: '[ High Dim X ] ➔ [ Encoder ] ➔ ( Bottleneck z ) ➔ [ Decoder ] ➔ [ Reconstructed X_hat ]',
+      },
+      whenToUse: {
+        useCases: ['Image denoising, anomaly detection (high reconstruction error = anomaly), feature extraction.'],
+        avoidWhen: ['Standard supervised classification.'],
+        alternatives: ['Variational Autoencoders (VAE)', 'PCA'],
+      },
+      pitfalls: ['Bottleneck dimension too wide, allowing identity mapping without compression.'],
+      playground: {
+        title: 'Latent Bottleneck Dimension Tuner',
+        description: 'Adjust bottleneck size z to inspect reconstruction fidelity.',
+        params: [
+          { name: 'latentDim', label: 'Latent Size (z)', min: 2, max: 64, step: 2, defaultValue: 16, description: 'Bottleneck vector dimension.' },
+        ],
+        chartType: 'neural',
+      },
+      realProjectCTA: { label: 'Build Autoencoder Architecture', templateType: 'DL' },
+    },
+  },
+  {
+    id: 'dl-gans',
+    title: 'Generative Adversarial Networks (GANs)',
+    category: 'DL',
+    difficulty: 'Expert',
+    stageId: 'advanced',
+    shortSummary: 'Adversarial min-max game between Generator and Discriminator producing photorealistic synthetic data.',
+    icon: '🎨',
+    tags: ['GAN', 'Generator', 'Discriminator', 'Adversarial'],
+    content: {
+      whatItIs: 'GANs train two neural networks simultaneously in a competitive zero-sum game: a Generator creating fake samples and a Discriminator detecting fake vs real.',
+      whyItExists: 'Generates high-fidelity synthetic images, tabular data, and super-resolution enhancements.',
+      howItWorks: {
+        steps: [
+          'Generator G(z): Takes random noise z and generates synthetic image G(z).',
+          'Discriminator D(x): Classifies whether image is Real (1) or Fake (0).',
+          'Min-Max Game: Generator tries to fool D, Discriminator tries to catch G.',
+        ],
+        mathFormula: '\\min_G \\max_D V(D, G) = E_{x \\sim p_{data}}[\\log D(x)] + E_{z \\sim p_z}[\\log(1 - D(G(z)))]',
+        visualDiagramText: '[ Noise z ] ➔ [ Generator G ] ➔ Fake Image vs Real Image ➔ [ Discriminator D ]',
+      },
+      whenToUse: {
+        useCases: ['Synthetic data generation, image super-resolution, style transfer.'],
+        avoidWhen: ['Standard prediction tasks where simple supervised learning applies.'],
+        alternatives: ['Diffusion Models', 'VAEs'],
+      },
+      pitfalls: ['Mode collapse (Generator produces only one repeated sample output).'],
+      playground: {
+        title: 'GAN Training Stability Inspector',
+        description: 'Adjust Generator vs Discriminator learning rate ratio.',
+        params: [
+          { name: 'gLrRatio', label: 'G/D LR Ratio', min: 0.5, max: 2.0, step: 0.25, defaultValue: 1.0, description: 'Ratio of Generator to Discriminator learning rate.' },
+        ],
+        chartType: 'neural',
+      },
+      realProjectCTA: { label: 'Explore GAN Architecture Canvas', templateType: 'DL' },
+    },
+  },
+];

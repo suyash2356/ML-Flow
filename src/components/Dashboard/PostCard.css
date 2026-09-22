@@ -1,0 +1,460 @@
+.post-card {
+  background: #111c29;
+  border: 1px solid #2b4054;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.2s ease;
+}
+
+.post-card:hover {
+  border-color: #3b5773;
+}
+
+.post-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.post-card__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #19344a;
+  color: #6fc0ff;
+  font-size: 13px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid #325573;
+  flex-shrink: 0;
+}
+
+.post-card__user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.post-card__user-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.post-card__name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e5edf5;
+}
+
+.post-card__flag {
+  font-size: 12px;
+}
+
+.post-card__handle {
+  font-size: 11px;
+  color: #56d4c0;
+}
+
+.post-card__role {
+  font-size: 10px;
+  color: #7992a8;
+}
+
+.post-card__mode-badge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #162838;
+  color: #8da4b8;
+  border: 1px solid #263d52;
+  white-space: nowrap;
+}
+
+.post-card__mode-badge--project {
+  background: #173b37;
+  color: #56d4c0;
+  border-color: #265f56;
+}
+
+.post-card__mode-badge--question {
+  background: #392b17;
+  color: #f7c872;
+  border-color: #5c4524;
+}
+
+.post-card__mode-badge--resource {
+  background: #231b38;
+  color: #cda4f7;
+  border-color: #423163;
+}
+
+.post-card__text {
+  font-size: 12.5px;
+  color: #d1e1f0;
+  margin: 0;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.post-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.post-card__tag {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #0d1723;
+  color: #56d4c0;
+  border: 1px solid #1c364c;
+}
+
+.post-card__code-block {
+  background: #070e17;
+  border: 1px solid #1e3348;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.post-card__code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: #0c1826;
+  border-bottom: 1px solid #1c2f42;
+  font-size: 10px;
+  color: #7791a8;
+}
+
+.post-card__copy-btn {
+  background: #142536;
+  border: 1px solid #283d52;
+  border-radius: 4px;
+  color: #8da4b8;
+  font-size: 9.5px;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+
+.post-card__code-block pre {
+  margin: 0;
+  padding: 10px;
+  overflow-x: auto;
+}
+
+.post-card__code-block code {
+  font-family: monospace;
+  font-size: 11px;
+  color: #72f7dd;
+  line-height: 1.4;
+}
+
+/* LAYOUT 2: Resource Link Preview */
+.post-card__resource-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #09131f;
+  border: 1px solid #233b52;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.post-card__resource-preview:hover {
+  border-color: #56d4c0;
+  background: #0c1828;
+}
+
+.post-card__resource-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #172b3d;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.post-card__resource-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.post-card__resource-domain {
+  font-size: 10px;
+  color: #56d4c0;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.post-card__resource-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #e5edf5;
+  margin: 2px 0 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-card__resource-desc {
+  font-size: 10.5px;
+  color: #8fa7bc;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* LAYOUT 3: Project Showcase Card */
+.post-card__project-card {
+  background: linear-gradient(135deg, #0d1927 0%, #09131f 100%);
+  border: 1px solid #28445e;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.post-card__project-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.post-card__project-task {
+  font-size: 9.5px;
+  font-weight: 750;
+  color: #56d4c0;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.post-card__project-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #e5edf5;
+  margin: 2px 0 0;
+}
+
+.post-card__project-metric {
+  background: #143531;
+  border: 1px solid #235c54;
+  border-radius: 6px;
+  padding: 4px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.post-card__project-metric small {
+  font-size: 9px;
+  color: #8fa7bc;
+}
+
+.post-card__project-metric strong {
+  font-size: 12px;
+  color: #72f7dd;
+}
+
+.post-card__project-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  color: #8fa7bc;
+  flex-wrap: wrap;
+}
+
+.post-card__fork-btn {
+  height: 32px;
+  border-radius: 6px;
+  background: #1d9f91;
+  color: #031412;
+  font-size: 11px;
+  font-weight: 750;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 0 12px rgba(29, 159, 145, 0.25);
+}
+
+.post-card__fork-btn:hover {
+  background: #3acbb7;
+  box-shadow: 0 0 16px rgba(58, 203, 183, 0.4);
+}
+
+/* Actions Bar */
+.post-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #1c2d3d;
+}
+
+.post-card__action-btn {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 5px;
+  background: #132232;
+  border: 1px solid #23374a;
+  color: #8fa7bc;
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.post-card__action-btn:hover {
+  background: #1c3247;
+  color: #ffffff;
+  border-color: #385675;
+}
+
+.post-card__action-btn--liked {
+  color: #ff6b81;
+  border-color: #752936;
+  background: #2b171e;
+}
+
+.post-card__action-stat {
+  font-size: 10.5px;
+  color: #728a9f;
+  margin-left: auto;
+}
+
+.post-card__action-btn--bookmark {
+  margin-left: auto;
+}
+
+.post-card__action-btn--saved {
+  color: #56d4c0;
+  border-color: #235c54;
+  background: #143531;
+}
+
+/* Comments Section */
+.post-card__comments-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #213547;
+  animation: commentsFadeIn 0.15s ease-out;
+}
+
+@keyframes commentsFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.post-card__comment-form {
+  display: flex;
+  gap: 6px;
+}
+
+.post-card__comment-input {
+  flex: 1;
+  height: 30px;
+  background: #09131f;
+  border: 1px solid #23374a;
+  border-radius: 6px;
+  padding: 0 10px;
+  color: #e5edf5;
+  font-size: 11px;
+  outline: none;
+}
+
+.post-card__comment-submit {
+  height: 30px;
+  padding: 0 12px;
+  background: #28ae9b;
+  color: #041411;
+  font-size: 10.5px;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.post-card__comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.post-card__comment-row {
+  display: flex;
+  gap: 8px;
+  background: #0a1421;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #1c2e40;
+}
+
+.post-card__comment-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #19344a;
+  color: #6fc0ff;
+  font-size: 9px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.post-card__comment-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card__comment-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+}
+
+.post-card__comment-header strong {
+  color: #e5edf5;
+}
+
+.post-card__comment-header span {
+  color: #718a9f;
+}
+
+.post-card__comment-content p {
+  font-size: 11px;
+  color: #c3d4e3;
+  margin: 2px 0 0;
+}

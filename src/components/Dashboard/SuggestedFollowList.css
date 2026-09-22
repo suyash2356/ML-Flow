@@ -1,0 +1,100 @@
+.suggested-follow-list {
+  background: #111c29;
+  border: 1px solid #2b4054;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.suggested-follow-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.suggested-follow-list__title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #e5edf5;
+  margin: 0;
+}
+
+.suggested-follow-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.suggested-follow-list__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  background: #09131f;
+  border: 1px solid #1c2e40;
+  border-radius: 6px;
+}
+
+.suggested-follow-list__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #193852;
+  color: #56d4c0;
+  font-size: 10px;
+  font-weight: 750;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.suggested-follow-list__info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.suggested-follow-list__info strong {
+  font-size: 11.5px;
+  color: #e5edf5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggested-follow-list__info span {
+  font-size: 9.5px;
+  color: #7994ab;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggested-follow-list__btn {
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: #152638;
+  border: 1px solid #29445f;
+  color: #56d4c0;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.suggested-follow-list__btn:hover {
+  background: #1f3b57;
+  color: #7affea;
+}
+
+.suggested-follow-list__btn--following {
+  background: #101c29;
+  border-color: #23394e;
+  color: #7994ab;
+}

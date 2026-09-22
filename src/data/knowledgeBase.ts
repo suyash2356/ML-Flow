@@ -1,4 +1,4 @@
-import { KnowledgeTopic } from '../types';
+import type { KnowledgeTopic } from '../types';
 
 export const RANDOM_FOREST_TOPIC: KnowledgeTopic = {
   id: 'random-forest',
