@@ -5,9 +5,11 @@ import './PostComposer.css';
 interface PostComposerProps {
   userProjects: Project[];
   onAddPost: (newPost: PostItem) => void;
+  onCancel?: () => void;
+  initiallyExpanded?: boolean;
 }
 
-export function PostComposer({ userProjects, onAddPost }: PostComposerProps) {
+export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpanded = false }: PostComposerProps) {
   const [activeMode, setActiveMode] = useState<PostMode>('thought');
   const [text, setText] = useState('');
   const [tagsInput, setTagsInput] = useState('');
@@ -15,7 +17,7 @@ export function PostComposer({ userProjects, onAddPost }: PostComposerProps) {
   const [resourceTitle, setResourceTitle] = useState('');
   const [resourceUrl, setResourceUrl] = useState('');
   const [selectedProjectId, setSelectedProjectId] = useState<string>(userProjects[0]?.id || '');
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(initiallyExpanded);
 
   const selectedProject = userProjects.find((p) => p.id === selectedProjectId) || userProjects[0];
 
@@ -227,7 +229,10 @@ export function PostComposer({ userProjects, onAddPost }: PostComposerProps) {
                 <button
                   type="button"
                   className="post-composer__cancel-btn"
-                  onClick={() => setIsExpanded(false)}
+                  onClick={() => {
+                    setIsExpanded(false);
+                    onCancel?.();
+                  }}
                 >
                   Cancel
                 </button>

@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import type { NavigationPage, Project, DatasetItem, FeedFilter, PostItem } from '../../types';
 import { UserProfileCard } from '../../components/Dashboard/UserProfileCard';
-import { ContinueWorkingCard } from '../../components/Dashboard/ContinueWorkingCard';
-import { WeeklyGoalWidget } from '../../components/Dashboard/WeeklyGoalWidget';
 import { PostComposer } from '../../components/Dashboard/PostComposer';
 import { FeedFilterTabs } from '../../components/Dashboard/FeedFilterTabs';
 import { PostCard } from '../../components/Dashboard/PostCard';
@@ -31,17 +29,15 @@ interface DashboardPageProps {
 
 export function DashboardPage({
   projects,
-  datasets: _datasets,
-  onNavigate: _onNavigate,
   onOpenWorkspace,
 }: DashboardPageProps) {
   const [posts, setPosts] = useState<PostItem[]>(MOCK_POSTS);
   const [activeFilter, setActiveFilter] = useState<FeedFilter>('for_you');
-
-  const activeProject = projects.find((p) => p.status === 'In Progress') || projects[0];
+  const [isComposerOpen, setIsComposerOpen] = useState(false);
 
   const handleAddPost = (newPost: PostItem) => {
     setPosts([newPost, ...posts]);
+    setIsComposerOpen(false);
   };
 
   const handleForkProject = (attached: NonNullable<PostItem['attachedProject']>) => {
@@ -82,16 +78,13 @@ export function DashboardPage({
 
   return (
     <div className="dashboard-3col">
-      {/* 1. LEFT COLUMN: Sticky, Profile, Continue Working, Goal */}
       <aside className="dashboard-3col__left">
-        <UserProfileCard user={MOCK_USER_PROFILE} streakDays={4} karmaScore={1420} />
-        <ContinueWorkingCard project={activeProject} onOpenWorkspace={onOpenWorkspace} />
-        <WeeklyGoalWidget />
+        <WorldMapWidget pins={MOCK_COUNTRY_MAP_PINS} />
+        <WeeklyChallengeCard challenge={MOCK_WEEKLY_CHALLENGE} onJoinChallenge={handleJoinChallenge} />
+        <TrendingMLCard trendingItems={MOCK_TRENDING_ITEMS} />
       </aside>
 
-      {/* 2. CENTER COLUMN: Social Feed, Composer, Filter Tabs, Post Cards */}
       <main className="dashboard-3col__center">
-        <PostComposer userProjects={projects} onAddPost={handleAddPost} />
         <FeedFilterTabs activeFilter={activeFilter} onSelectFilter={setActiveFilter} />
 
         <div className="dashboard-3col__feed-list">
@@ -104,16 +97,57 @@ export function DashboardPage({
             />
           ))}
         </div>
+
+        <button
+          type="button"
+          className="dashboard-3col__compose-button"
+          aria-label="Create a post"
+          title="Create a post"
+          onClick={() => setIsComposerOpen(true)}
+        >
+          <span aria-hidden="true">✎</span>
+        </button>
       </main>
 
-      {/* 3. RIGHT COLUMN: World Map, Challenge, Mentors, Trending */}
       <aside className="dashboard-3col__right">
-        <WorldMapWidget pins={MOCK_COUNTRY_MAP_PINS} />
-        <WeeklyChallengeCard challenge={MOCK_WEEKLY_CHALLENGE} onJoinChallenge={handleJoinChallenge} />
+        <UserProfileCard user={MOCK_USER_PROFILE} streakDays={4} karmaScore={1420} />
         <MentorMatchCard mentors={MOCK_MENTOR_MATCHES} />
-        <TrendingMLCard trendingItems={MOCK_TRENDING_ITEMS} />
         <SuggestedFollowList users={MOCK_SUGGESTED_USERS} />
       </aside>
+
+      {isComposerOpen && (
+        <div
+          className="dashboard-3col__composer-overlay"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setIsComposerOpen(false);
+          }}
+        >
+          <section
+            className="dashboard-3col__composer-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="dashboard-compose-title"
+          >
+            <div className="dashboard-3col__composer-header">
+              <h2 id="dashboard-compose-title">Create a post</h2>
+              <button
+                type="button"
+                className="dashboard-3col__composer-close"
+                aria-label="Close post composer"
+                onClick={() => setIsComposerOpen(false)}
+              >
+                ×
+              </button>
+            </div>
+            <PostComposer
+              userProjects={projects}
+              onAddPost={handleAddPost}
+              onCancel={() => setIsComposerOpen(false)}
+              initiallyExpanded
+            />
+          </section>
+        </div>
+      )}
     </div>
   );
 }
