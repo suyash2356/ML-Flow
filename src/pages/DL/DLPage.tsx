@@ -1,4 +1,3 @@
-import React from 'react';
 import type { NavigationPage, Project } from '../../types';
 import { DL_STAGES, DL_ENCYCLOPEDIA_CARDS } from '../../config/dlData';
 import { LearningTemplatePage } from '../../components/Learning/LearningTemplatePage';
@@ -13,10 +12,11 @@ export function DLPage({}: DLPageProps) {
   return (
     <div className="dl-page-container" style={{ width: '100%' }}>
       <LearningTemplatePage
+        category="DL"
         pageTitle="Deep Learning Studio"
         pageSubtitle="Design neural architectures, inspect multi-dimensional tensor flow, configure activation layers, and train deep models."
-        categoryBadge="Phase 03 • Deep Representations"
-        levelBadge="Advanced Architect"
+        categoryBadge="Phase 03 · Deep Representations"
+        levelBadge="Advanced"
         progressPercentage={20}
         stages={DL_STAGES}
         cards={DL_ENCYCLOPEDIA_CARDS}

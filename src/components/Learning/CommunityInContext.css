@@ -1,6 +1,6 @@
 .community-in-context {
-  background: #111c29;
-  border: 1px solid rgba(86, 212, 192, 0.18);
+  background: #161b25;
+  border: 1px solid rgba(232, 168, 92, 0.18);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
@@ -9,7 +9,7 @@
 
 .community-header {
   padding: 16px 20px;
-  background: #0d151f;
+  background: #12161f;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
@@ -17,12 +17,12 @@
   margin: 0;
   font-size: 1.05rem;
   font-weight: 600;
-  color: #f1f5f9;
+  color: #edf0f5;
 }
 
 .community-subtitle {
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: #99a2b4;
   display: block;
   margin-top: 4px;
 }
@@ -42,7 +42,7 @@
 
 .community-discussion-col,
 .community-solutions-col {
-  background: #0d151f;
+  background: #12161f;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@
 .solutions-box-header h4 {
   margin: 0;
   font-size: 0.92rem;
-  color: #e2e8f0;
+  color: #edf0f5;
   font-weight: 600;
 }
 
@@ -65,8 +65,8 @@
 
 .solutions-count {
   font-size: 0.75rem;
-  color: #56d4c0;
-  background: rgba(86, 212, 192, 0.12);
+  color: #e8a85c;
+  background: rgba(232, 168, 92, 0.12);
   padding: 2px 8px;
   border-radius: 10px;
 }
@@ -78,22 +78,22 @@
 
 .comment-composer input {
   flex: 1;
-  background: #141f2d;
+  background: #161b25;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
   padding: 8px 12px;
   font-size: 0.8rem;
-  color: #f8fafc;
+  color: #edf0f5;
 }
 
 .comment-composer input:focus {
   outline: none;
-  border-color: #56d4c0;
+  border-color: #e8a85c;
 }
 
 .post-tip-btn {
-  background: #28ae9b;
-  color: #06111a;
+  background: #d98f3e;
+  color: #0a0d13;
   border: none;
   font-weight: 600;
   padding: 8px 14px;
@@ -110,7 +110,7 @@
 }
 
 .post-tip-btn:not(:disabled):hover {
-  background: #56d4c0;
+  background: #e8a85c;
 }
 
 .comments-feed-list {
@@ -124,7 +124,7 @@
 }
 
 .comment-card {
-  background: #111a26;
+  background: #161b25;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 8px;
   padding: 12px;
@@ -145,17 +145,17 @@
 .comment-author {
   font-size: 0.82rem;
   font-weight: 600;
-  color: #f1f5f9;
+  color: #edf0f5;
 }
 
 .comment-role {
   font-size: 0.72rem;
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 .comment-time {
   font-size: 0.7rem;
-  color: #64748b;
+  color: #6b7385;
 }
 
 .comment-text {
@@ -174,7 +174,7 @@
 .comment-reply-btn {
   background: transparent;
   border: none;
-  color: #64748b;
+  color: #6b7385;
   font-size: 0.74rem;
   cursor: pointer;
   padding: 0;
@@ -182,7 +182,7 @@
 }
 
 .comment-like-btn:hover {
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 .comment-reply-btn:hover {
@@ -200,7 +200,7 @@
 }
 
 .solution-card {
-  background: #111a26;
+  background: #161b25;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 8px;
   padding: 12px 14px;
@@ -208,7 +208,7 @@
 }
 
 .solution-card:hover {
-  border-color: rgba(86, 212, 192, 0.3);
+  border-color: rgba(232, 168, 92, 0.3);
   background: #142030;
 }
 
@@ -230,27 +230,27 @@
   height: 28px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(86, 212, 192, 0.4);
+  border: 1px solid rgba(232, 168, 92, 0.4);
 }
 
 .solution-author-name {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #f1f5f9;
+  color: #edf0f5;
   display: block;
 }
 
 .solution-algo-badge {
   font-size: 0.68rem;
-  color: #94a3b8;
+  color: #99a2b4;
   display: block;
 }
 
 .solution-metric-badge {
   font-size: 0.74rem;
   font-weight: 700;
-  color: #56d4c0;
-  background: rgba(86, 212, 192, 0.12);
+  color: #e8a85c;
+  background: rgba(232, 168, 92, 0.12);
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -258,7 +258,7 @@
 .solution-title {
   margin: 0 0 8px;
   font-size: 0.84rem;
-  color: #e2e8f0;
+  color: #edf0f5;
   font-weight: 500;
   line-height: 1.35;
 }
@@ -272,7 +272,7 @@
 
 .solution-tag {
   font-size: 0.68rem;
-  color: #64748b;
+  color: #6b7385;
   background: rgba(255, 255, 255, 0.04);
   padding: 2px 6px;
   border-radius: 4px;
@@ -289,7 +289,7 @@
 .sol-upvote-btn {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
+  color: #99a2b4;
   padding: 3px 8px;
   border-radius: 4px;
   font-size: 0.74rem;
@@ -298,15 +298,15 @@
 }
 
 .sol-upvote-btn.voted {
-  color: #56d4c0;
-  border-color: #56d4c0;
-  background: rgba(86, 212, 192, 0.1);
+  color: #e8a85c;
+  border-color: #e8a85c;
+  background: rgba(232, 168, 92, 0.1);
 }
 
 .sol-inspect-btn {
   background: transparent;
   border: none;
-  color: #56d4c0;
+  color: #e8a85c;
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
@@ -314,6 +314,6 @@
 }
 
 .sol-inspect-btn:hover {
-  color: #28ae9b;
+  color: #d98f3e;
   text-decoration: underline;
 }

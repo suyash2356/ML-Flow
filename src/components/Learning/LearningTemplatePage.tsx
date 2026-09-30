@@ -3,7 +3,6 @@ import type {
   LearningStage,
   EncyclopediaCardData,
   LearningModuleNode,
-  DifficultyLevel,
   LearningCategory,
   DatasetItem,
 } from '../../types';
@@ -19,10 +18,11 @@ import { AssessmentSection } from './AssessmentSection';
 import './LearningTemplatePage.css';
 
 interface LearningTemplatePageProps {
+  category: LearningCategory;
   pageTitle: string;
   pageSubtitle: string;
   categoryBadge: string;
-  levelBadge: DifficultyLevel;
+  levelBadge: string;
   progressPercentage: number;
   stages: LearningStage[];
   cards: EncyclopediaCardData[];
@@ -30,6 +30,7 @@ interface LearningTemplatePageProps {
 }
 
 export const LearningTemplatePage: React.FC<LearningTemplatePageProps> = ({
+  category,
   pageTitle,
   pageSubtitle,
   categoryBadge,
@@ -70,16 +71,13 @@ export const LearningTemplatePage: React.FC<LearningTemplatePageProps> = ({
     }
   };
 
-  const wizardCategory: LearningCategory = categoryBadge.includes('EDA')
-    ? 'EDA'
-    : categoryBadge.includes('DL')
-    ? 'DL'
-    : 'ML';
+  const wizardCategory: LearningCategory = category;
 
   return (
     <div className="learning-template-page">
       {/* Top Hero Banner */}
       <LearningHero
+        category={category}
         title={pageTitle}
         subtitle={pageSubtitle}
         categoryBadge={categoryBadge}

@@ -1,6 +1,6 @@
 .weekly-goal-widget {
-  background: #111c29;
-  border: 1px solid #2b4054;
+  background: #161b25;
+  border: 1px solid #2a2f3d;
   border-radius: 12px;
   padding: 16px;
   display: flex;
@@ -18,17 +18,17 @@
 .weekly-goal-widget__title {
   font-size: 12.5px;
   font-weight: 700;
-  color: #e5edf5;
+  color: #edf0f5;
 }
 
 .weekly-goal-widget__badge {
   font-size: 10px;
   font-weight: 700;
-  color: #56d4c0;
-  background: #143531;
+  color: #e8a85c;
+  background: #241a0c;
   padding: 2px 7px;
   border-radius: 4px;
-  border: 1px solid #235c54;
+  border: 1px solid #4a3820;
 }
 
 .weekly-goal-widget__progress-bar {
@@ -40,7 +40,7 @@
 
 .weekly-goal-widget__progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #28ae9b 0%, #56d4c0 100%);
+  background: linear-gradient(90deg, #d98f3e 0%, #e8a85c 100%);
   border-radius: 3px;
   transition: width 0.3s ease;
 }
@@ -56,14 +56,14 @@
   align-items: center;
   gap: 8px;
   font-size: 11px;
-  color: #9cb5c9;
+  color: #99a2b4;
   cursor: pointer;
   user-select: none;
   transition: color 0.15s ease;
 }
 
 .weekly-goal-widget__item input[type='checkbox'] {
-  accent-color: #28ae9b;
+  accent-color: #d98f3e;
   width: 14px;
   height: 14px;
   cursor: pointer;

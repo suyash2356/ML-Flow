@@ -1,6 +1,6 @@
 .arch-design-lab {
-  background: #111c29;
-  border: 1px solid rgba(86, 212, 192, 0.18);
+  background: #161b25;
+  border: 1px solid rgba(232, 168, 92, 0.18);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
@@ -9,7 +9,7 @@
 
 .arch-lab-header {
   padding: 16px 20px;
-  background: #0d151f;
+  background: #12161f;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
   justify-content: space-between;
@@ -20,7 +20,7 @@
   margin: 0;
   font-size: 1.05rem;
   font-weight: 600;
-  color: #f1f5f9;
+  color: #edf0f5;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -30,21 +30,21 @@
   font-size: 0.72rem;
   padding: 2px 7px;
   border-radius: 4px;
-  background: rgba(86, 212, 192, 0.15);
-  color: #56d4c0;
+  background: rgba(232, 168, 92, 0.15);
+  color: #e8a85c;
   font-weight: 600;
 }
 
 .arch-lab-title-group p {
   margin: 4px 0 0;
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: #99a2b4;
 }
 
 .arch-lab-reset-btn {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
+  color: #99a2b4;
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 0.8rem;
@@ -54,12 +54,12 @@
 
 .arch-lab-reset-btn:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #f8fafc;
+  color: #edf0f5;
 }
 
 .arch-lab-palette {
   padding: 12px 20px;
-  background: #141f2d;
+  background: #161b25;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
@@ -69,7 +69,7 @@
 
 .palette-label {
   font-size: 0.78rem;
-  color: #64748b;
+  color: #6b7385;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 600;
@@ -96,9 +96,9 @@
 }
 
 .palette-btn:hover {
-  background: rgba(86, 212, 192, 0.15);
-  border-color: #56d4c0;
-  color: #56d4c0;
+  background: rgba(232, 168, 92, 0.15);
+  border-color: #e8a85c;
+  color: #e8a85c;
 }
 
 .arch-lab-body {
@@ -140,7 +140,7 @@
 .layer-block {
   width: 140px;
   min-height: 120px;
-  background: #111c29;
+  background: #161b25;
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 12px;
@@ -158,7 +158,7 @@
 }
 
 .layer-block.selected {
-  box-shadow: 0 0 16px rgba(86, 212, 192, 0.35);
+  box-shadow: 0 0 16px rgba(232, 168, 92, 0.35);
 }
 
 .layer-block-top {
@@ -176,7 +176,7 @@
 .layer-remove-btn {
   background: transparent;
   border: none;
-  color: #64748b;
+  color: #6b7385;
   cursor: pointer;
   font-size: 1rem;
   line-height: 1;
@@ -184,13 +184,13 @@
 }
 
 .layer-remove-btn:hover {
-  color: #ef4444;
+  color: #dd6b62;
 }
 
 .layer-name {
   font-size: 0.82rem;
   font-weight: 600;
-  color: #f1f5f9;
+  color: #edf0f5;
   margin: 6px 0;
   line-height: 1.25;
 }
@@ -198,7 +198,7 @@
 .layer-shapes {
   font-size: 0.7rem;
   font-family: monospace;
-  color: #94a3b8;
+  color: #99a2b4;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -211,13 +211,13 @@
 }
 
 .shape-out {
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 .layer-connector {
   width: 24px;
   height: 2px;
-  background: #28ae9b;
+  background: #d98f3e;
   position: relative;
   flex-shrink: 0;
 }
@@ -228,7 +228,7 @@
   right: -2px;
   top: -3px;
   border: 4px solid transparent;
-  border-left-color: #28ae9b;
+  border-left-color: #d98f3e;
 }
 
 .canvas-footer-stats {
@@ -238,15 +238,15 @@
   display: flex;
   gap: 20px;
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: #99a2b4;
 }
 
 .canvas-footer-stats strong {
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 .arch-inspector-panel {
-  background: #111a26;
+  background: #161b25;
   border-left: 1px solid rgba(255, 255, 255, 0.08);
   padding: 20px;
   display: flex;
@@ -257,17 +257,17 @@
 .inspector-header h4 {
   margin: 0;
   font-size: 0.95rem;
-  color: #f8fafc;
+  color: #edf0f5;
 }
 
 .inspector-header p {
   margin: 4px 0 0;
   font-size: 0.76rem;
-  color: #64748b;
+  color: #6b7385;
 }
 
 .inspector-card {
-  background: #0d151f;
+  background: #12161f;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 8px;
   padding: 14px;
@@ -284,7 +284,7 @@
 
 .inspector-type {
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: #99a2b4;
   margin-bottom: 12px;
 }
 
@@ -306,23 +306,23 @@
 }
 
 .tensor-row span {
-  color: #64748b;
+  color: #6b7385;
 }
 
 .tensor-row code {
-  color: #56d4c0;
+  color: #e8a85c;
   font-family: monospace;
 }
 
 .inspector-param-count {
   font-size: 0.78rem;
-  color: #94a3b8;
+  color: #99a2b4;
   padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .inspector-param-count strong {
-  color: #f1f5f9;
+  color: #edf0f5;
 }
 
 .inspector-params-edit label {
@@ -330,22 +330,22 @@
   flex-direction: column;
   gap: 4px;
   font-size: 0.75rem;
-  color: #94a3b8;
+  color: #99a2b4;
   margin-bottom: 10px;
 }
 
 .inspector-params-edit input,
 .inspector-params-edit select {
-  background: #080e16;
+  background: #0a0d13;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f8fafc;
+  color: #edf0f5;
   padding: 6px 10px;
   border-radius: 5px;
   font-size: 0.8rem;
 }
 
 .inspector-empty {
-  color: #64748b;
+  color: #6b7385;
   font-size: 0.82rem;
   text-align: center;
   padding: 30px 10px;
@@ -354,7 +354,7 @@
 .code-export-section h5 {
   margin: 0 0 8px;
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: #99a2b4;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -366,7 +366,7 @@
   padding: 10px;
   font-family: monospace;
   font-size: 0.72rem;
-  color: #56d4c0;
+  color: #e8a85c;
   overflow-x: auto;
   max-height: 130px;
   white-space: pre;
@@ -375,9 +375,9 @@
 .export-code-btn {
   margin-top: 8px;
   width: 100%;
-  background: rgba(86, 212, 192, 0.1);
-  border: 1px solid rgba(86, 212, 192, 0.25);
-  color: #56d4c0;
+  background: rgba(232, 168, 92, 0.1);
+  border: 1px solid rgba(232, 168, 92, 0.25);
+  color: #e8a85c;
   padding: 8px;
   border-radius: 6px;
   font-size: 0.78rem;
@@ -387,5 +387,5 @@
 }
 
 .export-code-btn:hover {
-  background: rgba(86, 212, 192, 0.2);
+  background: rgba(232, 168, 92, 0.2);
 }

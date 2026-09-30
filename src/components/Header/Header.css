@@ -4,9 +4,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--space-6);
-  background: rgba(6, 11, 18, 0.7);
+  background: rgba(10, 13, 19, 0.72);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 200, 220, 0.1);
+  border-bottom: 1px solid var(--color-surface-border);
   z-index: 90;
   width: 100%;
 }
@@ -27,6 +27,9 @@
 .app-header__crumb--active {
   color: var(--color-text-primary);
   font-weight: 500;
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
 }
 
 .app-header__separator {
@@ -60,9 +63,9 @@
   height: 30px;
   padding-left: 30px;
   padding-right: 12px;
-  background: rgba(15, 22, 32, 0.8);
-  border: 1px solid rgba(0, 200, 220, 0.15);
-  border-radius: 6px;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--border-radius-sm);
   font-size: 0.75rem;
   color: var(--color-text-primary);
   transition: all var(--transition-fast);
@@ -73,8 +76,8 @@
 }
 
 .app-header__search-input:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 10px rgba(0, 200, 220, 0.2);
+  border-color: var(--color-accent-dim);
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
 }
 
 .app-header__avatar {

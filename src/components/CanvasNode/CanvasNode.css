@@ -21,7 +21,7 @@
   padding: 3px 5px;
   background: #0f1925ee;
   backdrop-filter: blur(8px);
-  border: 1px solid #2d455b;
+  border: 1px solid #2a2f3d;
   border-radius: 6px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   white-space: nowrap;
@@ -42,10 +42,10 @@
 .canvas-node__action-btn {
   height: 22px;
   padding: 0 7px;
-  border: 1px solid #2a3e52;
+  border: 1px solid #2a2f3d;
   border-radius: 4px;
   background: #162536;
-  color: #9cb5c9;
+  color: #99a2b4;
   font-size: 9.5px;
   font-weight: 600;
   cursor: pointer;
@@ -62,27 +62,27 @@
 }
 
 .canvas-node__action-btn--connect {
-  background: #163630;
-  border-color: #245e53;
-  color: #4de0c5;
+  background: #241a0c;
+  border-color: #4a3820;
+  color: #f2be82;
 }
 
 .canvas-node__action-btn--connect:hover {
-  background: #1f4e45;
-  color: #72f7dd;
-  border-color: #388f7f;
-  box-shadow: 0 0 10px rgba(77, 224, 197, 0.25);
+  background: #352712;
+  color: #f2be82;
+  border-color: #b97b3a;
+  box-shadow: 0 0 10px rgba(242, 190, 130, 0.25);
 }
 
 .canvas-node__action-btn--disconnect:hover {
-  background: #2b2536;
-  color: #d8b6ff;
+  background: #241a0c;
+  color: #cdb0ef;
   border-color: #5d467a;
 }
 
 .canvas-node__action-btn--delete:hover {
-  background: #381a20;
-  color: #ff9499;
+  background: #2e1712;
+  color: #eba39d;
   border-color: #7a303b;
 }
 
@@ -92,37 +92,53 @@
   min-height: 72px;
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 10px 14px;
-  border: 1px solid #2b4054;
-  border-radius: 9px;
-  background: #111c29;
-  color: #e5edf5;
-  box-shadow: 0 10px 25px #0006;
+  gap: 10px;
+  padding: 10px 14px 10px 16px;
+  border: 1px solid var(--color-surface-border-strong);
+  border-radius: var(--border-radius-sm);
+  background: #161b25;
+  color: #edf0f5;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   text-align: left;
   touch-action: none;
   transition: border-color 0.16s, box-shadow 0.16s, transform 0.16s;
   cursor: pointer;
+  overflow: hidden;
 }
 
+.canvas-node::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #5c6579;
+}
+
+.canvas-node--input::before { background: #7fb8db; }
+.canvas-node--preprocessing::before { background: #99a2b4; }
+.canvas-node--model::before { background: #e8a85c; }
+.canvas-node--eval::before { background: #c3a6f2; }
+
 .canvas-node:hover {
-  border-color: #5b778e;
+  border-color: #5b6a80;
   transform: translateY(-1px);
 }
 
 .canvas-node--selected {
-  border-color: #56d4c0;
-  box-shadow: 0 0 0 1px #56d4c0, 0 0 25px #36c7b630;
+  border-color: #e8a85c;
+  box-shadow: 0 0 0 1px #e8a85c, 0 0 22px rgba(232, 168, 92, 0.18);
 }
 
 .canvas-node--targeting {
-  border-color: #56d4c0;
+  border-color: #e8a85c;
   animation: targetPulse 1.2s ease-in-out infinite;
 }
 
 @keyframes targetPulse {
   50% {
-    box-shadow: 0 0 0 2px #56d4c0, 0 0 25px rgba(86, 212, 192, 0.4);
+    box-shadow: 0 0 0 2px #e8a85c, 0 0 25px rgba(232, 168, 92, 0.4);
   }
 }
 
@@ -132,18 +148,18 @@
 }
 
 .canvas-node--running {
-  border-color: #e7ae53;
-  animation: nodePulse 1.2s ease-in-out infinite;
+  border-color: #e8b34f;
+  animation: nodePulse 1.3s ease-in-out infinite;
 }
 
 .canvas-node--success {
-  border-color: #4fc786;
-  box-shadow: 0 0 20px #3abf7530;
+  border-color: #55bd8b;
+  box-shadow: 0 0 18px rgba(85, 189, 139, 0.16);
 }
 
 .canvas-node--error {
-  border-color: #e1666c;
-  box-shadow: 0 0 20px #e1666c30;
+  border-color: #dd6b62;
+  box-shadow: 0 0 18px rgba(221, 107, 98, 0.16);
 }
 
 .canvas-node__icon {
@@ -152,25 +168,30 @@
   display: grid;
   place-items: center;
   flex: 0 0 auto;
-  border-radius: 7px;
-  background: #1a3347;
-  color: #6fc0ff;
+  border-radius: var(--border-radius-sm);
+  background: rgba(127, 184, 219, 0.12);
+  color: #7fb8db;
   font-size: 15px;
 }
 
 .canvas-node--model .canvas-node__icon {
-  background: #173c35;
-  color: #61e5c7;
+  background: rgba(232, 168, 92, 0.14);
+  color: #e8a85c;
 }
 
 .canvas-node--eval .canvas-node__icon {
-  background: #352b45;
-  color: #cba8ff;
+  background: rgba(195, 166, 242, 0.14);
+  color: #c3a6f2;
+}
+
+.canvas-node--preprocessing .canvas-node__icon {
+  background: rgba(153, 162, 180, 0.14);
+  color: #c3c9d4;
 }
 
 .canvas-node__copy {
   display: grid;
-  gap: 2px;
+  gap: 3px;
   min-width: 0;
 }
 
@@ -183,73 +204,89 @@
 
 .canvas-node__copy strong {
   font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .canvas-node__copy small {
-  font-size: 9px;
-  color: #7790a4;
+  font-family: var(--font-family-mono);
+  font-size: 8.5px;
+  color: #6b7385;
+  letter-spacing: 0.01em;
 }
 
 .canvas-node__port {
   position: absolute;
   top: 28px;
-  width: 14px;
-  height: 14px;
-  border: 2px solid #718ca3;
-  border-radius: 50%;
-  background: #0a121d;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #6b7385;
+  border-radius: 3px;
+  background: #0d1119;
   z-index: 3;
   display: grid;
   place-items: center;
   font-size: 10px;
   line-height: 1;
   font-weight: 700;
-  color: #718ca3;
+  color: #6b7385;
   user-select: none;
   transition: all 0.15s ease;
 }
 
 .canvas-node__port--in {
-  left: -8px;
+  left: -7px;
   cursor: pointer;
 }
 
 .canvas-node__port--out {
-  right: -8px;
+  right: -7px;
   cursor: crosshair;
-  color: #4de0c5;
+  color: #f2be82;
+  border-color: #b97b3a;
 }
 
 .canvas-node__port--out:hover {
-  border-color: #58dbc4;
-  background: #143d39;
+  border-color: #f2be82;
+  background: #241a0c;
   transform: scale(1.25);
-  box-shadow: 0 0 10px rgba(88, 219, 196, 0.5);
+  box-shadow: 0 0 10px rgba(242, 190, 130, 0.5);
 }
 
 .canvas-node__state {
   position: absolute;
-  right: 7px;
-  top: 5px;
-  font-size: 9px;
-  color: #718ca3;
+  right: 8px;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6b7385;
+  font-size: 0;
 }
 
 .canvas-node--success .canvas-node__state {
-  color: #65dd97;
+  background: #7fd4a8;
+  box-shadow: 0 0 6px rgba(127, 212, 168, 0.7);
 }
 
 .canvas-node--error .canvas-node__state {
-  color: #f17d82;
+  background: #dd6b62;
+  box-shadow: 0 0 6px rgba(221, 107, 98, 0.7);
 }
 
 .canvas-node--running .canvas-node__state {
-  color: #efba63;
+  background: #efba63;
+  animation: statePulse 1s ease-in-out infinite;
+}
+
+@keyframes statePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.4); }
 }
 
 @keyframes nodePulse {
   50% {
-    box-shadow: 0 0 0 1px #e7ae53, 0 0 26px #e6a53855;
+    box-shadow: 0 0 0 1px #e8b34f, 0 0 22px rgba(230, 165, 56, 0.35);
   }
 }
 

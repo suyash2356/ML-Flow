@@ -1,21 +1,23 @@
-import type { DifficultyLevel, LearningCategory } from '../../types';
+import type { LearningCategory } from '../../types';
 import './LearningHero.css';
 
 interface LearningHeroProps {
   category: LearningCategory;
+  categoryBadge: string;
   title: string;
   subtitle: string;
-  progressPercent: number;
-  levelBadge: DifficultyLevel;
+  progressPercentage: number;
+  levelBadge: string;
   onResume: () => void;
   onStartGuidedProject: () => void;
 }
 
 export function LearningHero({
   category,
+  categoryBadge,
   title,
   subtitle,
-  progressPercent,
+  progressPercentage: progressPercent,
   levelBadge,
   onResume,
   onStartGuidedProject,
@@ -28,9 +30,9 @@ export function LearningHero({
     <div className={`learning-hero learning-hero--${category.toLowerCase()}`}>
       <div className="learning-hero__content">
         <div className="learning-hero__badges">
-          <span className="learning-hero__category-badge">{category} Learning Track</span>
-          <span className={`learning-hero__level-badge learning-hero__level-badge--${levelBadge.toLowerCase()}`}>
-            Level: {levelBadge}
+          <span className="learning-hero__category-badge">{categoryBadge}</span>
+          <span className="learning-hero__level-badge">
+            {levelBadge}
           </span>
         </div>
 

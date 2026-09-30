@@ -1,7 +1,7 @@
 .algo-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 8, 14, 0.85);
+  background: rgba(10, 13, 19, 0.85);
   backdrop-filter: blur(8px);
   z-index: 100;
   display: grid;
@@ -10,15 +10,15 @@
 }
 
 .algo-modal {
-  background: #111c29;
-  border: 1px solid #2b455e;
+  background: #161b25;
+  border: 1px solid #2a2f3d;
   border-radius: 14px;
   width: 100%;
   max-width: 900px;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 25px rgba(86, 212, 192, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 25px rgba(232, 168, 92, 0.15);
   overflow: hidden;
   animation: modalPop 0.2s ease-out;
 }
@@ -36,7 +36,7 @@
 
 .algo-modal__header {
   padding: 16px 20px;
-  background: #0d1723;
+  background: #12161f;
   border-bottom: 1px solid #22374b;
   display: flex;
   align-items: center;
@@ -63,7 +63,7 @@
   font-size: 9.5px;
   font-weight: 750;
   text-transform: uppercase;
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 .algo-modal__diff {
@@ -75,23 +75,23 @@
 
 .algo-modal__diff--beginner {
   background: #162a3d;
-  color: #6fc0ff;
+  color: #7fb8db;
 }
 
 .algo-modal__diff--practitioner {
   background: #382c16;
-  color: #f7c872;
+  color: #e8b34f;
 }
 
 .algo-modal__diff--expert {
-  background: #251b38;
-  color: #cba8ff;
+  background: #241a33;
+  color: #c3a6f2;
 }
 
 .algo-modal__title {
   font-size: 17px;
   font-weight: 750;
-  color: #eef8fa;
+  color: #edf0f5;
   margin: 2px 0 0;
 }
 
@@ -99,9 +99,9 @@
   width: 32px;
   height: 32px;
   border-radius: 6px;
-  background: #172636;
+  background: #1f2530;
   border: 1px solid #293e52;
-  color: #9cb5c9;
+  color: #99a2b4;
   font-size: 14px;
   cursor: pointer;
   display: grid;
@@ -110,7 +110,7 @@
 }
 
 .algo-modal__close-btn:hover {
-  background: #23394e;
+  background: #262d3a;
   color: #ffffff;
 }
 
@@ -120,8 +120,8 @@
   align-items: center;
   gap: 4px;
   padding: 8px 16px;
-  background: #09131f;
-  border-bottom: 1px solid #1c2e40;
+  background: #0d1119;
+  border-bottom: 1px solid #2a2f3d;
   overflow-x: auto;
 }
 
@@ -131,7 +131,7 @@
   border-radius: 6px;
   background: transparent;
   border: 1px solid transparent;
-  color: #8fa7bc;
+  color: #99a2b4;
   font-size: 11px;
   font-weight: 650;
   cursor: pointer;
@@ -140,12 +140,12 @@
 }
 
 .algo-modal__nav-item:hover {
-  color: #e5edf5;
+  color: #edf0f5;
   background: #142230;
 }
 
 .algo-modal__nav-item--active {
-  color: #56d4c0;
+  color: #e8a85c;
   background: #152c3c;
   border-color: #2a556d;
 }
@@ -166,12 +166,12 @@
 .algo-modal__section-heading {
   font-size: 16px;
   font-weight: 750;
-  color: #56d4c0;
+  color: #e8a85c;
   margin: 0;
 }
 
 .algo-modal__card-block {
-  background: #09131f;
+  background: #0d1119;
   border: 1px solid #1f354a;
   border-radius: 10px;
   padding: 16px;
@@ -182,7 +182,7 @@
 
 .algo-modal__paragraph {
   font-size: 13px;
-  color: #dbe7f2;
+  color: #e3e6ed;
   margin: 0;
   line-height: 1.6;
 }
@@ -190,10 +190,10 @@
 .algo-modal__takeaway {
   padding: 10px 12px;
   background: #122436;
-  border-left: 3px solid #56d4c0;
+  border-left: 3px solid #e8a85c;
   border-radius: 4px;
   font-size: 11.5px;
-  color: #a9c5db;
+  color: #9aa8b8;
 }
 
 .algo-modal__analogy-box {
@@ -212,7 +212,7 @@
 
 .algo-modal__analogy-text strong {
   font-size: 12px;
-  color: #72f7dd;
+  color: #f2be82;
 }
 
 .algo-modal__analogy-text p {
@@ -234,8 +234,8 @@
   align-items: flex-start;
   gap: 12px;
   padding: 10px 12px;
-  background: #09131f;
-  border: 1px solid #1c2e40;
+  background: #0d1119;
+  border: 1px solid #2a2f3d;
   border-radius: 8px;
 }
 
@@ -244,7 +244,7 @@
   height: 22px;
   border-radius: 50%;
   background: #1b3850;
-  color: #56d4c0;
+  color: #e8a85c;
   font-size: 11px;
   font-weight: 750;
   display: grid;
@@ -260,7 +260,7 @@
 }
 
 .algo-modal__diagram-box {
-  background: #070e17;
+  background: #0a0d13;
   border: 1px solid #1f364d;
   border-radius: 8px;
   padding: 12px;
@@ -269,20 +269,20 @@
 .algo-modal__diagram-label {
   font-size: 10.5px;
   font-weight: 700;
-  color: #7994ab;
+  color: #99a2b4;
   text-transform: uppercase;
 }
 
 .algo-modal__diagram-pre {
   font-family: monospace;
   font-size: 11.5px;
-  color: #56d4c0;
+  color: #e8a85c;
   margin: 6px 0 0;
   overflow-x: auto;
 }
 
 .algo-modal__math-box {
-  background: #09131f;
+  background: #0d1119;
   border: 1px solid #1f354a;
   border-radius: 8px;
   overflow: hidden;
@@ -291,9 +291,9 @@
 .algo-modal__math-toggle {
   width: 100%;
   padding: 10px 14px;
-  background: #0d1927;
+  background: #12161f;
   border: none;
-  color: #8fa7bc;
+  color: #99a2b4;
   font-size: 11.5px;
   font-weight: 650;
   display: flex;
@@ -305,7 +305,7 @@
 .algo-modal__math-content {
   padding: 14px;
   font-family: monospace;
-  color: #72f7dd;
+  color: #f2be82;
   font-size: 12px;
   background: #060d16;
   border-top: 1px solid #172838;
@@ -333,7 +333,7 @@
 
 .algo-modal__callout--green h4 {
   margin: 0;
-  color: #56d4c0;
+  color: #e8a85c;
   font-size: 12.5px;
 }
 
@@ -354,7 +354,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  color: #c9dbe9;
+  color: #b7bfcc;
   font-size: 11.5px;
   line-height: 1.4;
 }
@@ -364,7 +364,7 @@
   align-items: center;
   gap: 10px;
   font-size: 11.5px;
-  color: #8da4b8;
+  color: #99a2b4;
   flex-wrap: wrap;
 }
 
@@ -379,7 +379,7 @@
   border-radius: 4px;
   background: #14283b;
   border: 1px solid #234869;
-  color: #6fc0ff;
+  color: #7fb8db;
   font-size: 10.5px;
 }
 
@@ -403,14 +403,14 @@
 .algo-modal__pitfall-item p {
   margin: 0;
   font-size: 12px;
-  color: #f7d59c;
+  color: #e8c98f;
   line-height: 1.5;
 }
 
 /* Playground */
 .algo-modal__playground-desc {
   font-size: 12px;
-  color: #8fa7bc;
+  color: #99a2b4;
   margin: 0;
 }
 
@@ -421,8 +421,8 @@
 }
 
 .algo-modal__controls {
-  background: #09131f;
-  border: 1px solid #1c2e40;
+  background: #0d1119;
+  border: 1px solid #2a2f3d;
   border-radius: 8px;
   padding: 14px;
   display: flex;
@@ -433,7 +433,7 @@
 .algo-modal__controls h4 {
   margin: 0;
   font-size: 12px;
-  color: #e5edf5;
+  color: #edf0f5;
 }
 
 .algo-modal__slider-label {
@@ -446,15 +446,15 @@
   display: flex;
   justify-content: space-between;
   font-size: 11px;
-  color: #8fa7bc;
+  color: #99a2b4;
 }
 
 .algo-modal__slider-header strong {
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 .algo-modal__slider-label input[type='range'] {
-  accent-color: #56d4c0;
+  accent-color: #e8a85c;
 }
 
 .algo-modal__slider-label small {
@@ -463,8 +463,8 @@
 }
 
 .algo-modal__chart-display {
-  background: #070e17;
-  border: 1px solid #1c2e40;
+  background: #0a0d13;
+  border: 1px solid #2a2f3d;
   border-radius: 8px;
   padding: 14px;
   display: flex;
@@ -476,11 +476,11 @@
   display: flex;
   justify-content: space-between;
   font-size: 10.5px;
-  color: #7994ab;
+  color: #99a2b4;
 }
 
 .algo-modal__chart-type {
-  color: #56d4c0;
+  color: #e8a85c;
   font-weight: 700;
 }
 
@@ -498,7 +498,7 @@
 
 .algo-modal__chart-hint {
   font-size: 9.5px;
-  color: #5b7489;
+  color: #6b7385;
   text-align: center;
 }
 
@@ -522,13 +522,13 @@
 .algo-modal__cta-title {
   font-size: 18px;
   font-weight: 800;
-  color: #eef8fa;
+  color: #edf0f5;
   margin: 0;
 }
 
 .algo-modal__cta-desc {
   font-size: 12.5px;
-  color: #9cb5c9;
+  color: #99a2b4;
   max-width: 500px;
   margin: 0;
   line-height: 1.5;
@@ -539,8 +539,8 @@
   height: 40px;
   padding: 0 24px;
   border-radius: 6px;
-  background: #28ae9b;
-  color: #041411;
+  background: #d98f3e;
+  color: #241a0c;
   font-size: 12.5px;
   font-weight: 750;
   border: none;
@@ -549,8 +549,8 @@
 }
 
 .algo-modal__cta-btn:hover {
-  background: #39c9b4;
-  box-shadow: 0 0 16px rgba(40, 174, 155, 0.4);
+  background: #f2be82;
+  box-shadow: 0 0 16px rgba(217, 143, 62, 0.4);
 }
 
 @media (max-width: 768px) {

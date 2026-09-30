@@ -97,14 +97,17 @@ export function Sidebar({ activeNavId, onNavSelect, collapsed, onCollapsedChange
             <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M2 9h2.5l2-4.5 2.5 9 2-6 2 2.5H16"
-                stroke="#fff"
+                stroke="#1a1206"
                 strokeWidth="1.8"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
           </div>
-          <span className="sidebar__logo-name">ML Flow</span>
+          <div className="sidebar__logo-text">
+            <span className="sidebar__logo-name">ML Flow</span>
+            <span className="sidebar__logo-tag">Local Workspace</span>
+          </div>
         </div>
         <button
           className="sidebar__collapse-btn"

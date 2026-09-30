@@ -1,6 +1,6 @@
 .learning-hero {
-  background: linear-gradient(135deg, #112030 0%, #0d1622 100%);
-  border: 1px solid #28445e;
+  background: linear-gradient(135deg, #1a1f2a 0%, #0d1622 100%);
+  border: 1px solid #2a2f3d;
   border-radius: 14px;
   padding: 24px;
   display: flex;
@@ -19,15 +19,15 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #56d4c0 0%, #28ae9b 100%);
+  background: linear-gradient(90deg, #e8a85c 0%, #d98f3e 100%);
 }
 
 .learning-hero--eda::before {
-  background: linear-gradient(90deg, #6fc0ff 0%, #3a8cdb 100%);
+  background: linear-gradient(90deg, #7fb8db 0%, #4a90c4 100%);
 }
 
 .learning-hero--dl::before {
-  background: linear-gradient(90deg, #cba8ff 0%, #9b69e6 100%);
+  background: linear-gradient(90deg, #c3a6f2 0%, #9b6fe0 100%);
 }
 
 .learning-hero__content {
@@ -48,11 +48,11 @@
   font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #56d4c0;
-  background: #143531;
+  color: #e8a85c;
+  background: #241a0c;
   padding: 3px 8px;
   border-radius: 4px;
-  border: 1px solid #235c54;
+  border: 1px solid #4a3820;
 }
 
 .learning-hero__level-badge {
@@ -61,33 +61,33 @@
   padding: 3px 8px;
   border-radius: 4px;
   background: #182838;
-  color: #8da4b8;
-  border: 1px solid #2d455d;
+  color: #99a2b4;
+  border: 1px solid #2a2f3d;
 }
 
 .learning-hero__level-badge--practitioner {
-  color: #f7c872;
+  color: #e8b34f;
   border-color: #5c4524;
   background: #392b17;
 }
 
 .learning-hero__level-badge--expert {
-  color: #cba8ff;
-  border-color: #4b3670;
-  background: #251b38;
+  color: #c3a6f2;
+  border-color: #4a3670;
+  background: #241a33;
 }
 
 .learning-hero__title {
   font-size: 24px;
   font-weight: 800;
-  color: #eef8fa;
+  color: #edf0f5;
   margin: 2px 0 0;
   letter-spacing: -0.3px;
 }
 
 .learning-hero__subtitle {
   font-size: 13px;
-  color: #8fa7bc;
+  color: #99a2b4;
   margin: 0;
   line-height: 1.5;
 }
@@ -110,33 +110,33 @@
 }
 
 .learning-hero__btn--primary {
-  background: #28ae9b;
-  color: #041411;
+  background: #d98f3e;
+  color: #241a0c;
   border: none;
 }
 
 .learning-hero__btn--primary:hover {
-  background: #34c4b0;
-  box-shadow: 0 0 14px rgba(40, 174, 155, 0.4);
+  background: #e0995a;
+  box-shadow: 0 0 14px rgba(217, 143, 62, 0.4);
 }
 
 .learning-hero__btn--secondary {
   background: #142536;
   color: #bfd0dd;
-  border: 1px solid #2b455e;
+  border: 1px solid #2a2f3d;
 }
 
 .learning-hero__btn--secondary:hover {
-  background: #1d364e;
+  background: #262d3a;
   color: #ffffff;
-  border-color: #56d4c0;
+  border-color: #e8a85c;
 }
 
 .learning-hero__progress-box {
   display: flex;
   align-items: center;
   gap: 16px;
-  background: #09131f;
+  background: #0d1119;
   padding: 16px;
   border-radius: 12px;
   border: 1px solid #1f364d;
@@ -160,7 +160,7 @@
 
 .learning-hero__ring-fill {
   fill: none;
-  stroke: #56d4c0;
+  stroke: #e8a85c;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.5s ease;
 }
@@ -177,12 +177,12 @@
 
 .learning-hero__ring-text strong {
   font-size: 16px;
-  color: #e5edf5;
+  color: #edf0f5;
 }
 
 .learning-hero__ring-text small {
   font-size: 9px;
-  color: #7994ab;
+  color: #99a2b4;
   text-transform: uppercase;
   margin-top: 2px;
 }
@@ -195,7 +195,7 @@
 
 .learning-hero__status-label {
   font-size: 10.5px;
-  color: #7994ab;
+  color: #99a2b4;
   text-transform: uppercase;
   letter-spacing: 0.4px;
 }
@@ -203,7 +203,7 @@
 .learning-hero__cert-status {
   font-size: 12px;
   font-weight: 700;
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 @media (max-width: 860px) {

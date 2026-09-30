@@ -1,6 +1,6 @@
 .trending-ml-card {
-  background: #111c29;
-  border: 1px solid #2b4054;
+  background: #161b25;
+  border: 1px solid #2a2f3d;
   border-radius: 12px;
   padding: 16px;
   display: flex;
@@ -18,13 +18,13 @@
 .trending-ml-card__title {
   font-size: 12.5px;
   font-weight: 700;
-  color: #e5edf5;
+  color: #edf0f5;
   margin: 0;
 }
 
 .trending-ml-card__time {
   font-size: 9.5px;
-  color: #7d96ac;
+  color: #99a2b4;
 }
 
 .trending-ml-card__list {
@@ -38,8 +38,8 @@
   align-items: center;
   gap: 10px;
   padding: 6px 8px;
-  background: #09131f;
-  border: 1px solid #1c2e40;
+  background: #0d1119;
+  border: 1px solid #2a2f3d;
   border-radius: 6px;
   transition: all 0.15s ease;
 }
@@ -51,7 +51,7 @@
 .trending-ml-card__index {
   font-size: 12px;
   font-weight: 800;
-  color: #56d4c0;
+  color: #e8a85c;
   width: 14px;
 }
 
@@ -64,7 +64,7 @@
 
 .trending-ml-card__name {
   font-size: 11.5px;
-  color: #e5edf5;
+  color: #edf0f5;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -72,11 +72,11 @@
 
 .trending-ml-card__cat {
   font-size: 9.5px;
-  color: #7994ab;
+  color: #99a2b4;
 }
 
 .trending-ml-card__growth {
   font-size: 10.5px;
   font-weight: 750;
-  color: #56d4c0;
+  color: #e8a85c;
 }

@@ -1,6 +1,6 @@
 .assessment-section {
-  background: #111c29;
-  border: 1px solid rgba(86, 212, 192, 0.18);
+  background: #161b25;
+  border: 1px solid rgba(232, 168, 92, 0.18);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
@@ -9,7 +9,7 @@
 
 .assessment-header {
   padding: 18px 24px;
-  background: #0d151f;
+  background: #12161f;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
   justify-content: space-between;
@@ -22,8 +22,8 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #56d4c0;
-  background: rgba(86, 212, 192, 0.12);
+  color: #e8a85c;
+  background: rgba(232, 168, 92, 0.12);
   padding: 2px 8px;
   border-radius: 4px;
   display: inline-block;
@@ -33,17 +33,17 @@
 .assessment-title-meta h3 {
   margin: 2px 0 4px;
   font-size: 1.05rem;
-  color: #f8fafc;
+  color: #edf0f5;
 }
 
 .assessment-title-meta p {
   margin: 0;
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: #99a2b4;
 }
 
 .gold-cert-btn {
-  background: linear-gradient(135deg, #eab308, #ca8a04);
+  background: linear-gradient(135deg, #d4a017, #a8790b);
   border: none;
   color: #0d1117;
   font-weight: 700;
@@ -72,7 +72,7 @@
 }
 
 .quiz-question-card {
-  background: #111c29;
+  background: #161b25;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 10px;
   padding: 16px 20px;
@@ -86,8 +86,8 @@
 }
 
 .q-num {
-  background: rgba(86, 212, 192, 0.15);
-  color: #56d4c0;
+  background: rgba(232, 168, 92, 0.15);
+  color: #e8a85c;
   font-size: 0.78rem;
   font-weight: 700;
   padding: 3px 8px;
@@ -97,7 +97,7 @@
 
 .q-text {
   font-size: 0.88rem;
-  color: #f1f5f9;
+  color: #edf0f5;
   line-height: 1.45;
   font-weight: 500;
 }
@@ -113,7 +113,7 @@
   align-items: center;
   gap: 12px;
   padding: 10px 14px;
-  background: #0d151f;
+  background: #12161f;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   color: #cbd5e1;
@@ -124,26 +124,26 @@
 }
 
 .quiz-opt-btn:hover:not(.correct-answer):not(.wrong-answer) {
-  border-color: rgba(86, 212, 192, 0.3);
-  background: #141f2d;
+  border-color: rgba(232, 168, 92, 0.3);
+  background: #161b25;
 }
 
 .quiz-opt-btn.selected-answer {
-  border-color: #56d4c0;
-  background: rgba(86, 212, 192, 0.08);
-  color: #f8fafc;
+  border-color: #e8a85c;
+  background: rgba(232, 168, 92, 0.08);
+  color: #edf0f5;
 }
 
 .quiz-opt-btn.correct-answer {
-  border-color: #10b981;
-  background: rgba(16, 185, 129, 0.12);
-  color: #a7f3d0;
+  border-color: #55bd8b;
+  background: rgba(85, 189, 139, 0.12);
+  color: #aee3c6;
 }
 
 .quiz-opt-btn.wrong-answer {
-  border-color: #ef4444;
-  background: rgba(239, 68, 68, 0.12);
-  color: #fca5a5;
+  border-color: #dd6b62;
+  background: rgba(221, 107, 98, 0.12);
+  color: #eba39d;
 }
 
 .opt-letter {
@@ -173,15 +173,15 @@
 }
 
 .quiz-explanation.correct-exp {
-  background: rgba(16, 185, 129, 0.08);
-  border-left: 3px solid #10b981;
-  color: #a7f3d0;
+  background: rgba(85, 189, 139, 0.08);
+  border-left: 3px solid #55bd8b;
+  color: #aee3c6;
 }
 
 .quiz-explanation.wrong-exp {
-  background: rgba(239, 68, 68, 0.08);
-  border-left: 3px solid #ef4444;
-  color: #fca5a5;
+  background: rgba(221, 107, 98, 0.08);
+  border-left: 3px solid #dd6b62;
+  color: #eba39d;
 }
 
 .quiz-footer-actions {
@@ -191,7 +191,7 @@
 .submit-quiz-btn {
   width: 100%;
   padding: 12px;
-  background: #28ae9b;
+  background: #d98f3e;
   border: none;
   border-radius: 8px;
   color: #081119;
@@ -207,12 +207,12 @@
 }
 
 .submit-quiz-btn:not(:disabled):hover {
-  background: #56d4c0;
+  background: #e8a85c;
 }
 
 .quiz-results-banner {
-  background: #111c29;
-  border: 1px solid rgba(86, 212, 192, 0.2);
+  background: #161b25;
+  border: 1px solid rgba(232, 168, 92, 0.2);
   border-radius: 10px;
   padding: 18px 22px;
   display: flex;
@@ -231,7 +231,7 @@
 
 .score-label {
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: #99a2b4;
 }
 
 .score-val {
@@ -240,11 +240,11 @@
 }
 
 .score-val.passed-text {
-  color: #10b981;
+  color: #55bd8b;
 }
 
 .score-val.failed-text {
-  color: #ef4444;
+  color: #dd6b62;
 }
 
 .score-status {
@@ -273,7 +273,7 @@
 }
 
 .claim-cert-btn {
-  background: linear-gradient(135deg, #eab308, #ca8a04);
+  background: linear-gradient(135deg, #d4a017, #a8790b);
   border: none;
   color: #0d1117;
   font-weight: 700;
@@ -302,7 +302,7 @@
 }
 
 .cert-modal-content {
-  background: #0d151f;
+  background: #12161f;
   border: 2px solid rgba(234, 179, 8, 0.4);
   border-radius: 16px;
   max-width: 580px;
@@ -319,7 +319,7 @@
   background: transparent;
   border: none;
   font-size: 1.5rem;
-  color: #64748b;
+  color: #6b7385;
   cursor: pointer;
 }
 
@@ -342,25 +342,25 @@
 .cert-issuer {
   font-size: 0.75rem;
   letter-spacing: 0.15em;
-  color: #eab308;
+  color: #d4a017;
   font-weight: 700;
 }
 
 .cert-title {
   margin: 8px 0;
   font-size: 1.5rem;
-  color: #f8fafc;
+  color: #edf0f5;
   font-weight: 700;
 }
 
 .cert-recipient {
-  color: #94a3b8;
+  color: #99a2b4;
   font-size: 0.88rem;
   margin-bottom: 20px;
 }
 
 .cert-recipient strong {
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 .cert-meta-grid {
@@ -368,7 +368,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   width: 100%;
-  background: #080e16;
+  background: #0a0d13;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
   padding: 14px;
@@ -383,13 +383,13 @@
 
 .cert-meta-grid span {
   font-size: 0.7rem;
-  color: #64748b;
+  color: #6b7385;
   text-transform: uppercase;
 }
 
 .cert-meta-grid strong {
   font-size: 0.88rem;
-  color: #f1f5f9;
+  color: #edf0f5;
 }
 
 .cert-badges-row {
@@ -400,11 +400,11 @@
 
 .cert-pill {
   font-size: 0.75rem;
-  background: rgba(86, 212, 192, 0.1);
-  color: #56d4c0;
+  background: rgba(232, 168, 92, 0.1);
+  color: #e8a85c;
   padding: 4px 10px;
   border-radius: 20px;
-  border: 1px solid rgba(86, 212, 192, 0.25);
+  border: 1px solid rgba(232, 168, 92, 0.25);
 }
 
 .cert-actions-row {
@@ -425,19 +425,19 @@
 }
 
 .cert-download-btn {
-  background: #28ae9b;
+  background: #d98f3e;
   border: none;
   color: #081119;
 }
 
 .cert-download-btn:hover {
-  background: #56d4c0;
+  background: #e8a85c;
 }
 
 .cert-share-btn {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #f1f5f9;
+  color: #edf0f5;
 }
 
 .cert-share-btn:hover {

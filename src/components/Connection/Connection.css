@@ -1,1 +1,32 @@
-.canvas-connection{fill:none;stroke:#4dbda9;stroke-width:2;filter:drop-shadow(0 0 3px #38c7b880);pointer-events:none}.canvas-connection__hit{fill:none;stroke:transparent;stroke-width:14;cursor:pointer}.canvas-connection__hit:hover+.canvas-connection{stroke:#77e7d5;stroke-width:3}.canvas-connection--preview{stroke:#8ddfd2;stroke-width:2;stroke-dasharray:5 5;pointer-events:none}
+.canvas-connection {
+  fill: none;
+  stroke: #7f8697;
+  stroke-width: 1.75;
+  pointer-events: none;
+  transition: stroke 0.2s ease;
+}
+.canvas-connection--active {
+  stroke: #e8b34f;
+  filter: drop-shadow(0 0 4px rgba(232, 179, 79, 0.5));
+}
+.canvas-connection__hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 14;
+  cursor: pointer;
+}
+.canvas-connection__hit:hover + .canvas-connection {
+  stroke: #e8a85c;
+  stroke-width: 2.25;
+}
+.canvas-connection--preview {
+  stroke: #e8a85c;
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+  pointer-events: none;
+}
+.canvas-connection__pulse {
+  fill: #ffd08a;
+  filter: drop-shadow(0 0 5px rgba(255, 208, 138, 0.9));
+}
+

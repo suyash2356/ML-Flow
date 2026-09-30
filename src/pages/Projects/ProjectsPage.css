@@ -71,11 +71,11 @@
 .projects-new-btn {
   padding: 0.65rem 1.25rem;
   background: var(--gradient-accent);
-  color: #ffffff;
-  font-weight: 600;
+  color: #241a0c;
+  font-weight: 700;
   font-size: 0.84rem;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 200, 220, 0.3);
+  border-radius: var(--border-radius-sm);
+  box-shadow: 0 0 15px rgba(232, 168, 92, 0.25);
 }
 
 .projects-controls {
@@ -84,7 +84,7 @@
   align-items: center;
   gap: 1rem;
   padding-bottom: 0.85rem;
-  border-bottom: 1px solid rgba(0, 200, 220, 0.12);
+  border-bottom: 1px solid var(--color-surface-border);
 }
 
 .projects-tabs {
@@ -97,7 +97,7 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.45rem 0.85rem;
-  border-radius: 6px;
+  border-radius: var(--border-radius-sm);
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--color-text-secondary);
@@ -111,12 +111,13 @@
 }
 
 .projects-tab--active {
-  background: rgba(0, 200, 220, 0.15);
+  background: var(--color-accent-subtle);
   color: var(--color-accent);
-  border: 1px solid rgba(0, 200, 220, 0.3);
+  border: 1px solid rgba(232, 168, 92, 0.3);
 }
 
 .projects-tab-count {
+  font-family: var(--font-family-mono);
   font-size: 0.6875rem;
   background: rgba(0, 0, 0, 0.3);
   padding: 0.1rem 0.35rem;
@@ -126,9 +127,9 @@
 .projects-search-box input {
   width: 240px;
   padding: 0.45rem 0.75rem;
-  background: rgba(10, 18, 28, 0.8);
-  border: 1px solid rgba(0, 200, 220, 0.2);
-  border-radius: 6px;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--border-radius-sm);
   font-size: 0.8125rem;
   color: var(--color-text-primary);
 }
@@ -143,17 +144,17 @@
   display: flex;
   flex-direction: column;
   padding: 1.25rem;
-  background: rgba(10, 18, 28, 0.75);
-  border: 1px solid rgba(0, 200, 220, 0.15);
-  border-radius: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--border-radius-md);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .project-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-accent-dim);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-lg);
 }
 
 .project-card__top {
@@ -170,9 +171,9 @@
   border-radius: 4px;
 }
 
-.project-type-tag--eda { background: rgba(139, 92, 246, 0.2); color: #c084fc; }
-.project-type-tag--ml { background: rgba(0, 200, 220, 0.2); color: var(--color-accent); }
-.project-type-tag--dl { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+.project-type-tag--eda { background: rgba(155, 111, 224, 0.2); color: #c3a6f2; }
+.project-type-tag--ml { background: rgba(232, 168, 92, 0.2); color: var(--color-accent); }
+.project-type-tag--dl { background: rgba(232, 179, 79, 0.2); color: #e8b34f; }
 
 .project-status-tag {
   font-size: 0.6875rem;
@@ -181,9 +182,9 @@
   border-radius: 4px;
 }
 
-.project-status-tag--in-progress { background: rgba(0, 200, 220, 0.1); color: var(--color-accent); }
-.project-status-tag--completed { background: rgba(52, 211, 153, 0.1); color: #34d399; }
-.project-status-tag--draft { background: rgba(148, 163, 184, 0.1); color: #94a3b8; }
+.project-status-tag--in-progress { background: rgba(111, 168, 199, 0.14); color: #7fb8db; }
+.project-status-tag--completed { background: rgba(85, 189, 139, 0.1); color: #55bd8b; }
+.project-status-tag--draft { background: rgba(148, 163, 184, 0.1); color: #99a2b4; }
 
 .project-card__title {
   font-size: 1rem;
@@ -202,11 +203,13 @@
 .project-card__meta {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  padding: 0.75rem;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  font-size: 0.75rem;
+  gap: 0.4rem;
+  padding: 0.7rem 0.8rem;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-family-mono);
+  font-size: 0.72rem;
   margin-bottom: 1rem;
 }
 

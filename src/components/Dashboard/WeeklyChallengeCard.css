@@ -1,5 +1,5 @@
 .weekly-challenge-card {
-  background: linear-gradient(135deg, #182838 0%, #101c29 100%);
+  background: linear-gradient(135deg, #182838 0%, #12161f 100%);
   border: 1px solid #2e4d69;
   border-radius: 12px;
   padding: 16px;
@@ -18,7 +18,7 @@
 .weekly-challenge-card__badge {
   font-size: 10px;
   font-weight: 750;
-  color: #f7c872;
+  color: #e8b34f;
   background: #382d17;
   padding: 2px 7px;
   border-radius: 4px;
@@ -27,35 +27,35 @@
 
 .weekly-challenge-card__deadline {
   font-size: 10px;
-  color: #9cb5c9;
+  color: #99a2b4;
 }
 
 .weekly-challenge-card__title {
   font-size: 13.5px;
   font-weight: 700;
-  color: #e5edf5;
+  color: #edf0f5;
   margin: 0;
   line-height: 1.3;
 }
 
 .weekly-challenge-card__desc {
   font-size: 11px;
-  color: #8fa7bc;
+  color: #99a2b4;
   margin: 0;
   line-height: 1.4;
 }
 
 .weekly-challenge-card__prize {
   font-size: 11px;
-  color: #8fa7bc;
-  background: #09131f;
+  color: #99a2b4;
+  background: #0d1119;
   padding: 6px 10px;
   border-radius: 6px;
   border: 1px solid #1f364c;
 }
 
 .weekly-challenge-card__prize strong {
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 .weekly-challenge-card__leaderboard {
@@ -68,7 +68,7 @@
 .weekly-challenge-card__lb-title {
   font-size: 10px;
   font-weight: 700;
-  color: #7994ab;
+  color: #99a2b4;
   text-transform: uppercase;
 }
 
@@ -77,9 +77,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 5px 8px;
-  background: #09131f;
+  background: #0d1119;
   border-radius: 6px;
-  border: 1px solid #1c2e40;
+  border: 1px solid #2a2f3d;
   font-size: 11px;
 }
 
@@ -90,7 +90,7 @@
 }
 
 .weekly-challenge-card__rank--1 {
-  color: #f7c872;
+  color: #e8b34f;
 }
 
 .weekly-challenge-card__rank--2 {
@@ -105,7 +105,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #e5edf5;
+  color: #edf0f5;
 }
 
 .weekly-challenge-card__lb-avatar {
@@ -113,7 +113,7 @@
   height: 18px;
   border-radius: 50%;
   background: #1a3850;
-  color: #56d4c0;
+  color: #e8a85c;
   font-size: 8.5px;
   font-weight: 700;
   display: grid;
@@ -121,7 +121,7 @@
 }
 
 .weekly-challenge-card__lb-score {
-  color: #56d4c0;
+  color: #e8a85c;
   font-size: 10.5px;
 }
 
@@ -129,8 +129,8 @@
   margin-top: 6px;
   height: 32px;
   border-radius: 6px;
-  background: #1d9f91;
-  color: #031412;
+  background: #d98f3e;
+  color: #0d1119;
   font-size: 11px;
   font-weight: 750;
   border: none;
@@ -139,6 +139,6 @@
 }
 
 .weekly-challenge-card__btn:hover {
-  background: #3acbb7;
-  box-shadow: 0 0 14px rgba(58, 203, 183, 0.35);
+  background: #f2be82;
+  box-shadow: 0 0 14px rgba(242, 190, 130, 0.35);
 }

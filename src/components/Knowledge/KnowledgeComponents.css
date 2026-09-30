@@ -42,18 +42,18 @@
 }
 
 .decision-box--use {
-  background-color: rgba(34, 197, 94, 0.05);
-  border-color: rgba(34, 197, 94, 0.2);
+  background-color: rgba(85, 189, 139, 0.05);
+  border-color: rgba(85, 189, 139, 0.2);
 }
 
-.decision-box--use h3 .icon { color: #22c55e; }
+.decision-box--use h3 .icon { color: #55bd8b; }
 
 .decision-box--avoid {
-  background-color: rgba(239, 68, 68, 0.05);
-  border-color: rgba(239, 68, 68, 0.2);
+  background-color: rgba(221, 107, 98, 0.05);
+  border-color: rgba(221, 107, 98, 0.2);
 }
 
-.decision-box--avoid h3 .icon { color: #ef4444; }
+.decision-box--avoid h3 .icon { color: #dd6b62; }
 
 .decision-box ul {
   list-style: none;
@@ -145,12 +145,12 @@
 
 .checklist--pros li::before {
   content: '✓';
-  color: #22c55e;
+  color: #55bd8b;
 }
 
 .checklist--cons li::before {
   content: '×';
-  color: #ef4444;
+  color: #dd6b62;
 }
 
 .params-list {

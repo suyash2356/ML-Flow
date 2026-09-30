@@ -39,7 +39,7 @@ export function PipelineCanvas({
   onCancelTargetConnect,
   onZoom,
 }: Props) {
-  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [pan, setPan] = useState({ x: 90, y: 24 });
   const [dragId, setDragId] = useState<string>();
   const [wire, setWire] = useState<{ sourceId: string; x: number; y: number }>();
   const surface = useRef<HTMLDivElement>(null);

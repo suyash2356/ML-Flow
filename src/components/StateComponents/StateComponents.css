@@ -41,8 +41,8 @@
 
 /* Error State Variations */
 .error-state {
-  border-color: rgba(248, 113, 113, 0.3);
-  background-color: rgba(248, 113, 113, 0.05);
+  border-color: rgba(221, 107, 98, 0.3);
+  background-color: rgba(221, 107, 98, 0.05);
 }
 
 .error-state__icon {

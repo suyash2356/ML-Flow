@@ -1,6 +1,6 @@
 .post-card {
-  background: #111c29;
-  border: 1px solid #2b4054;
+  background: #161b25;
+  border: 1px solid #2a2f3d;
   border-radius: 12px;
   padding: 16px;
   display: flex;
@@ -25,7 +25,7 @@
   height: 38px;
   border-radius: 50%;
   background: #19344a;
-  color: #6fc0ff;
+  color: #7fb8db;
   font-size: 13px;
   font-weight: 700;
   display: grid;
@@ -49,7 +49,7 @@
 .post-card__name {
   font-size: 13px;
   font-weight: 700;
-  color: #e5edf5;
+  color: #edf0f5;
 }
 
 .post-card__flag {
@@ -58,7 +58,7 @@
 
 .post-card__handle {
   font-size: 11px;
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 .post-card__role {
@@ -72,28 +72,28 @@
   font-weight: 700;
   padding: 3px 8px;
   border-radius: 4px;
-  background: #162838;
-  color: #8da4b8;
-  border: 1px solid #263d52;
+  background: #1f2530;
+  color: #99a2b4;
+  border: 1px solid #2a2f3d;
   white-space: nowrap;
 }
 
 .post-card__mode-badge--project {
-  background: #173b37;
-  color: #56d4c0;
-  border-color: #265f56;
+  background: #241a0c;
+  color: #e8a85c;
+  border-color: #4a3820;
 }
 
 .post-card__mode-badge--question {
   background: #392b17;
-  color: #f7c872;
+  color: #e8b34f;
   border-color: #5c4524;
 }
 
 .post-card__mode-badge--resource {
-  background: #231b38;
-  color: #cda4f7;
-  border-color: #423163;
+  background: #241a33;
+  color: #c3a6f2;
+  border-color: #3a2f52;
 }
 
 .post-card__text {
@@ -114,13 +114,13 @@
   font-size: 10px;
   padding: 2px 7px;
   border-radius: 4px;
-  background: #0d1723;
-  color: #56d4c0;
-  border: 1px solid #1c364c;
+  background: #12161f;
+  color: #e8a85c;
+  border: 1px solid #2a2f3d;
 }
 
 .post-card__code-block {
-  background: #070e17;
+  background: #0a0d13;
   border: 1px solid #1e3348;
   border-radius: 8px;
   overflow: hidden;
@@ -131,17 +131,17 @@
   align-items: center;
   justify-content: space-between;
   padding: 6px 10px;
-  background: #0c1826;
+  background: #12161f;
   border-bottom: 1px solid #1c2f42;
   font-size: 10px;
-  color: #7791a8;
+  color: #6b7385;
 }
 
 .post-card__copy-btn {
   background: #142536;
-  border: 1px solid #283d52;
+  border: 1px solid #2a2f3d;
   border-radius: 4px;
-  color: #8da4b8;
+  color: #99a2b4;
   font-size: 9.5px;
   padding: 2px 6px;
   cursor: pointer;
@@ -156,7 +156,7 @@
 .post-card__code-block code {
   font-family: monospace;
   font-size: 11px;
-  color: #72f7dd;
+  color: #f2be82;
   line-height: 1.4;
 }
 
@@ -166,15 +166,15 @@
   align-items: center;
   gap: 12px;
   padding: 12px;
-  background: #09131f;
-  border: 1px solid #233b52;
+  background: #0d1119;
+  border: 1px solid #2a2f3d;
   border-radius: 8px;
   text-decoration: none;
   transition: all 0.15s ease;
 }
 
 .post-card__resource-preview:hover {
-  border-color: #56d4c0;
+  border-color: #e8a85c;
   background: #0c1828;
 }
 
@@ -197,7 +197,7 @@
 
 .post-card__resource-domain {
   font-size: 10px;
-  color: #56d4c0;
+  color: #e8a85c;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -205,7 +205,7 @@
 .post-card__resource-title {
   font-size: 12.5px;
   font-weight: 700;
-  color: #e5edf5;
+  color: #edf0f5;
   margin: 2px 0 3px;
   white-space: nowrap;
   overflow: hidden;
@@ -214,7 +214,7 @@
 
 .post-card__resource-desc {
   font-size: 10.5px;
-  color: #8fa7bc;
+  color: #99a2b4;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -224,8 +224,8 @@
 
 /* LAYOUT 3: Project Showcase Card */
 .post-card__project-card {
-  background: linear-gradient(135deg, #0d1927 0%, #09131f 100%);
-  border: 1px solid #28445e;
+  background: linear-gradient(135deg, #12161f 0%, #0d1119 100%);
+  border: 1px solid #2a2f3d;
   border-radius: 10px;
   padding: 14px;
   display: flex;
@@ -244,7 +244,7 @@
 .post-card__project-task {
   font-size: 9.5px;
   font-weight: 750;
-  color: #56d4c0;
+  color: #e8a85c;
   text-transform: uppercase;
   letter-spacing: 0.4px;
 }
@@ -252,13 +252,13 @@
 .post-card__project-title {
   font-size: 13.5px;
   font-weight: 700;
-  color: #e5edf5;
+  color: #edf0f5;
   margin: 2px 0 0;
 }
 
 .post-card__project-metric {
-  background: #143531;
-  border: 1px solid #235c54;
+  background: #241a0c;
+  border: 1px solid #4a3820;
   border-radius: 6px;
   padding: 4px 8px;
   display: flex;
@@ -269,12 +269,12 @@
 
 .post-card__project-metric small {
   font-size: 9px;
-  color: #8fa7bc;
+  color: #99a2b4;
 }
 
 .post-card__project-metric strong {
   font-size: 12px;
-  color: #72f7dd;
+  color: #f2be82;
 }
 
 .post-card__project-meta {
@@ -282,26 +282,26 @@
   align-items: center;
   gap: 6px;
   font-size: 10.5px;
-  color: #8fa7bc;
+  color: #99a2b4;
   flex-wrap: wrap;
 }
 
 .post-card__fork-btn {
   height: 32px;
   border-radius: 6px;
-  background: #1d9f91;
-  color: #031412;
+  background: #d98f3e;
+  color: #0d1119;
   font-size: 11px;
   font-weight: 750;
   border: none;
   cursor: pointer;
   transition: all 0.15s ease;
-  box-shadow: 0 0 12px rgba(29, 159, 145, 0.25);
+  box-shadow: 0 0 12px rgba(217, 143, 62, 0.25);
 }
 
 .post-card__fork-btn:hover {
-  background: #3acbb7;
-  box-shadow: 0 0 16px rgba(58, 203, 183, 0.4);
+  background: #f2be82;
+  box-shadow: 0 0 16px rgba(242, 190, 130, 0.4);
 }
 
 /* Actions Bar */
@@ -318,8 +318,8 @@
   padding: 0 10px;
   border-radius: 5px;
   background: #132232;
-  border: 1px solid #23374a;
-  color: #8fa7bc;
+  border: 1px solid #2a2f3d;
+  color: #99a2b4;
   font-size: 10.5px;
   font-weight: 600;
   cursor: pointer;
@@ -336,14 +336,14 @@
 }
 
 .post-card__action-btn--liked {
-  color: #ff6b81;
+  color: #dd6b62;
   border-color: #752936;
   background: #2b171e;
 }
 
 .post-card__action-stat {
   font-size: 10.5px;
-  color: #728a9f;
+  color: #99a2b4;
   margin-left: auto;
 }
 
@@ -352,9 +352,9 @@
 }
 
 .post-card__action-btn--saved {
-  color: #56d4c0;
-  border-color: #235c54;
-  background: #143531;
+  color: #e8a85c;
+  border-color: #4a3820;
+  background: #241a0c;
 }
 
 /* Comments Section */
@@ -384,11 +384,11 @@
 .post-card__comment-input {
   flex: 1;
   height: 30px;
-  background: #09131f;
-  border: 1px solid #23374a;
+  background: #0d1119;
+  border: 1px solid #2a2f3d;
   border-radius: 6px;
   padding: 0 10px;
-  color: #e5edf5;
+  color: #edf0f5;
   font-size: 11px;
   outline: none;
 }
@@ -396,8 +396,8 @@
 .post-card__comment-submit {
   height: 30px;
   padding: 0 12px;
-  background: #28ae9b;
-  color: #041411;
+  background: #d98f3e;
+  color: #241a0c;
   font-size: 10.5px;
   font-weight: 700;
   border: none;
@@ -414,10 +414,10 @@
 .post-card__comment-row {
   display: flex;
   gap: 8px;
-  background: #0a1421;
+  background: #12161f;
   padding: 8px 10px;
   border-radius: 6px;
-  border: 1px solid #1c2e40;
+  border: 1px solid #2a2f3d;
 }
 
 .post-card__comment-avatar {
@@ -425,7 +425,7 @@
   height: 24px;
   border-radius: 50%;
   background: #19344a;
-  color: #6fc0ff;
+  color: #7fb8db;
   font-size: 9px;
   font-weight: 700;
   display: grid;
@@ -446,7 +446,7 @@
 }
 
 .post-card__comment-header strong {
-  color: #e5edf5;
+  color: #edf0f5;
 }
 
 .post-card__comment-header span {
@@ -455,6 +455,6 @@
 
 .post-card__comment-content p {
   font-size: 11px;
-  color: #c3d4e3;
+  color: #b7bfcc;
   margin: 2px 0 0;
 }

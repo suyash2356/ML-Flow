@@ -6,8 +6,8 @@
   gap: 18px;
   padding: 0 18px;
   background: #0b121c;
-  border-bottom: 1px solid #223243;
-  color: #91a5b8;
+  border-bottom: 1px solid #2a2f3d;
+  color: #99a2b4;
   z-index: 10;
   flex-shrink: 0;
 }
@@ -30,7 +30,7 @@
   border: none;
   padding: 2px 4px;
   border-radius: 4px;
-  color: #91a5b8;
+  color: #99a2b4;
   font: inherit;
   font-weight: 500;
   cursor: pointer;
@@ -38,7 +38,7 @@
 }
 
 .project-header__crumb-link:hover {
-  color: #56d4c0;
+  color: #e8a85c;
   background: #122131;
   text-decoration: underline;
 }
@@ -50,7 +50,7 @@
 
 .project-header__name {
   font-weight: 700;
-  color: #e5edf4;
+  color: #edf0f5;
   padding: 3px 5px;
   border-radius: 4px;
   background: none;
@@ -70,10 +70,10 @@
 .project-header__crumbs input {
   width: 210px;
   background: #101d2a;
-  border: 1px solid #51cdbb;
+  border: 1px solid #e8a85c;
   border-radius: 4px;
   padding: 4px 7px;
-  color: #eef8fa;
+  color: #edf0f5;
   font: inherit;
 }
 
@@ -81,13 +81,13 @@
 .project-header__dataset-link {
   padding-left: 8px;
   border-left: 1px solid #29384a;
-  color: #63788c;
+  color: #6b7385;
   cursor: pointer;
   transition: color 0.15s ease;
 }
 
 .project-header__dataset-link:hover {
-  color: #56d4c0;
+  color: #e8a85c;
 }
 
 .project-header__right {
@@ -118,13 +118,13 @@
 
 .project-btn--primary {
   border-color: #3bc7ae;
-  background: #1d9f91;
-  color: #031412;
+  background: #d98f3e;
+  color: #0d1119;
   box-shadow: 0 0 15px #27b8a433;
 }
 
 .project-btn--primary:hover {
-  background: #50d1bd;
+  background: #f2be82;
 }
 
 @media (max-width: 1000px) {
