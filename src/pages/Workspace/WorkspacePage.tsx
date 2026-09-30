@@ -5,19 +5,24 @@ import { OutputPanel } from '../../components/OutputPanel/OutputPanel';
 import { PipelineCanvas } from '../../components/PipelineCanvas/PipelineCanvas';
 import { ProjectHeader } from '../../components/ProjectHeader/ProjectHeader';
 import { ZoomControls } from '../../components/ZoomControls/ZoomControls';
+import { useAuth } from '../../components/Auth/AuthContext';
 import { INITIAL_TRAINING_RUNS } from '../../config/constants';
+import { loadProjectWorkflow, saveProjectWorkflow } from '../../services/workflows';
 import { MOCK_STARTER_NODES } from '../../config/mockData';
 import type { CanvasConnection, CanvasNodeData, NavigationPage, Project, TrainingRun } from '../../types';
+import { updateProjectName } from '../../services/projects';
 import './WorkspacePage.css';
 
 interface WorkspacePageProps {
   project?: Project;
   onNavigate?: (page: NavigationPage) => void;
+  onProjectUpdated?: (project: Project) => void;
 }
 
 type LibraryItem = { name: string; description: string; type: CanvasNodeData['type'] };
 
-export function WorkspacePage({ project, onNavigate }: WorkspacePageProps) {
+export function WorkspacePage({ project, onNavigate, onProjectUpdated }: WorkspacePageProps) {
+  const { session } = useAuth();
   const mode = project?.type || 'ML';
   const starter = useMemo(
     () =>
@@ -46,22 +51,77 @@ export function WorkspacePage({ project, onNavigate }: WorkspacePageProps) {
   ]);
   const [panelHeight, setPanelHeight] = useState(190);
   const [name, setName] = useState(project?.name || 'Customer Churn Prediction v3.1');
+  const [workflowLoadedProjectId, setWorkflowLoadedProjectId] = useState<string>();
+  const [workflowError, setWorkflowError] = useState('');
+  const [saveStatus, setSaveStatus] = useState<'saved' | 'saving' | 'error'>('saved');
+  const [workflowRetry, setWorkflowRetry] = useState(0);
 
   useEffect(() => {
-    setNodes(starter);
-    setConnections(
-      starter.slice(0, -1).map((n, i) => ({
-        id: `link-${n.id}-${starter[i + 1].id}`,
-        sourceId: n.id,
-        targetId: starter[i + 1].id,
-      }))
-    );
-    setSelectedId(undefined);
-    setConnectingSourceId(undefined);
-    setName(project?.name || 'Customer Churn Prediction v3.1');
-  }, [project?.id, starter]);
+    if (!project?.id || workflowLoadedProjectId === project.id) return;
+    let active = true;
+
+    void loadProjectWorkflow(project.id)
+      .then((savedWorkflow) => {
+        if (!active) return;
+        const nextNodes = savedWorkflow?.nodes ?? starter;
+        const nextConnections = savedWorkflow?.connections ?? starter.slice(0, -1).map((node, index) => ({
+          id: `link-${node.id}-${starter[index + 1].id}`,
+          sourceId: node.id,
+          targetId: starter[index + 1].id,
+        }));
+        setNodes(nextNodes);
+        setConnections(nextConnections);
+        setSelectedId(undefined);
+        setConnectingSourceId(undefined);
+        setName(project.name || 'Customer Churn Prediction v3.1');
+        setWorkflowError('');
+        setWorkflowLoadedProjectId(project.id);
+      })
+      .catch((error: unknown) => {
+        if (!active) return;
+        setWorkflowError(error instanceof Error ? error.message : 'Unable to load saved workflow.');
+        setSaveStatus('error');
+      });
+
+    return () => { active = false; };
+  }, [project?.id, project?.name, starter, workflowRetry, workflowLoadedProjectId]);
+
+  useEffect(() => {
+    if (!project?.id || workflowLoadedProjectId !== project.id) return;
+
+    const timer = window.setTimeout(() => {
+      setSaveStatus('saving');
+      void saveProjectWorkflow(project.id, session.user.id, { nodes, connections })
+        .then(() => {
+          setWorkflowError('');
+          setSaveStatus('saved');
+        })
+        .catch((error: unknown) => {
+          setWorkflowError(error instanceof Error ? error.message : 'Unable to save workflow.');
+          setSaveStatus('error');
+        });
+    }, 700);
+
+    return () => window.clearTimeout(timer);
+  }, [project?.id, session.user.id, workflowLoadedProjectId, nodes, connections]);
 
   const selected = nodes.find((n) => n.id === selectedId);
+
+  const saveProjectName = () => {
+    const trimmedName = name.trim();
+    if (!project || !trimmedName || trimmedName === project.name) return;
+    setSaveStatus('saving');
+    void updateProjectName(session.user.id, project.id, trimmedName)
+      .then((updatedProject) => {
+        onProjectUpdated?.(updatedProject);
+        setName(updatedProject.name);
+        setSaveStatus('saved');
+      })
+      .catch((error: unknown) => {
+        setWorkflowError(error instanceof Error ? error.message : 'Unable to rename project.');
+        setSaveStatus('error');
+      });
+  };
 
   const move = (id: string, x: number, y: number) =>
     setNodes((list) => list.map((n) => (n.id === id ? { ...n, x, y } : n)));
@@ -265,9 +325,20 @@ export function WorkspacePage({ project, onNavigate }: WorkspacePageProps) {
         canRunNode={Boolean(selected)}
         onAction={menuAction}
         onNavigate={onNavigate}
+        onNameSave={saveProjectName}
+        saveStatus={workflowLoadedProjectId === project?.id ? saveStatus : 'saving'}
       />
 
+      {workflowError && <p className="workspace-page__save-error" role="alert">{workflowError}</p>}
+
       <div className="workspace-page__body">
+        {project && workflowLoadedProjectId !== project.id && (
+          <div className="workspace-page__workflow-loading" role={workflowError ? 'alert' : 'status'}>
+            {workflowError ? (
+              <><span>Saved workflow could not be loaded. Nothing has been overwritten.</span><button type="button" onClick={() => setWorkflowRetry((value) => value + 1)}>Retry</button></>
+            ) : 'Loading saved workflow...'}
+          </div>
+        )}
         <NodeLibrary onAdd={(item) => add(item)} />
         <section className="workspace-page__canvas">
           <PipelineCanvas

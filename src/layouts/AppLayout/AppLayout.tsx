@@ -8,10 +8,12 @@ import './AppLayout.css';
 interface AppLayoutProps {
   activeNavId: NavigationPage;
   onNavSelect: (id: NavigationPage) => void;
+  userInitials: string;
+  onSignOut: () => void;
   children: ReactNode;
 }
 
-export function AppLayout({ activeNavId, onNavSelect, children }: AppLayoutProps) {
+export function AppLayout({ activeNavId, onNavSelect, userInitials, onSignOut, children }: AppLayoutProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
@@ -25,8 +27,9 @@ export function AppLayout({ activeNavId, onNavSelect, children }: AppLayoutProps
       <div className="app-layout__main">
         <Header
           activeNavId={activeNavId}
-          userInitials={APP_CONFIG.userInitials}
+          userInitials={userInitials || APP_CONFIG.userInitials}
           onProfileOpen={() => onNavSelect('profile')}
+          onSignOut={onSignOut}
         />
         <main className="app-layout__content">{children}</main>
       </div>

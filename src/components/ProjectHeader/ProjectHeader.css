@@ -94,6 +94,15 @@
   flex-shrink: 0;
 }
 
+.project-header__save-status {
+  color: #6b7385;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.project-header__save-status--saving { color: #d9a441; }
+.project-header__save-status--error { color: #dd6b62; }
+
 .project-btn {
   height: 30px;
   padding: 0 10px;

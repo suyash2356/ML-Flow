@@ -12,6 +12,8 @@ interface Props {
   canRunNode: boolean;
   onAction: (action: string) => void;
   onNavigate?: (page: NavigationPage) => void;
+  onNameSave: () => void;
+  saveStatus?: 'saved' | 'saving' | 'error';
 }
 
 export function ProjectHeader({
@@ -23,6 +25,8 @@ export function ProjectHeader({
   canRunNode,
   onAction,
   onNavigate,
+  onNameSave,
+  saveStatus = 'saved',
 }: Props) {
   const [editing, setEditing] = useState(false);
 
@@ -52,8 +56,13 @@ export function ProjectHeader({
             autoFocus
             value={name}
             onChange={(e) => onNameChange(e.target.value)}
-            onBlur={() => setEditing(false)}
-            onKeyDown={(e) => e.key === 'Enter' && setEditing(false)}
+            onBlur={() => { setEditing(false); onNameSave(); }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                setEditing(false);
+                onNameSave();
+              }
+            }}
           />
         ) : (
           <button
@@ -76,6 +85,9 @@ export function ProjectHeader({
       </div>
 
       <div className="project-header__right">
+        <span className={`project-header__save-status project-header__save-status--${saveStatus}`} role="status">
+          {saveStatus === 'saved' ? 'Saved' : saveStatus === 'saving' ? 'Saving...' : 'Save failed'}
+        </span>
         <button className="project-btn" disabled={!canRunNode} onClick={onRunNode}>
           Run current node
         </button>

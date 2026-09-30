@@ -103,3 +103,10 @@
   outline: none;
   transform: scale(1.05);
 }
+
+.app-header__signout {
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+}
+
+.app-header__signout:hover { color: var(--color-text-primary); }

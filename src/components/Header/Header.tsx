@@ -5,9 +5,10 @@ interface HeaderProps {
   activeNavId: NavigationPage;
   userInitials: string;
   onProfileOpen: () => void;
+  onSignOut: () => void;
 }
 
-export function Header({ activeNavId, userInitials, onProfileOpen }: HeaderProps) {
+export function Header({ activeNavId, userInitials, onProfileOpen, onSignOut }: HeaderProps) {
   const pageTitleMap: Record<NavigationPage, string> = {
     dashboard: 'Dashboard',
     eda: 'Exploratory Data Analysis',
@@ -52,6 +53,9 @@ export function Header({ activeNavId, userInitials, onProfileOpen }: HeaderProps
           aria-label="Open profile"
         >
           {userInitials}
+        </button>
+        <button type="button" className="app-header__signout" onClick={onSignOut} title="Sign out" aria-label="Sign out">
+          Sign out
         </button>
       </div>
     </header>

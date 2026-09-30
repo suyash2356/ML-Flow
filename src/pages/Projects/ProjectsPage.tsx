@@ -2,18 +2,25 @@ import { useState } from 'react';
 import type { Project } from '../../types';
 import { PageHeader } from '../../components/PageHeader';
 import { Modal } from '../../components/Modal';
+import { EmptyState } from '../../components/StateComponents';
+import type { NewProject } from '../../services/projects';
 import './ProjectsPage.css';
 
 interface ProjectsPageProps {
   projects: Project[];
+  isLoading: boolean;
+  error: string;
+  onRetry: () => void;
   onOpenProjectDetail: (project: Project) => void;
-  onAddProject?: (project: Project) => void;
+  onAddProject: (project: NewProject) => Promise<void>;
 }
 
-export function ProjectsPage({ projects, onOpenProjectDetail, onAddProject }: ProjectsPageProps) {
+export function ProjectsPage({ projects, isLoading, error, onRetry, onOpenProjectDetail, onAddProject }: ProjectsPageProps) {
   const [activeTab, setActiveTab] = useState<'All' | 'EDA' | 'ML' | 'DL'>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState('');
   const [newProject, setNewProject] = useState<{name: string; description: string; type: 'EDA' | 'ML' | 'DL'}>({ name: '', description: '', type: 'ML' });
 
   const filteredProjects = projects.filter((p) => {
@@ -25,23 +32,19 @@ export function ProjectsPage({ projects, onOpenProjectDetail, onAddProject }: Pr
     return matchesTab && matchesSearch;
   });
 
-  const handleCreateProject = () => {
-    if (!newProject.name) return;
-    
-    const proj: Project = {
-      id: `proj-${Date.now()}`,
-      name: newProject.name,
-      type: newProject.type,
-      description: newProject.description,
-      datasetName: 'No dataset selected',
-      lastModified: 'Just now',
-      status: 'Draft',
-      nodesCount: 0,
-    };
-    
-    onAddProject?.(proj);
-    setIsModalOpen(false);
-    setNewProject({ name: '', description: '', type: 'ML' });
+  const handleCreateProject = async () => {
+    if (!newProject.name.trim() || isSaving) return;
+    setIsSaving(true);
+    setSaveError('');
+    try {
+      await onAddProject(newProject);
+      setIsModalOpen(false);
+      setNewProject({ name: '', description: '', type: 'ML' });
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : 'Unable to create project.');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -50,7 +53,7 @@ export function ProjectsPage({ projects, onOpenProjectDetail, onAddProject }: Pr
         title="Workspaces & Projects"
         description="Manage your visual machine learning pipelines across EDA, Classical ML, and Deep Learning models."
         actions={
-          <button className="btn-primary" onClick={() => setIsModalOpen(true)}>
+            <button className="btn-primary" onClick={() => { setSaveError(''); setIsModalOpen(true); }}>
             + New Project
           </button>
         }
@@ -84,6 +87,16 @@ export function ProjectsPage({ projects, onOpenProjectDetail, onAddProject }: Pr
       </div>
 
       {/* Projects Grid */}
+      {error ? (
+        <div className="projects-data-state" role="alert">
+          <p>Projects could not be loaded: {error}</p>
+          <button className="btn-secondary" onClick={onRetry}>Retry</button>
+        </div>
+      ) : isLoading ? (
+        <p className="projects-data-state" role="status">Loading your projects...</p>
+      ) : filteredProjects.length === 0 ? (
+        <EmptyState title="No projects yet" description="Create a project to start building a saved ML workflow." />
+      ) : (
       <div className="projects-grid">
         {filteredProjects.map((project) => (
           <div key={project.id} className="project-card" onClick={() => onOpenProjectDetail(project)}>
@@ -123,6 +136,7 @@ export function ProjectsPage({ projects, onOpenProjectDetail, onAddProject }: Pr
           </div>
         ))}
       </div>
+      )}
 
       <Modal 
         isOpen={isModalOpen} 
@@ -131,7 +145,7 @@ export function ProjectsPage({ projects, onOpenProjectDetail, onAddProject }: Pr
         footer={
           <>
             <button className="btn-secondary" onClick={() => setIsModalOpen(false)}>Cancel</button>
-            <button className="btn-primary" onClick={handleCreateProject} disabled={!newProject.name}>Create Project</button>
+            <button className="btn-primary" onClick={() => void handleCreateProject()} disabled={!newProject.name.trim() || isSaving}>{isSaving ? 'Creating...' : 'Create Project'}</button>
           </>
         }
       >
@@ -147,6 +161,7 @@ export function ProjectsPage({ projects, onOpenProjectDetail, onAddProject }: Pr
             autoFocus
           />
         </div>
+        {saveError && <p className="projects-form-error" role="alert">{saveError}</p>}
         <div className="form-group">
           <label htmlFor="projectDesc">Description</label>
           <textarea 

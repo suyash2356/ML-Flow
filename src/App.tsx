@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AppLayout } from './layouts/AppLayout';
 import { DashboardPage } from './pages/Dashboard/DashboardPage';
 import { EDAPage } from './pages/EDA/EDAPage';
@@ -10,14 +10,37 @@ import { WorkspacePage } from './pages/Workspace/WorkspacePage';
 import { ProfilePage } from './pages/Profile/ProfilePage';
 import { SettingsPage } from './pages/Settings/SettingsPage';
 import { ProjectDetail } from './pages/Projects/ProjectDetail';
-import { MOCK_PROJECTS, MOCK_DATASETS } from './config/mockData';
+import { MOCK_DATASETS } from './config/mockData';
+import { useAuth } from './components/Auth/AuthContext';
+import { createProject, listProjects, type NewProject } from './services/projects';
 import type { NavigationPage, Project, DatasetItem } from './types';
 
 function App() {
+  const { session, signOut } = useAuth();
   const [activeNavId, setActiveNavId] = useState<NavigationPage>('dashboard');
-  const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [projectsLoading, setProjectsLoading] = useState(true);
+  const [projectsError, setProjectsError] = useState('');
   const [datasets] = useState<DatasetItem[]>(MOCK_DATASETS);
-  const [currentProject, setCurrentProject] = useState<Project | undefined>(MOCK_PROJECTS[0]);
+  const [currentProject, setCurrentProject] = useState<Project | undefined>();
+
+  useEffect(() => {
+    let active = true;
+
+    listProjects(session.user.id)
+      .then((loadedProjects) => {
+        if (active) setProjects(loadedProjects);
+      })
+      .catch((error: unknown) => {
+        if (!active) return;
+        setProjectsError(error instanceof Error ? error.message : 'Unable to load projects.');
+      })
+      .finally(() => {
+        if (active) setProjectsLoading(false);
+      });
+
+    return () => { active = false; };
+  }, [session.user.id]);
 
   const handleNavSelect = (id: NavigationPage) => {
     setActiveNavId(id);
@@ -35,19 +58,38 @@ function App() {
     setActiveNavId('project_detail');
   };
 
+  const handleCreateProject = async (project: NewProject) => {
+    const createdProject = await createProject(session.user.id, project);
+    setProjects((current) => [createdProject, ...current]);
+    handleOpenProjectDetail(createdProject);
+  };
+
+  const handleProjectUpdated = (updatedProject: Project) => {
+    setProjects((current) => current.map((project) => project.id === updatedProject.id ? updatedProject : project));
+    setCurrentProject((current) => current?.id === updatedProject.id ? updatedProject : current);
+  };
+
+  const reloadProjects = () => {
+    setProjectsLoading(true);
+    setProjectsError('');
+    void listProjects(session.user.id)
+      .then(setProjects)
+      .catch((error: unknown) => setProjectsError(error instanceof Error ? error.message : 'Unable to load projects.'))
+      .finally(() => setProjectsLoading(false));
+  };
+
   const handleStartTemplateProject = (type: 'EDA' | 'ML' | 'DL') => {
-    const templateProj: Project = {
-      id: `proj-${Date.now()}`,
+    void createProject(session.user.id, {
       name: `New ${type} Pipeline Workspace`,
-      type: type,
+      type,
       description: `Visual ${type} workflow generated from template.`,
-      datasetName: datasets[0]?.name || 'churn_data_preprocessed.csv',
-      lastModified: 'Just now',
-      status: 'In Progress',
-      nodesCount: type === 'EDA' ? 3 : type === 'ML' ? 6 : 5,
-    };
-    setCurrentProject(templateProj);
-    setActiveNavId('workspace');
+    }).then((project) => {
+      setProjects((current) => [project, ...current]);
+      setCurrentProject(project);
+      setActiveNavId('workspace');
+    }).catch((error: unknown) => {
+      window.alert(error instanceof Error ? error.message : 'Unable to create project.');
+    });
   };
 
   const handleStartProjectFromDataset = (ds: DatasetItem, type: 'EDA' | 'ML' | 'DL' = 'EDA') => {
@@ -104,11 +146,11 @@ function App() {
         return (
           <ProjectsPage
             projects={projects}
+            isLoading={projectsLoading}
+            error={projectsError}
+            onRetry={reloadProjects}
             onOpenProjectDetail={handleOpenProjectDetail}
-            onAddProject={(proj) => {
-              setProjects([proj, ...projects]);
-              handleOpenProjectDetail(proj);
-            }}
+            onAddProject={handleCreateProject}
           />
         );
       case 'datasets':
@@ -119,7 +161,7 @@ function App() {
           />
         );
       case 'workspace':
-        return <WorkspacePage project={currentProject} onNavigate={handleNavSelect} />;
+        return <WorkspacePage project={currentProject} onNavigate={handleNavSelect} onProjectUpdated={handleProjectUpdated} />;
       case 'project_detail':
         return currentProject ? (
           <ProjectDetail 
@@ -131,11 +173,11 @@ function App() {
         ) : (
           <ProjectsPage
             projects={projects}
+            isLoading={projectsLoading}
+            error={projectsError}
+            onRetry={reloadProjects}
             onOpenProjectDetail={handleOpenProjectDetail}
-            onAddProject={(proj) => {
-              setProjects([proj, ...projects]);
-              handleOpenProjectDetail(proj);
-            }}
+            onAddProject={handleCreateProject}
           />
         );
       case 'profile':
@@ -155,10 +197,20 @@ function App() {
   };
 
   if (activeNavId === 'workspace') {
-    return <WorkspacePage project={currentProject} onNavigate={handleNavSelect} />;
+    return <WorkspacePage project={currentProject} onNavigate={handleNavSelect} onProjectUpdated={handleProjectUpdated} />;
   }
 
-  return <AppLayout activeNavId={activeNavId} onNavSelect={handleNavSelect}>{renderPage()}</AppLayout>;
+  const initials = (session.user.email || 'U').slice(0, 2).toUpperCase();
+  return (
+    <AppLayout
+      activeNavId={activeNavId}
+      onNavSelect={handleNavSelect}
+      userInitials={initials}
+      onSignOut={() => void signOut()}
+    >
+      {renderPage()}
+    </AppLayout>
+  );
 
 }
 
