@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import type { PostItem, PostMode, Project } from '../../types';
+import type { PostMode, Project } from '../../types';
+import type { DashboardPostDraft } from '../../types/dashboard';
 import './PostComposer.css';
 
 interface PostComposerProps {
   userProjects: Project[];
-  onAddPost: (newPost: PostItem) => void;
+  onAddPost: (draft: DashboardPostDraft) => Promise<void>;
   onCancel?: () => void;
   initiallyExpanded?: boolean;
 }
@@ -18,75 +19,38 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
   const [resourceUrl, setResourceUrl] = useState('');
   const [selectedProjectId, setSelectedProjectId] = useState<string>(userProjects[0]?.id || '');
   const [isExpanded, setIsExpanded] = useState(initiallyExpanded);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
-  const selectedProject = userProjects.find((p) => p.id === selectedProjectId) || userProjects[0];
+  const selectedProject = userProjects.find((project) => project.id === selectedProjectId) || userProjects[0];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!text.trim()) return;
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!text.trim() || isSubmitting || (activeMode === 'project' && !selectedProject)) return;
 
-    const parsedTags = tagsInput
-      ? tagsInput.split(',').map((t) => t.trim().replace(/^#/, ''))
-      : activeMode === 'question'
-      ? ['Question', 'HelpNeeded']
-      : activeMode === 'resource'
-      ? ['Resource', 'Guide']
-      : activeMode === 'project'
-      ? ['ProjectShowcase', selectedProject?.type || 'ML']
-      : ['MLFlowThought'];
-
-    const newPost: PostItem = {
-      id: `post-${Date.now()}`,
-      authorName: 'Alex Kumar',
-      authorHandle: '@alexkumar_ml',
-      authorAvatar: 'AK',
-      authorRole: 'Senior ML Engineer',
-      authorCountry: 'India',
-      authorFlag: '🇮🇳',
-      timestamp: 'Just now',
-      mode: activeMode,
-      textContent: text.trim(),
-      tags: parsedTags,
-      codeSnippet: codeSnippet.trim() || undefined,
-      linkPreview:
-        activeMode === 'resource' && resourceUrl
-          ? {
-              title: resourceTitle || resourceUrl,
-              domain: new URL(resourceUrl.startsWith('http') ? resourceUrl : `https://${resourceUrl}`).hostname,
-              description: 'Shared resource link from ML Flow community practitioner.',
-              url: resourceUrl,
-              thumbnailUrl: '🔗',
-            }
-          : undefined,
-      attachedProject:
-        activeMode === 'project' && selectedProject
-          ? {
-              id: selectedProject.id,
-              name: selectedProject.name,
-              datasetName: selectedProject.datasetName,
-              taskType:
-                selectedProject.type === 'EDA'
-                  ? 'EDA'
-                  : selectedProject.type === 'DL'
-                  ? 'Computer Vision'
-                  : 'Classification',
-              metricAchieved: selectedProject.accuracy || '88.5% Acc',
-              nodesCount: selectedProject.nodesCount,
-            }
-          : undefined,
-      likesCount: 0,
-      commentsCount: 0,
-      forksCount: activeMode === 'project' ? 0 : undefined,
-      comments: [],
-    };
-
-    onAddPost(newPost);
-    setText('');
-    setCodeSnippet('');
-    setResourceTitle('');
-    setResourceUrl('');
-    setTagsInput('');
-    setIsExpanded(false);
+    setIsSubmitting(true);
+    setSubmitError('');
+    try {
+      await onAddPost({
+        mode: activeMode,
+        content: text.trim(),
+        tags: tagsInput.split(',').map((tag) => tag.trim()).filter(Boolean),
+        codeSnippet: codeSnippet.trim() || undefined,
+        resourceUrl: activeMode === 'resource' ? resourceUrl.trim() : undefined,
+        resourceTitle: activeMode === 'resource' ? resourceTitle.trim() : undefined,
+        projectId: activeMode === 'project' ? selectedProject?.id : undefined,
+      });
+      setText('');
+      setCodeSnippet('');
+      setResourceTitle('');
+      setResourceUrl('');
+      setTagsInput('');
+      setIsExpanded(false);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Unable to publish this post.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -98,6 +62,7 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
           onClick={() => {
             setActiveMode('thought');
             setIsExpanded(true);
+            setSubmitError('');
           }}
         >
           💭 Post a Thought
@@ -108,6 +73,7 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
           onClick={() => {
             setActiveMode('resource');
             setIsExpanded(true);
+            setSubmitError('');
           }}
         >
           🔗 Share Resource
@@ -118,6 +84,7 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
           onClick={() => {
             setActiveMode('question');
             setIsExpanded(true);
+            setSubmitError('');
           }}
         >
           ❓ Ask Question
@@ -128,6 +95,7 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
           onClick={() => {
             setActiveMode('project');
             setIsExpanded(true);
+            setSubmitError('');
           }}
         >
           🚀 Show a Project
@@ -149,6 +117,7 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
           value={text}
           onChange={(e) => setText(e.target.value)}
           onFocus={() => setIsExpanded(true)}
+          maxLength={5000}
           rows={isExpanded ? 3 : 2}
         />
 
@@ -160,6 +129,7 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
                 placeholder="Paste code snippet or error traceback (optional)..."
                 value={codeSnippet}
                 onChange={(e) => setCodeSnippet(e.target.value)}
+                maxLength={12000}
                 rows={2}
               />
             )}
@@ -190,12 +160,15 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
                   Attach Live ML Flow Project:
                   <select
                     className="post-composer__select"
-                    value={selectedProjectId}
+                    value={selectedProject?.id || ''}
                     onChange={(e) => setSelectedProjectId(e.target.value)}
+                    required
+                    disabled={userProjects.length === 0}
                   >
+                    {userProjects.length === 0 && <option value="">No saved projects available</option>}
                     {userProjects.map((p) => (
                       <option key={p.id} value={p.id}>
-                        {p.name} ({p.type} • {p.datasetName} • {p.accuracy || 'In Progress'})
+                        {p.name} ({p.type})
                       </option>
                     ))}
                   </select>
@@ -207,8 +180,7 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
                     <div className="post-composer__project-info">
                       <strong>{selectedProject.name}</strong>
                       <small>
-                        Dataset: {selectedProject.datasetName} • {selectedProject.nodesCount} nodes • Metric:{' '}
-                        {selectedProject.accuracy || 'Pending'}
+                        {selectedProject.type} workspace • {selectedProject.status}
                       </small>
                     </div>
                   </div>
@@ -230,6 +202,7 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
                   type="button"
                   className="post-composer__cancel-btn"
                   onClick={() => {
+                    setSubmitError('');
                     setIsExpanded(false);
                     onCancel?.();
                   }}
@@ -239,14 +212,15 @@ export function PostComposer({ userProjects, onAddPost, onCancel, initiallyExpan
                 <button
                   type="submit"
                   className="post-composer__submit-btn"
-                  disabled={!text.trim()}
+                  disabled={!text.trim() || isSubmitting || (activeMode === 'project' && !selectedProject)}
                 >
-                  Publish Post →
+                  {isSubmitting ? 'Publishing...' : 'Publish Post →'}
                 </button>
               </div>
             </div>
           </div>
         )}
+        {submitError && <p className="post-composer__error" role="alert">{submitError}</p>}
       </form>
     </div>
   );

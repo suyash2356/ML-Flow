@@ -228,6 +228,11 @@
   cursor: not-allowed;
 }
 
+.post-composer__error {
+  color: #e99b91;
+  font-size: 11px;
+}
+
 @media (max-width: 768px) {
   .post-composer__resource-group {
     grid-template-columns: 1fr;

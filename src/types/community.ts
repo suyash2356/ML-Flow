@@ -22,19 +22,21 @@ export interface AttachedProjectSummary {
   id: string;
   name: string;
   datasetName: string;
-  taskType: 'Classification' | 'Regression' | 'Clustering' | 'EDA' | 'Computer Vision';
-  metricAchieved: string;
+  taskType: 'Classification' | 'Regression' | 'Clustering' | 'EDA' | 'Computer Vision' | 'ML' | 'DL';
+  metricAchieved?: string;
   nodesCount: number;
 }
 
 export interface PostItem {
   id: string;
+  authorId?: string;
   authorName: string;
   authorHandle: string;
   authorAvatar: string;
   authorRole: string;
   authorCountry: string;
-  authorFlag: string;
+  authorFlag?: string;
+  authorLocation?: string;
   timestamp: string;
   mode: PostMode;
   textContent: string;
@@ -42,6 +44,7 @@ export interface PostItem {
   codeSnippet?: string;
   linkPreview?: LinkPreview;
   attachedProject?: AttachedProjectSummary;
+  showcaseId?: string;
   likesCount: number;
   commentsCount: number;
   forksCount?: number;

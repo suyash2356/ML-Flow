@@ -80,3 +80,5 @@
   font-weight: 750;
   color: #e8a85c;
 }
+
+.trending-ml-card__empty { color: #99a2b4; font-size: 11px; }

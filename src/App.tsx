@@ -10,7 +10,6 @@ import { WorkspacePage } from './pages/Workspace/WorkspacePage';
 import { ProfilePage } from './pages/Profile/ProfilePage';
 import { SettingsPage } from './pages/Settings/SettingsPage';
 import { ProjectDetail } from './pages/Projects/ProjectDetail';
-import { MOCK_DATASETS } from './config/mockData';
 import { useAuth } from './components/Auth/AuthContext';
 import { createProject, listProjects, type NewProject } from './services/projects';
 import type { NavigationPage, Project, DatasetItem } from './types';
@@ -21,7 +20,6 @@ function App() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [projectsLoading, setProjectsLoading] = useState(true);
   const [projectsError, setProjectsError] = useState('');
-  const [datasets] = useState<DatasetItem[]>(MOCK_DATASETS);
   const [currentProject, setCurrentProject] = useState<Project | undefined>();
 
   useEffect(() => {
@@ -49,6 +47,7 @@ function App() {
   const handleOpenWorkspace = (proj?: Project) => {
     if (proj) {
       setCurrentProject(proj);
+      setProjects((current) => current.some((project) => project.id === proj.id) ? current : [proj, ...current]);
     }
     setActiveNavId('workspace');
   };
@@ -113,8 +112,6 @@ function App() {
         return (
           <DashboardPage
             projects={projects}
-            datasets={datasets}
-            onNavigate={handleNavSelect}
             onOpenWorkspace={handleOpenWorkspace}
           />
         );
@@ -188,8 +185,6 @@ function App() {
         return (
           <DashboardPage
             projects={projects}
-            datasets={datasets}
-            onNavigate={handleNavSelect}
             onOpenWorkspace={handleOpenWorkspace}
           />
         );

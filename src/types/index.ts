@@ -12,6 +12,7 @@ export type NavigationPage =
 
 export * from './knowledge';
 export * from './community';
+export * from './dashboard';
 
 
 export interface NavItem {

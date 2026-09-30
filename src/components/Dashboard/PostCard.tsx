@@ -1,51 +1,62 @@
 import { useState } from 'react';
-import type { PostItem, Project } from '../../types';
+import type { PostComment, PostItem } from '../../types';
 import './PostCard.css';
 
 interface PostCardProps {
   post: PostItem;
-  onForkProject?: (attachedProject: NonNullable<PostItem['attachedProject']>) => void;
-  onOpenWorkspace?: (project: Project) => void;
+  comments: PostComment[];
+  commentsLoaded: boolean;
+  commentsLoading: boolean;
+  isPending: boolean;
+  isOwnPost: boolean;
+  onToggleLike: () => Promise<void>;
+  onToggleSave: () => Promise<void>;
+  onLoadComments: () => Promise<void>;
+  onAddComment: (content: string) => Promise<void>;
+  onDelete: () => Promise<void>;
+  onForkProject?: (showcaseId: string) => Promise<void>;
 }
 
-export function PostCard({ post, onForkProject }: PostCardProps) {
-  const [liked, setLiked] = useState(post.liked || false);
-  const [likesCount, setLikesCount] = useState(post.likesCount);
-  const [saved, setSaved] = useState(post.saved || false);
+export function PostCard({
+  post,
+  comments,
+  commentsLoaded,
+  commentsLoading,
+  isPending,
+  isOwnPost,
+  onToggleLike,
+  onToggleSave,
+  onLoadComments,
+  onAddComment,
+  onDelete,
+  onForkProject,
+}: PostCardProps) {
   const [showComments, setShowComments] = useState(false);
-  const [comments, setComments] = useState(post.comments || []);
   const [newCommentText, setNewCommentText] = useState('');
+  const [actionError, setActionError] = useState('');
 
-  const toggleLike = () => {
-    if (liked) {
-      setLiked(false);
-      setLikesCount((prev) => prev - 1);
-    } else {
-      setLiked(true);
-      setLikesCount((prev) => prev + 1);
+  const handleAction = async (action: () => Promise<void>) => {
+    setActionError('');
+    try {
+      await action();
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : 'This action could not be completed.');
     }
   };
 
-  const toggleSave = () => {
-    setSaved(!saved);
+  const toggleComments = () => {
+    const open = !showComments;
+    setShowComments(open);
+    if (open && !commentsLoaded) void handleAction(onLoadComments);
   };
 
-  const handleAddComment = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newCommentText.trim()) return;
-
-    setComments((prev) => [
-      ...prev,
-      {
-        id: `c-${Date.now()}`,
-        authorName: 'Alex Kumar',
-        authorHandle: '@alexkumar_ml',
-        authorAvatar: 'AK',
-        content: newCommentText.trim(),
-        timestamp: 'Just now',
-      },
-    ]);
-    setNewCommentText('');
+  const handleAddComment = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!newCommentText.trim() || isPending) return;
+    void handleAction(async () => {
+      await onAddComment(newCommentText.trim());
+      setNewCommentText('');
+    });
   };
 
   return (
@@ -56,10 +67,10 @@ export function PostCard({ post, onForkProject }: PostCardProps) {
         <div className="post-card__user-info">
           <div className="post-card__user-top">
             <strong className="post-card__name">{post.authorName}</strong>
-            <span className="post-card__flag">{post.authorFlag}</span>
+            {post.authorFlag && <span className="post-card__flag">{post.authorFlag}</span>}
             <span className="post-card__handle">{post.authorHandle}</span>
           </div>
-          <span className="post-card__role">{post.authorRole} • {post.timestamp}</span>
+          <span className="post-card__role">{[post.authorRole, post.authorLocation, post.timestamp].filter(Boolean).join(' • ')}</span>
         </div>
         <span className={`post-card__mode-badge post-card__mode-badge--${post.mode}`}>
           {post.mode === 'project'
@@ -145,7 +156,8 @@ export function PostCard({ post, onForkProject }: PostCardProps) {
           <button
             type="button"
             className="post-card__fork-btn"
-            onClick={() => post.attachedProject && onForkProject?.(post.attachedProject)}
+            onClick={() => post.showcaseId && onForkProject && void handleAction(() => onForkProject(post.showcaseId!))}
+            disabled={isPending || !post.showcaseId}
           >
             🍴 Fork This Pipeline →
           </button>
@@ -156,36 +168,38 @@ export function PostCard({ post, onForkProject }: PostCardProps) {
       <div className="post-card__actions">
         <button
           type="button"
-          className={`post-card__action-btn ${liked ? 'post-card__action-btn--liked' : ''}`}
-          onClick={toggleLike}
+          className={`post-card__action-btn ${post.liked ? 'post-card__action-btn--liked' : ''}`}
+          onClick={() => void handleAction(onToggleLike)}
+          disabled={isPending}
+          aria-pressed={post.liked}
         >
-          {liked ? '❤️' : '🤍'} {likesCount}
+          {post.liked ? '❤️' : '🤍'} {post.likesCount}
         </button>
 
         <button
           type="button"
           className="post-card__action-btn"
-          onClick={() => setShowComments(!showComments)}
+          onClick={toggleComments}
+          aria-expanded={showComments}
         >
-          💬 {comments.length} Comments
+          💬 {post.commentsCount} Comments
         </button>
-
-        {post.forksCount !== undefined && (
-          <span className="post-card__action-stat">
-            🍴 {post.forksCount} forks
-          </span>
-        )}
 
         <button
           type="button"
           className={`post-card__action-btn post-card__action-btn--bookmark ${
-            saved ? 'post-card__action-btn--saved' : ''
+            post.saved ? 'post-card__action-btn--saved' : ''
           }`}
-          onClick={toggleSave}
+          onClick={() => void handleAction(onToggleSave)}
+          disabled={isPending}
+          aria-pressed={post.saved}
         >
-          {saved ? '🔖 Saved' : '📑 Save'}
+          {post.saved ? '🔖 Saved' : '📑 Save'}
         </button>
+        {isOwnPost && <button type="button" className="post-card__action-btn" disabled={isPending} onClick={() => void handleAction(onDelete)}>Delete</button>}
       </div>
+
+      {actionError && <p className="post-card__error" role="alert">{actionError}</p>}
 
       {/* Expandable Comments Section */}
       {showComments && (
@@ -197,13 +211,14 @@ export function PostCard({ post, onForkProject }: PostCardProps) {
               placeholder="Write a comment..."
               value={newCommentText}
               onChange={(e) => setNewCommentText(e.target.value)}
+              maxLength={2000}
             />
-            <button type="submit" className="post-card__comment-submit" disabled={!newCommentText.trim()}>
+            <button type="submit" className="post-card__comment-submit" disabled={!newCommentText.trim() || isPending}>
               Reply
             </button>
           </form>
 
-          {comments.length > 0 && (
+          {commentsLoading ? <p className="post-card__comments-loading">Loading comments...</p> : comments.length > 0 && (
             <div className="post-card__comments-list">
               {comments.map((c) => (
                 <div key={c.id} className="post-card__comment-row">

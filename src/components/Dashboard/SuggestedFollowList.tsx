@@ -1,55 +1,56 @@
 import { useState } from 'react';
+import type { SuggestedProfile } from '../../types/dashboard';
 import './SuggestedFollowList.css';
 
-interface UserToFollow {
-  id: string;
-  name: string;
-  handle: string;
-  avatar: string;
-  role: string;
-  followers: string;
-}
-
 interface SuggestedFollowListProps {
-  users: UserToFollow[];
+  users: SuggestedProfile[];
+  pendingIds: Set<string>;
+  onToggleFollow: (id: string, isFollowing: boolean) => Promise<void>;
 }
 
-export function SuggestedFollowList({ users }: SuggestedFollowListProps) {
-  const [following, setFollowing] = useState<Record<string, boolean>>({});
+export function SuggestedFollowList({ users, pendingIds, onToggleFollow }: SuggestedFollowListProps) {
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const toggleFollow = (id: string) => {
-    setFollowing((prev) => ({ ...prev, [id]: !prev[id] }));
+  const handleToggle = async (user: SuggestedProfile) => {
+    setErrorMessage('');
+    try {
+      await onToggleFollow(user.id, user.isFollowing);
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : 'Unable to update follow.');
+    }
   };
 
   return (
     <div className="suggested-follow-list">
       <div className="suggested-follow-list__header">
-        <h4 className="suggested-follow-list__title">👥 Suggested to Follow</h4>
+        <h4 className="suggested-follow-list__title">People</h4>
       </div>
 
       <div className="suggested-follow-list__items">
-        {users.map((u) => {
-          const isFollowed = !!following[u.id];
+        {users.map((user) => {
+          const initials = user.displayName.split(/\s+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toUpperCase() || 'U';
           return (
-            <div key={u.id} className="suggested-follow-list__row">
-              <div className="suggested-follow-list__avatar">{u.avatar}</div>
+            <div key={user.id} className="suggested-follow-list__row">
+              <div className="suggested-follow-list__avatar">{initials}</div>
               <div className="suggested-follow-list__info">
-                <strong>{u.name}</strong>
-                <span>{u.handle} • {u.followers}</span>
+                <strong>{user.displayName}</strong>
+                <span>@{user.username} · {user.followerCount} followers</span>
               </div>
               <button
                 type="button"
                 className={`suggested-follow-list__btn ${
-                  isFollowed ? 'suggested-follow-list__btn--following' : ''
+                  user.isFollowing ? 'suggested-follow-list__btn--following' : ''
                 }`}
-                onClick={() => toggleFollow(u.id)}
+                onClick={() => void handleToggle(user)}
+                disabled={pendingIds.has(user.id)}
               >
-                {isFollowed ? 'Following' : '+ Follow'}
+                {pendingIds.has(user.id) ? 'Saving...' : user.isFollowing ? 'Following' : '+ Follow'}
               </button>
             </div>
           );
         })}
       </div>
+      {errorMessage && <p className="suggested-follow-list__error" role="alert">{errorMessage}</p>}
     </div>
   );
 }

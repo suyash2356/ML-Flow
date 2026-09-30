@@ -98,3 +98,6 @@
   border-color: #262d3a;
   color: #99a2b4;
 }
+
+.suggested-follow-list__btn:disabled { opacity: 0.55; cursor: wait; }
+.suggested-follow-list__error { color: #e99b91; font-size: 11px; }

@@ -11,11 +11,11 @@ export function FeedFilterTabs({
   onSelectFilter,
 }: FeedFilterTabsProps) {
   const tabs: { id: FeedFilter; label: string; icon: string }[] = [
-    { id: 'for_you', label: 'For You', icon: '✨' },
+    { id: 'for_you', label: 'Latest', icon: '◷' },
     { id: 'following', label: 'Following', icon: '👥' },
     { id: 'global', label: 'Global Feed', icon: '🌐' },
-    { id: 'my_country', label: 'My Country 🇮🇳', icon: '📍' },
-    { id: 'trending', label: 'Trending 🔥', icon: '📈' },
+    { id: 'my_country', label: 'My Location', icon: '⌖' },
+    { id: 'trending', label: 'Trending', icon: '↗' },
   ];
 
   return (

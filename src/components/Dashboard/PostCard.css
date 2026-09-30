@@ -335,6 +335,18 @@
   border-color: #385675;
 }
 
+.post-card__action-btn:disabled,
+.post-card__fork-btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.post-card__error,
+.post-card__comments-loading {
+  color: #e99b91;
+  font-size: 11px;
+}
+
 .post-card__action-btn--liked {
   color: #dd6b62;
   border-color: #752936;
@@ -458,3 +470,5 @@
   color: #b7bfcc;
   margin: 2px 0 0;
 }
+
+.post-card__comment-submit:disabled { opacity: 0.55; cursor: wait; }
